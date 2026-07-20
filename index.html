@@ -425,6 +425,9 @@
       color: var(--text-hi); font-size: 0.95rem;
     }
     .search-box input::placeholder { color: var(--text-soft); }
+    /* Catálogo de aba única: busca centralizada e mais larga */
+    .catalog-toolbar--search { justify-content: center; }
+    .catalog-toolbar--search .search-box { flex: 0 1 auto; max-width: 560px; width: 100%; }
 
     .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
     .catalog-grid .product-card { flex: initial; }
@@ -707,6 +710,43 @@
 
         <div class="carousel" id="carousel-b2b" role="region" aria-label="Carrossel de produtos para empresas" tabindex="0">
 
+          <!-- Produto B2B: Amaciante Premium Encapsulado (foto real) -->
+          <article class="product-card">
+            <div class="product-media">
+              <span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/amaciante-premium-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Amaciante Premium Encapsulado Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lavanderia</span>
+              <h3 class="product-name">Amaciante Premium Encapsulado</h3>
+              <p class="product-desc">Cápsulas de perfume prolongado: máxima maciez e fragrância duradoura para enxovais de padrão hoteleiro.</p>
+              <div class="product-meta">
+                <span class="meta-pill">Perfume &amp; maciez</span>
+                <span class="meta-pill">[Rendimento a confirmar]</span>
+              </div>
+              <!-- TODO: número WhatsApp real -->
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Amaciante Premium Encapsulado (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
+            </div>
+          </article>
+
+          <!-- Produto B2B: Desinfetante Lavanda (foto real) -->
+          <article class="product-card">
+            <div class="product-media">
+              <span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/desinfetante-lavanda-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Desinfetante Lavanda Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Hotelaria &amp; Pousadas</span>
+              <h3 class="product-name">Desinfetante Lavanda</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes de grande circulação com fragrância suave de lavanda.</p>
+              <div class="product-meta">
+                <span class="meta-pill">Ambientes</span>
+                <span class="meta-pill">[Rendimento a confirmar]</span>
+              </div>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Desinfetante Lavanda (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
+            </div>
+          </article>
+
           <!-- Produto B2B: Amaciante de Roupas Lavanda (foto real) -->
           <article class="product-card">
             <div class="product-media">
@@ -790,6 +830,43 @@
 
         <div class="carousel" id="carousel-b2c" role="region" aria-label="Carrossel de produtos residenciais" tabindex="0">
 
+          <!-- Produto B2C: Amaciante Concentrado Bem Me Quer Carícia (foto real) -->
+          <article class="product-card">
+            <div class="product-media">
+              <span class="product-badge">Concentrado 1L</span>
+              <img src="assets/produtos/amaciante-bem-me-quer-caricia-1l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Uso Residencial</span>
+              <h3 class="product-name">Amaciante Concentrado "Bem Me Quer" Carícia</h3>
+              <p class="product-desc">Fórmula concentrada que rende 4L: mais maciez e perfume floral por mais tempo, ocupando menos espaço.</p>
+              <div class="product-meta">
+                <span class="meta-pill">Rende 4L</span>
+                <span class="meta-pill">[Rendimento a confirmar]</span>
+              </div>
+              <!-- TODO: número WhatsApp real -->
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Amaciante Concentrado Bem Me Quer Carícia (1L, rende 4L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
+            </div>
+          </article>
+
+          <!-- Produto B2C: Amaciante Líquido Lavanda 2L (foto real) -->
+          <article class="product-card">
+            <div class="product-media">
+              <span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/amaciante-lavanda-2l.jpg" width="828" height="1013" loading="lazy" decoding="async" alt="Amaciante Líquido Lavanda Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Uso Residencial</span>
+              <h3 class="product-name">Amaciante Líquido Lavanda</h3>
+              <p class="product-desc">Perfume marcante de lavanda e maciez para as roupas da casa, no prático frasco de 2 litros.</p>
+              <div class="product-meta">
+                <span class="meta-pill">Perfume de lavanda</span>
+                <span class="meta-pill">[Rendimento a confirmar]</span>
+              </div>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Amaciante Líquido Lavanda (2L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
+            </div>
+          </article>
+
           <!-- Produto B2C: Sabão Líquido Azul (foto real) -->
           <article class="product-card">
             <div class="product-media">
@@ -851,98 +928,155 @@
     </section>
 
     <!-- ============================================================
-         5. CATÁLOGO GERAL (abas + busca dinâmica)
+         5. CATÁLOGO GERAL (aba única + busca dinâmica)
          ============================================================ -->
     <section id="catalogo" aria-labelledby="catalog-title">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">📦 Catálogo Completo</span>
-          <h2 id="catalog-title">Encontre o produto certo para cada necessidade</h2>
-          <p>Filtre por segmento ou busque pelo nome. Todos os valores e rendimentos são confirmados no atendimento.</p>
+          <h2 id="catalog-title">Todos os nossos produtos em um só lugar</h2>
+          <p>Digite o nome do produto para encontrar rapidinho. Todos os valores e rendimentos são confirmados no atendimento.</p>
         </div>
 
-        <div class="catalog-toolbar">
-          <!-- Abas de filtro -->
-          <div class="tabs" role="tablist" aria-label="Filtrar catálogo por categoria">
-            <button class="tab" role="tab" aria-selected="true"  data-filter="todos">Todos</button>
-            <button class="tab" role="tab" aria-selected="false" data-filter="hotelaria">Hotelaria &amp; Pousadas</button>
-            <button class="tab" role="tab" aria-selected="false" data-filter="lavanderia">Lavanderia</button>
-            <button class="tab" role="tab" aria-selected="false" data-filter="residencial">Uso Residencial</button>
-          </div>
-
-          <!-- Busca em tempo real (com debounce; filtragem por textContent, sem innerHTML do valor) -->
+        <div class="catalog-toolbar catalog-toolbar--search">
+          <!-- Busca em tempo real (com debounce; filtragem por textContent/data-name, sem innerHTML do valor) -->
           <div class="search-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
             <label for="catalogSearch" class="visually-hidden">Buscar produto no catálogo</label>
-            <input type="search" id="catalogSearch" placeholder="Buscar produto..." autocomplete="off" />
+            <input type="search" id="catalogSearch" placeholder="Buscar produto (ex.: lavanda, sabão, alvejante)..." autocomplete="off" />
           </div>
         </div>
 
         <div class="catalog-grid" id="catalogGrid">
-          <!-- Cada card carrega data-category (pode ter mais de uma, separadas por espaço) e data-name para filtragem segura -->
+          <!-- Aba única: todos os produtos. Cada card carrega data-name para a busca segura. -->
 
-          <article class="product-card" data-category="hotelaria residencial" data-name="limpador perfumado pinho">
+          <article class="product-card" data-name="limpador perfumado pinho limpeza geral">
             <div class="product-media"><span class="product-badge">Galão 5L</span>
               <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
-              <span class="product-cat">Hotelaria &amp; Pousadas</span>
+              <span class="product-cat">Limpeza Geral</span>
               <h3 class="product-name">Limpador Perfumado Pinho</h3>
               <p class="product-desc">Limpa e perfuma pisos e superfícies com a fragrância clássica de pinho, de longa duração.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Pinho." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Pinho (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
-          <article class="product-card" data-category="lavanderia hotelaria" data-name="amaciante de roupas lavanda">
+          <article class="product-card" data-name="desinfetante lavanda">
             <div class="product-media"><span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
+              <img src="assets/produtos/desinfetante-lavanda-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Desinfetante Lavanda Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
-              <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Amaciante de Roupas Lavanda</h3>
-              <p class="product-desc">Maciez e perfume intenso de lavanda para enxovais de hotéis, pousadas e lavanderias.</p>
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Desinfetante Lavanda</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes com fragrância suave de lavanda, ideal para uso frequente.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante de Roupas Lavanda." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Lavanda (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
-          <article class="product-card" data-category="lavanderia hotelaria" data-name="lava roupas quimiplus peroxide peroxido">
+          <article class="product-card" data-name="lava roupas quimiplus peroxide peroxido poder o2">
             <div class="product-media"><span class="product-badge">Galão 5L</span>
               <img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
-              <span class="product-cat">Lavanderia</span>
+              <span class="product-cat">Lava-Roupas</span>
               <h3 class="product-name">Lava Roupas Quimiplus c/ Peróxido</h3>
               <p class="product-desc">Detergente líquido com Poder O₂ para lavagem profissional de roupas brancas e coloridas.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Lava Roupas Quimiplus com Peróxido." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Lava Roupas Quimiplus com Peróxido (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
-          <article class="product-card" data-category="lavanderia residencial" data-name="sabao liquido azul">
+          <article class="product-card" data-name="sabao liquido azul 5l roupas brancas coloridas">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/sabao-liquido-azul-5l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Sabão Líquido Azul — 5L</h3>
+              <p class="product-desc">Sabão líquido para roupas brancas e coloridas no tamanho econômico de 5 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Azul (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="sabao liquido azul 2l roupas brancas coloridas">
             <div class="product-media"><span class="product-badge">Frasco 2L</span>
               <img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" />
             </div>
             <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Sabão Líquido Azul</h3>
-              <p class="product-desc">Sabão líquido para a lavagem diária de roupas brancas e coloridas, prático e rendoso.</p>
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Sabão Líquido Azul — 2L</h3>
+              <p class="product-desc">Mesmo sabão líquido para roupas brancas e coloridas, no prático frasco de 2 litros.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Azul." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Azul (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
-          <article class="product-card" data-category="lavanderia residencial" data-name="alvejante sem cloro">
+          <article class="product-card" data-name="alvejante sem cloro poder o2 roupas brancas coloridas">
             <div class="product-media"><span class="product-badge">Frasco 2L</span>
               <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
             </div>
             <div class="product-body">
-              <span class="product-cat">Lavanderia</span>
+              <span class="product-cat">Alvejante</span>
               <h3 class="product-name">Alvejante Sem Cloro</h3>
               <p class="product-desc">Alvejante com Poder O₂, sem cloro, para roupas brancas e coloridas — remove manchas sem agredir os tecidos.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Alvejante Sem Cloro." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Alvejante Sem Cloro (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="amaciante premium encapsulado perfume maciez">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/amaciante-premium-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Amaciante Premium Encapsulado Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Premium Encapsulado</h3>
+              <p class="product-desc">Cápsulas de perfume prolongado para máxima maciez e fragrância duradoura nas roupas.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Premium Encapsulado (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="amaciante de roupas lavanda 5l galao">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante de Roupas Lavanda — 5L</h3>
+              <p class="product-desc">Maciez e perfume intenso de lavanda no tamanho profissional de 5 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante de Roupas Lavanda (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="amaciante liquido lavanda 2l">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/amaciante-lavanda-2l.jpg" width="828" height="1013" loading="lazy" decoding="async" alt="Amaciante Líquido Lavanda Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Líquido Lavanda — 2L</h3>
+              <p class="product-desc">O mesmo perfume de lavanda com bioativos de maciez, no prático frasco de 2 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Líquido Lavanda (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="amaciante concentrado bem me quer caricia floral rende 4l">
+            <div class="product-media"><span class="product-badge">Concentrado 1L</span>
+              <img src="assets/produtos/amaciante-bem-me-quer-caricia-1l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Concentrado "Bem Me Quer" Carícia</h3>
+              <p class="product-desc">Concentrado floral que rende 4L: mais maciez e perfume por mais tempo, com menos volume.</p>
+              <div class="product-meta"><span class="meta-pill">Rende 4L</span><span class="meta-pill">[Consulte valores]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Concentrado Bem Me Quer Carícia (1L, rende 4L)." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
@@ -1211,17 +1345,15 @@
     });
 
     /* ---------------------------------------------------------
-       5. Catálogo: abas de filtro + busca em tempo real (debounce)
+       5. Catálogo (aba única): busca em tempo real (debounce)
        SEGURANÇA: filtramos por textContent / atributos data-*;
        o valor digitado NUNCA é injetado via innerHTML.
        --------------------------------------------------------- */
-    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
     var cards = Array.prototype.slice.call(document.querySelectorAll("#catalogGrid .product-card"));
     var searchInput = document.getElementById("catalogSearch");
     var emptyState = document.getElementById("emptyState");
     var emptyMsg = document.getElementById("emptyMsg");
 
-    var activeFilter = "todos";
     var searchTerm = "";
 
     function normalize(str) {
@@ -1232,16 +1364,13 @@
     function applyFilters() {
       var visibleCount = 0;
       cards.forEach(function (card) {
-        var cat = card.getAttribute("data-category") || "";
-        var cats = cat.split(/\s+/); // um produto pode pertencer a mais de uma categoria
         var name = normalize(card.getAttribute("data-name") || "");
         var descEl = card.querySelector(".product-desc");
         var desc = normalize(descEl ? descEl.textContent : "");
 
-        var matchCat = (activeFilter === "todos") || (cats.indexOf(activeFilter) !== -1);
         var matchSearch = (searchTerm === "") || name.indexOf(searchTerm) !== -1 || desc.indexOf(searchTerm) !== -1;
 
-        if (matchCat && matchSearch) {
+        if (matchSearch) {
           card.classList.remove("is-hidden");
           visibleCount++;
         } else {
@@ -1252,26 +1381,12 @@
       // Estado vazio — usamos textContent (nunca innerHTML com o valor digitado)
       if (visibleCount === 0) {
         emptyState.classList.add("visible");
-        if (searchTerm) {
-          // textContent evita qualquer injeção de HTML a partir do input do usuário
-          emptyMsg.textContent = 'Nenhum resultado para o que você buscou. Tente outro termo ou fale com a gente pelo WhatsApp.';
-        } else {
-          emptyMsg.textContent = 'Nenhum produto nesta categoria no momento. Fale com a gente pelo WhatsApp — temos muito mais no estoque.';
-        }
+        // textContent evita qualquer injeção de HTML a partir do input do usuário
+        emptyMsg.textContent = 'Nenhum resultado para o que você buscou. Tente outro termo ou fale com a gente pelo WhatsApp — temos muito mais no estoque.';
       } else {
         emptyState.classList.remove("visible");
       }
     }
-
-    // Abas
-    tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
-        tab.setAttribute("aria-selected", "true");
-        activeFilter = tab.getAttribute("data-filter");
-        applyFilters();
-      });
-    });
 
     // Busca com debounce (~200ms)
     var debounceTimer = null;
