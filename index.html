@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limpa Sim — Distribuidora Oficial Quimiprol | Serra Gaúcha</title>
+<meta name="description" content="Distribuidora oficial e parceira exclusiva Quimiprol há mais de 10 anos. Pronta entrega em toda a Serra Gaúcha para mercados, hotéis, condomínios, indústrias e consumidor final.">
+<link rel="icon" href="assets/images/logo-limpasim.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0A3D7A;
+    --blue: #0F66B8;
+    --blue-light: #EAF4FC;
+    --steel: #7E97AF;
+    --surface: #F4F7FA;
+    --green: #5FAE46;
+    --ink: #10233B;
+    --gray: #566579;
+    --white: #ffffff;
+
+    --tag-pink: #D6127D;
+    --tag-red: #D93A2B;
+    --tag-purple: #7C4FA6;
+    --tag-orange: #E8790F;
+    --tag-teal: #1298AD;
+    --tag-amber: #93602E;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+  h1,h2,h3 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  a { text-decoration:none; color:inherit; }
+  img { display:block; max-width:100%; }
+  button { font-family:inherit; cursor:pointer; }
+  .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.15em; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 12px 5vw;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(10,61,122,0.08);
+  }
+  .logo-wrap { display:flex; align-items:center; gap:10px; }
+  .logo-wrap img { height: 52px; width:auto; }
+  nav { display:flex; align-items:center; gap: 30px; }
+  nav a { font-size: 14.5px; font-weight:600; color: var(--blue-deep); position:relative; }
+  nav a::after {
+    content:''; position:absolute; left:0; bottom:-6px; width:0; height:2px;
+    background: var(--green); transition: width .25s ease;
+  }
+  nav a:hover::after { width:100%; }
+  .cta-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--blue); color:#fff; padding: 11px 22px;
+    border-radius: 8px; font-size: 14.5px; font-weight:700;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    white-space:nowrap; border:none;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(20,131,214,0.3); background: var(--blue-deep); }
+  .menu-toggle { display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    display:flex; align-items:center;
+    position: relative;
+    background: linear-gradient(120deg, #EAF4FC 0%, #CFE6F8 60%, #B9DAF3 100%);
+    overflow:hidden;
+    padding: 130px 6vw 60px;
+  }
+  .hero-inner {
+    display:flex; align-items:center; justify-content:space-between; gap: 50px;
+    max-width: 1180px; width:100%; margin: 0 auto; position:relative; z-index:2;
+    flex-wrap: wrap;
+  }
+  .hero-text { max-width: 540px; }
+  .hero-eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    color: var(--blue-deep); font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    background: #fff; padding: 8px 16px; border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(10,61,122,0.1);
+    opacity:0; transform: translateY(14px);
+  }
+  .hero-title {
+    color: var(--blue-deep); font-size: clamp(32px, 4.6vw, 52px); line-height:1.12; margin: 22px 0 18px;
+    opacity:0; transform: translateY(20px);
+  }
+  .hero-sub {
+    color: var(--gray); font-size: 18px; line-height:1.6; max-width: 460px; font-weight:500;
+    opacity:0; transform: translateY(16px);
+  }
+  .hero-cta { margin-top: 32px; display:flex; gap:14px; flex-wrap:wrap; opacity:0; transform: translateY(18px); }
+  .hero-cta .cta-btn { padding: 15px 26px; font-size:15.5px; }
+  .hero-cta .btn-ghost {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 15px 22px; border-radius:8px; font-weight:700; font-size:15.5px;
+    color: var(--blue-deep); border: 1.5px solid rgba(10,61,122,0.25);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .hero-cta .btn-ghost:hover { background: rgba(255,255,255,0.6); border-color: var(--blue-deep); }
+
+  .hero-product {
+    position:relative; opacity:0; transform: scale(.9) translateY(10px);
+    flex: 0 0 auto;
+  }
+  .hero-product img {
+    width: min(360px, 78vw); border-radius: 18px;
+    filter: drop-shadow(0 30px 40px rgba(10,61,122,0.25));
+  }
+
+  .hero-run .hero-eyebrow  { animation: riseIn .6s .1s cubic-bezier(.22,.68,.2,1) forwards; }
+  .hero-run .hero-title    { animation: riseIn .7s .25s cubic-bezier(.22,.68,.2,1) forwards; }
+  .hero-run .hero-sub      { animation: riseIn .6s .45s cubic-bezier(.22,.68,.2,1) forwards; }
+  .hero-run .hero-cta      { animation: riseIn .6s .62s cubic-bezier(.22,.68,.2,1) forwards; }
+  .hero-run .hero-product  { animation: riseInScale .7s .3s cubic-bezier(.22,.68,.2,1) forwards; }
+  @keyframes riseIn { to { opacity:1; transform: translateY(0); } }
+  @keyframes riseInScale { to { opacity:1; transform: scale(1) translateY(0); } }
+
+  .trust-strip {
+    display:flex; justify-content:center; gap:40px; flex-wrap:wrap;
+    padding: 22px 6vw; background: var(--blue-deep); color:#fff;
+  }
+  .trust-strip .item { display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:600; }
+  .trust-strip .icon { color: #8EC3EF; width:18px; height:18px; }
+
+  /* ---------- SECTION SHARED ---------- */
+  section { padding: 96px 6vw; }
+  .section-inner { max-width: 1180px; margin: 0 auto; }
+  .reveal { opacity:0; transform: translateY(22px); transition: opacity .55s cubic-bezier(.22,.68,.2,1), transform .55s cubic-bezier(.22,.68,.2,1); }
+  .reveal.in-view { opacity:1; transform: translateY(0); }
+  .stagger.in-view > * { opacity:1; transform: translateY(0); }
+  .stagger > * { opacity:0; transform: translateY(16px); transition: opacity .5s cubic-bezier(.22,.68,.2,1), transform .5s cubic-bezier(.22,.68,.2,1); }
+  .stagger.in-view > *:nth-child(1) { transition-delay: .03s; }
+  .stagger.in-view > *:nth-child(2) { transition-delay: .08s; }
+  .stagger.in-view > *:nth-child(3) { transition-delay: .13s; }
+  .stagger.in-view > *:nth-child(4) { transition-delay: .18s; }
+  .stagger.in-view > *:nth-child(5) { transition-delay: .23s; }
+
+  .eyebrow {
+    display:inline-block; color: var(--blue); font-weight:700; font-size:13px;
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px;
+  }
+
+  /* ---------- QUEM SOMOS ---------- */
+  .quem-somos { background: var(--white); }
+  .qs-grid { display:flex; gap: 56px; align-items:center; flex-wrap:wrap; }
+  .qs-text { flex: 1 1 460px; }
+  .qs-text h2 { font-size: clamp(26px,3.4vw,38px); margin-bottom:18px; color: var(--blue-deep); line-height:1.2; }
+  .qs-text p { font-size:17px; line-height:1.7; color: var(--gray); max-width:520px; }
+  .qs-badge {
+    flex: 0 0 210px; text-align:center; padding: 34px 18px;
+    background: var(--surface); border-radius: 16px;
+    border: 1px solid rgba(10,61,122,0.08);
+  }
+  .qs-badge .num { font-family:'Sora',sans-serif; font-weight:800; font-size: 50px; color: var(--blue); line-height:1; }
+  .qs-badge .label { font-size:12.5px; color: var(--blue-deep); font-weight:700; margin-top:10px; letter-spacing:.03em; }
+
+  /* ---------- VITRINE ---------- */
+  .vitrine { background: var(--surface); }
+  .vitrine .head { text-align:center; max-width:680px; margin:0 auto 40px; }
+  .vitrine h2 { font-size: clamp(26px,3.4vw,38px); color: var(--blue-deep); margin-bottom:12px; }
+  .vitrine .sub { color: var(--gray); font-size:16px; font-weight:500; }
+  .cat-tabs { display:flex; justify-content:center; gap:10px; margin-bottom: 40px; flex-wrap:wrap; }
+  .cat-tab {
+    padding: 9px 18px; border-radius: 999px; font-size:13.5px; font-weight:700;
+    border: 1.5px solid rgba(10,61,122,0.18); color: var(--blue-deep); background:#fff;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .cat-tab.active, .cat-tab:hover { background: var(--blue); color:#fff; border-color: var(--blue); }
+  .grid {
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+  }
+  .card {
+    background:#fff; border-radius: 14px; overflow:hidden;
+    border: 1px solid rgba(10,61,122,0.08);
+    transition: transform .3s cubic-bezier(.22,.68,.2,1), box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 32px rgba(10,61,122,0.12);
+    border-color: rgba(10,61,122,0.15);
+  }
+  .card .thumb { aspect-ratio: 1/1; overflow:hidden; background:#fff; }
+  .card .thumb img { width:100%; height:100%; object-fit:cover; transition: transform .4s ease; }
+  .card:hover .thumb img { transform: scale(1.06); }
+  .card .info { padding: 16px 16px 18px; }
+  .card .pname { font-size:14.5px; font-weight:700; color: var(--ink); line-height:1.3; }
+  .card .pcat {
+    display:inline-block; font-size:11px; margin-top:8px; font-weight:700;
+    letter-spacing:.03em; text-transform:uppercase; padding: 3px 10px; border-radius:999px;
+  }
+  .card[data-cat="perfumados"] .pcat  { color: var(--tag-pink);   background: color-mix(in srgb, var(--tag-pink) 12%, white); }
+  .card[data-cat="lavanderia"] .pcat  { color: var(--blue-deep);   background: var(--blue-light); }
+  .card[data-cat="aromatizantes"] .pcat { color: var(--tag-teal); background: color-mix(in srgb, var(--tag-teal) 12%, white); }
+  .card[data-cat="institucional"] .pcat { color: var(--tag-amber); background: color-mix(in srgb, var(--tag-amber) 12%, white); }
+  .card.hide { display:none; }
+
+  /* ---------- POR QUE ---------- */
+  .porque { background: var(--white); }
+  .porque h2 { text-align:center; font-size: clamp(26px,3.4vw,38px); color: var(--blue-deep); margin-bottom: 50px; }
+  .porque-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+  .pq-card { text-align:center; padding: 12px; }
+  .pq-icon {
+    width:60px; height:60px; margin: 0 auto 18px; border-radius: 50%;
+    background: var(--blue-light);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--blue);
+  }
+  .pq-icon .icon { width:26px; height:26px; }
+  .pq-card h3 { font-size:16.5px; margin-bottom:8px; color: var(--ink); }
+  .pq-card p { font-size:14px; color: var(--gray); line-height:1.55; }
+
+  /* ---------- COBERTURA ---------- */
+  .cobertura { background: var(--blue-deep); color:#fff; }
+  .cobertura .section-inner { display:flex; gap:56px; align-items:center; flex-wrap:wrap; }
+  .cob-map { flex: 1 1 360px; }
+  .cob-text { flex: 1 1 380px; }
+  .cob-text .eyebrow { color: #8EC3EF; }
+  .cob-text h2 { font-size: clamp(24px,3.2vw,36px); margin-bottom: 16px; }
+  .cob-text p { color:#C7DCF2; font-size:16px; line-height:1.65; margin-bottom:22px; max-width:460px; }
+  .cities { display:flex; flex-wrap:wrap; gap:10px; }
+  .city-pin {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22);
+    padding: 7px 15px; border-radius: 999px; font-size:13px; font-weight:600;
+  }
+  .cob-map svg { width:100%; height:auto; }
+
+  /* ---------- CONTATO CTA ---------- */
+  .contato { background: linear-gradient(120deg, var(--blue), var(--blue-deep)); color:#fff; text-align:center; }
+  .contato h2 { font-size: clamp(24px,3.6vw,40px); margin-bottom:14px; max-width:640px; margin:0 auto 14px; }
+  .contato p { color:#D3E7FA; margin-bottom: 32px; font-size:16.5px; }
+  .contato-btns { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.5); color:#fff; padding: 13px 22px; border-radius:8px;
+    font-size:14.5px; font-weight:700; transition: background .2s ease, transform .2s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  .contato .cta-btn { background:#fff; color: var(--blue-deep); padding:14px 26px; }
+  .contato .cta-btn:hover { background: #EAF4FC; box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: #071B33; color: #90A9C4; padding: 44px 6vw 28px; }
+  .foot-inner { max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+  .foot-logo img { height:44px; margin-bottom:14px; }
+  .foot-col h4 { color:#fff; font-size:12.5px; margin-bottom:12px; letter-spacing:.06em; }
+  .foot-col p, .foot-col a { font-size:13.5px; line-height:1.85; color:#90A9C4; display:block; }
+  .foot-col a:hover { color:#fff; }
+  .foot-bottom { text-align:center; font-size:12px; color:#5A7392; margin-top:34px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.08); }
+
+  .whatsapp-float {
+    position: fixed; bottom: 24px; right: 24px; z-index: 90;
+    background: #25D366; color:#fff; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    transition: transform .2s ease;
+  }
+  .whatsapp-float .icon { width:27px; height:27px; }
+  .whatsapp-float:hover { transform: scale(1.08); }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2,1fr); }
+    .porque-grid { grid-template-columns: repeat(2,1fr); }
+    nav { display:none; }
+    .hero-inner { flex-direction:column-reverse; text-align:center; }
+    .hero-text { max-width:100%; }
+    .hero-sub { margin: 0 auto; }
+    .hero-cta { justify-content:center; }
+    .cobertura .section-inner, .qs-grid { flex-direction:column; text-align:center; }
+    .trust-strip { gap:20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <img src="assets/images/logo-limpasim.png" alt="Limpa Sim Produtos de Limpeza">
+  </div>
+  <nav>
+    <a href="#quem-somos">Quem Somos</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#cobertura">Cobertura</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a class="cta-btn" href="https://wa.me/5554999326973" target="_blank">
+    <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 11.94 4C7.02 4 3 8.02 3 12.94c0 1.62.44 3.14 1.2 4.46L3 21l3.7-1.16a8.9 8.9 0 0 0 4.24 1.08h.01c4.92 0 8.94-4.02 8.94-8.94a8.86 8.86 0 0 0-2.29-4.66Zm-5.66 13.75h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.88.89-2.72-.18-.28a7.38 7.38 0 0 1-1.13-3.92c0-4.09 3.33-7.42 7.43-7.42a7.4 7.4 0 0 1 7.42 7.43c0 4.1-3.33 7.22-7.58 7.22Z"/></svg>
+    Fale no WhatsApp
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero hero-run" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        Distribuidora oficial Quimiprol
+      </p>
+      <h1 class="hero-title">A distribuidora que a Serra Gaúcha nunca deixou faltar.</h1>
+      <p class="hero-sub">Parceria exclusiva com a Quimiprol há mais de 10 anos. Peça agora e receba com pronta entrega — pro seu negócio ou pra sua casa.</p>
+      <div class="hero-cta">
+        <a class="cta-btn" href="https://wa.me/5554999326973" target="_blank">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 11.94 4C7.02 4 3 8.02 3 12.94c0 1.62.44 3.14 1.2 4.46L3 21l3.7-1.16a8.9 8.9 0 0 0 4.24 1.08h.01c4.92 0 8.94-4.02 8.94-8.94a8.86 8.86 0 0 0-2.29-4.66Zm-5.66 13.75h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.88.89-2.72-.18-.28a7.38 7.38 0 0 1-1.13-3.92c0-4.09 3.33-7.42 7.43-7.42a7.4 7.4 0 0 1 7.42 7.43c0 4.1-3.33 7.22-7.58 7.22Z"/></svg>
+          Peça agora no WhatsApp
+        </a>
+        <a class="btn-ghost" href="#produtos">Ver catálogo completo</a>
+      </div>
+    </div>
+    <div class="hero-product">
+      <img src="assets/images/limpador-frutas-vermelhas-5l.jpg" alt="Limpador Perfumado Frutas Vermelhas 5L Quimiprol">
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="item">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    Pronta entrega
+  </div>
+  <div class="item">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Cobertura em toda a Serra Gaúcha
+  </div>
+  <div class="item">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+    +10 anos de parceria Quimiprol
+  </div>
+</div>
+
+<!-- QUEM SOMOS -->
+<section class="quem-somos" id="quem-somos">
+  <div class="section-inner qs-grid reveal">
+    <div class="qs-text">
+      <p class="eyebrow">Quem somos</p>
+      <h2>10 anos de parceria, uma linha completa, zero desculpa por falta de estoque.</h2>
+      <p>Somos a Limpa Sim — distribuidora oficial e parceira exclusiva da Quimiprol há mais de uma década. Não fabricamos: escolhemos, estocamos e entregamos com pronta entrega para quem não pode parar — mercados, hotéis, condomínios, revendas, indústrias e quem compra no atacado ou varejo em toda a região.</p>
+    </div>
+    <div class="qs-badge">
+      <div class="num">10+</div>
+      <div class="label">ANOS DE PARCERIA<br>EXCLUSIVA QUIMIPROL</div>
+    </div>
+  </div>
+</section>
+
+<!-- VITRINE -->
+<section class="vitrine" id="produtos">
+  <div class="section-inner">
+    <div class="head">
+      <p class="eyebrow">Catálogo completo</p>
+      <h2 class="reveal">Tudo que sua limpeza precisa, numa entrega só</h2>
+      <p class="sub reveal">Perfumados, lavanderia, aromatizantes e linha institucional — a linha completa Quimiprol, sempre com pronta entrega na Serra Gaúcha.</p>
+    </div>
+    <div class="cat-tabs reveal" id="catTabs">
+      <button class="cat-tab active" data-filter="all">Tudo</button>
+      <button class="cat-tab" data-filter="perfumados">Perfumados</button>
+      <button class="cat-tab" data-filter="lavanderia">Lavanderia</button>
+      <button class="cat-tab" data-filter="aromatizantes">Aromatizantes</button>
+      <button class="cat-tab" data-filter="institucional">Institucional</button>
+    </div>
+    <div class="grid stagger" id="productGrid">
+      <div class="card" data-cat="perfumados">
+        <div class="thumb"><img src="assets/images/limpador-perfumado-floral-5l.jpg" alt="Limpador Perfumado Floral 5L"></div>
+        <div class="info"><div class="pname">Limpador Perfumado Floral 5L</div><div class="pcat">Perfumados</div></div>
+      </div>
+      <div class="card" data-cat="perfumados">
+        <div class="thumb"><img src="assets/images/limpador-frutas-vermelhas-5l.jpg" alt="Limpador Perfumado Frutas Vermelhas 5L"></div>
+        <div class="info"><div class="pname">Limpador Perfumado Frutas Vermelhas 5L</div><div class="pcat">Perfumados</div></div>
+      </div>
+      <div class="card" data-cat="perfumados">
+        <div class="thumb"><img src="assets/images/limpador-perfumado-kaiak-5l.jpg" alt="Limpador Perfumado Kaiak 5L"></div>
+        <div class="info"><div class="pname">Limpador Perfumado Kaiak 5L</div><div class="pcat">Perfumados</div></div>
+      </div>
+      <div class="card" data-cat="perfumados">
+        <div class="thumb"><img src="assets/images/limpador-perfumado-talco-5l.jpg" alt="Limpador Perfumado Talco 5L"></div>
+        <div class="info"><div class="pname">Limpador Perfumado Talco 5L</div><div class="pcat">Perfumados</div></div>
+      </div>
+      <div class="card" data-cat="perfumados">
+        <div class="thumb"><img src="assets/images/limpador-perfumado-pinho-5l.jpg" alt="Limpador Perfumado Pinho 5L"></div>
+        <div class="info"><div class="pname">Limpador Perfumado Pinho 5L</div><div class="pcat">Perfumados</div></div>
+      </div>
+      <div class="card" data-cat="lavanderia">
+        <div class="thumb"><img src="assets/images/sabao-liquido-azul-2l.jpg" alt="Sabão Líquido Azul 2L"></div>
+        <div class="info"><div class="pname">Sabão Líquido Azul 2L</div><div class="pcat">Lavanderia</div></div>
+      </div>
+      <div class="card" data-cat="lavanderia">
+        <div class="thumb"><img src="assets/images/alvejante-sem-cloro-5l.jpg" alt="Alvejante Sem Cloro 5L"></div>
+        <div class="info"><div class="pname">Alvejante Sem Cloro 5L</div><div class="pcat">Lavanderia</div></div>
+      </div>
+      <div class="card" data-cat="lavanderia">
+        <div class="thumb"><img src="assets/images/alvejante-sem-cloro-o2-2l.jpg" alt="Alvejante Sem Cloro Poder O2 2L"></div>
+        <div class="info"><div class="pname">Alvejante Sem Cloro Poder O2 2L</div><div class="pcat">Lavanderia</div></div>
+      </div>
+      <div class="card" data-cat="lavanderia">
+        <div class="thumb"><img src="assets/images/lava-roupas-quimiplus-o2-2l.jpg" alt="Lava Roupas Quimiplus com Peróxido O2 2L"></div>
+        <div class="info"><div class="pname">Lava Roupas Quimiplus O2 2L</div><div class="pcat">Lavanderia</div></div>
+      </div>
+      <div class="card" data-cat="lavanderia">
+        <div class="thumb"><img src="assets/images/detergente-vinolia-2l.jpg" alt="Detergente Perfumado Vinólia 2L"></div>
+        <div class="info"><div class="pname">Detergente Perfumado Vinólia 2L</div><div class="pcat">Lavanderia</div></div>
+      </div>
+      <div class="card" data-cat="lavanderia">
+        <div class="thumb"><img src="assets/images/amaciante-bem-me-quer-1l.jpg" alt="Amaciante Bem Me Quer Romance Concentrado 1L"></div>
+        <div class="info"><div class="pname">Amaciante Bem Me Quer 1L</div><div class="pcat">Lavanderia</div></div>
+      </div>
+      <div class="card" data-cat="aromatizantes">
+        <div class="thumb"><img src="assets/images/aromatizante-algodao.jpg" alt="Aromatizante de Ambientes Algodão Q'aroma"></div>
+        <div class="info"><div class="pname">Aromatizante Algodão</div><div class="pcat">Aromatizantes</div></div>
+      </div>
+      <div class="card" data-cat="aromatizantes">
+        <div class="thumb"><img src="assets/images/aromatizante-amadeirado.jpg" alt="Aromatizante de Ambientes Amadeirado Q'aroma"></div>
+        <div class="info"><div class="pname">Aromatizante Amadeirado</div><div class="pcat">Aromatizantes</div></div>
+      </div>
+      <div class="card" data-cat="institucional">
+        <div class="thumb"><img src="assets/images/percarbonato-sodio-1kg.jpg" alt="Percarbonato de Sódio 1kg"></div>
+        <div class="info"><div class="pname">Percarbonato de Sódio 1kg</div><div class="pcat">Institucional</div></div>
+      </div>
+      <div class="card" data-cat="institucional">
+        <div class="thumb"><img src="assets/images/gel-painel.jpg" alt="Gel para Painel Automotivo"></div>
+        <div class="info"><div class="pname">Gel para Painel Automotivo</div><div class="pcat">Institucional</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE -->
+<section class="porque">
+  <div class="section-inner">
+    <h2 class="reveal">Por que fechar com a Limpa Sim</h2>
+    <div class="porque-grid stagger">
+      <div class="pq-card">
+        <div class="pq-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Pediu hoje, recebe hoje</h3>
+        <p>Sem espera. O que você precisa, sai com pronta entrega.</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Perto de você, em toda a Serra</h3>
+        <p>Atendimento regional com cobertura em toda a região.</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></div>
+        <h3>Só aqui, a linha completa</h3>
+        <p>Parceria exclusiva Quimiprol — sem concorrência de linha.</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+        <h3>10 anos de confiança</h3>
+        <p>Tradição comprovada com quem já é nosso cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="cobertura" id="cobertura">
+  <div class="section-inner reveal">
+    <div class="cob-map">
+      <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 190 Q30 120 80 90 Q120 50 180 55 Q250 60 270 110 Q290 150 250 190 Q220 220 160 215 Q90 210 40 190 Z" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="rgba(255,255,255,0.05)"/>
+        <circle cx="95" cy="120" r="5" fill="#5FAE46"/>
+        <circle cx="150" cy="95" r="5" fill="#5FAE46"/>
+        <circle cx="200" cy="120" r="5" fill="#5FAE46"/>
+        <circle cx="160" cy="160" r="5" fill="#5FAE46"/>
+        <circle cx="110" cy="170" r="5" fill="#5FAE46"/>
+        <circle cx="220" cy="160" r="5" fill="#5FAE46"/>
+      </svg>
+    </div>
+    <div class="cob-text">
+      <p class="eyebrow">Área de cobertura</p>
+      <h2>Onde a Serra Gaúcha precisa de limpeza, a Limpa Sim já chegou.</h2>
+      <p>Atendimento regional com pronta entrega. Confirme com nossa equipe a cobertura para sua cidade.</p>
+      <div class="cities">
+        <span class="city-pin">Caxias do Sul</span>
+        <span class="city-pin">Bento Gonçalves</span>
+        <span class="city-pin">Farroupilha</span>
+        <span class="city-pin">Garibaldi</span>
+        <span class="city-pin">Gramado</span>
+        <span class="city-pin">Canela</span>
+        <span class="city-pin">Nova Petrópolis</span>
+        <span class="city-pin">Três Coroas</span>
+        <span class="city-pin">Igrejinha</span>
+        <span class="city-pin">Taquara</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="section-inner reveal">
+    <h2>Sua empresa não pode ficar sem estoque. Fala com a gente agora.</h2>
+    <p>Atendimento B2B e B2C · Resposta rápida via WhatsApp</p>
+    <div class="contato-btns">
+      <a class="cta-btn" href="https://wa.me/5554999326973" target="_blank">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 11.94 4C7.02 4 3 8.02 3 12.94c0 1.62.44 3.14 1.2 4.46L3 21l3.7-1.16a8.9 8.9 0 0 0 4.24 1.08h.01c4.92 0 8.94-4.02 8.94-8.94a8.86 8.86 0 0 0-2.29-4.66Zm-5.66 13.75h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.88.89-2.72-.18-.28a7.38 7.38 0 0 1-1.13-3.92c0-4.09 3.33-7.42 7.43-7.42a7.4 7.4 0 0 1 7.42 7.43c0 4.1-3.33 7.22-7.58 7.22Z"/></svg>
+        WhatsApp (54) 9932-6973
+      </a>
+      <a class="btn-outline" href="mailto:limpasimprodutos@gmail.com">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        limpasimprodutos@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-logo">
+      <img src="assets/images/logo-limpasim.png" alt="Limpa Sim">
+      <p style="color:#90A9C4; font-size:13px; max-width:240px;">Distribuidor autorizado Quimiprol.</p>
+    </div>
+    <div class="foot-col">
+      <h4>CONTATO</h4>
+      <a href="mailto:limpasimprodutos@gmail.com">limpasimprodutos@gmail.com</a>
+      <a href="https://wa.me/5554999326973">(54) 9932-6973</a>
+    </div>
+    <div class="foot-col">
+      <h4>NAVEGAÇÃO</h4>
+      <a href="#quem-somos">Quem Somos</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#cobertura">Cobertura</a>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 Limpa Sim Produtos de Limpeza — Distribuidora oficial Quimiprol.</div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5554999326973" target="_blank" aria-label="WhatsApp">
+  <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 11.94 4C7.02 4 3 8.02 3 12.94c0 1.62.44 3.14 1.2 4.46L3 21l3.7-1.16a8.9 8.9 0 0 0 4.24 1.08h.01c4.92 0 8.94-4.02 8.94-8.94a8.86 8.86 0 0 0-2.29-4.66Zm-5.66 13.75h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.88.89-2.72-.18-.28a7.38 7.38 0 0 1-1.13-3.92c0-4.09 3.33-7.42 7.43-7.42a7.4 7.4 0 0 1 7.42 7.43c0 4.1-3.33 7.22-7.58 7.22Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72-.2-.08-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05-.22-.11-1.31-.63-1.68-1.44-.44-.75-.05-.79.36-1.61.08-.15.04-.28-.03-.4-.07-.11-.55-1.32-.75-1.8-.2-.48-.4-.42-.55-.42-.14 0-.31-.02-.48-.02-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09 0 1.24.9 2.44 1.03 2.61.13.17 1.75 2.67 4.25 3.64 2.1.83 2.53.68 2.99.63.46-.05 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.44-.28Z"/></svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
+
+  // Real category filter
+  const tabs = document.querySelectorAll('.cat-tab');
+  const cards = document.querySelectorAll('#productGrid .card');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      cards.forEach(card => {
+        card.classList.toggle('hide', filter !== 'all' && card.dataset.cat !== filter);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
