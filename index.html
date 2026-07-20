@@ -14,7 +14,8 @@
   <meta property="og:title" content="LimpaSim — Soluções em Limpeza Profissional e Residencial" />
   <meta property="og:description" content="Distribuidora de produtos de limpeza de padrão hoteleiro em Gramado e Serra Gaúcha. Atendimento express via WhatsApp e entrega local garantida." />
   <meta property="og:type" content="website" />
-  <!-- TODO: adicionar og:url e og:image com URL real do site e imagem própria licenciada (1200x630) -->
+  <meta property="og:image" content="assets/produtos/pinho-5l.jpg" />
+  <!-- TODO: adicionar og:url e trocar og:image por imagem de compartilhamento própria/licenciada da LimpaSim (1200x630) -->
 
   <!-- Favicon placeholder: gota d'água em SVG inline (identidade LimpaSim). TODO: substituir por favicon .ico/.png oficial -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3C11 11 7 15 7 20a9 9 0 0 0 18 0c0-5-4-9-9-17z' fill='%2338bdf8'/%3E%3C/svg%3E" />
@@ -307,6 +308,7 @@
     .float-card__title { font-family: "Outfit", sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text-hi); margin: 6px 0 20px; }
     .float-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .mini-bottle { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    .mini-bottle img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; border: 1px solid var(--glass-border); background: rgba(7,15,30,0.6); }
     .mini-bottle span { font-size: 0.72rem; color: var(--text-soft); font-weight: 600; }
     .float-note { margin-top: 20px; font-size: 0.78rem; color: var(--text-soft); border-top: 1px solid var(--glass-border); padding-top: 16px; }
 
@@ -377,6 +379,8 @@
       border-bottom: 1px solid var(--glass-border);
     }
     .product-media svg { height: 74%; width: auto; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.4)); }
+    /* Foto real do produto: preenche a área mantendo o enquadramento */
+    .product-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .product-badge {
       position: absolute; top: 12px; left: 12px;
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
@@ -652,23 +656,23 @@
           <div class="float-card">
             <span class="float-card__label">Linha Quimiprol</span>
             <span class="float-card__title">Limpeza que perfuma o seu dia</span>
-            <div class="float-products" aria-hidden="true">
-              <!-- Ilustrações de galões, sem reproduzir a marca gráfica real -->
+            <div class="float-products">
+              <!-- Miniaturas de produtos reais Quimiprol distribuídos pela LimpaSim -->
               <div class="mini-bottle">
-                <svg viewBox="0 0 60 90" width="60" height="90" aria-hidden="true"><rect x="14" y="4" width="20" height="10" rx="2" fill="#7c3aed"/><path d="M12 16h36a6 6 0 0 1 6 6v56a8 8 0 0 1-8 8H14a8 8 0 0 1-8-8V22a6 6 0 0 1 6-6z" fill="#8b5cf6"/><rect x="12" y="40" width="36" height="30" rx="3" fill="#ede9fe" opacity="0.9"/></svg>
-                <span>Floral</span>
+                <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+                <span>Pinho</span>
               </div>
               <div class="mini-bottle">
-                <svg viewBox="0 0 60 90" width="60" height="90" aria-hidden="true"><rect x="14" y="4" width="20" height="10" rx="2" fill="#0e7490"/><path d="M12 16h36a6 6 0 0 1 6 6v56a8 8 0 0 1-8 8H14a8 8 0 0 1-8-8V22a6 6 0 0 1 6-6z" fill="#22d3ee"/><rect x="12" y="40" width="36" height="30" rx="3" fill="#ecfeff" opacity="0.9"/></svg>
-                <span>Kaiak</span>
+                <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
+                <span>Lavanda</span>
               </div>
               <div class="mini-bottle">
-                <svg viewBox="0 0 60 90" width="60" height="90" aria-hidden="true"><rect x="14" y="4" width="20" height="10" rx="2" fill="#78350f"/><path d="M12 16h36a6 6 0 0 1 6 6v56a8 8 0 0 1-8 8H14a8 8 0 0 1-8-8V22a6 6 0 0 1 6-6z" fill="#92400e"/><rect x="12" y="40" width="36" height="30" rx="3" fill="#fef3c7" opacity="0.9"/></svg>
-                <span>Cravo &amp; Canela</span>
+                <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
+                <span>Alvejante</span>
               </div>
             </div>
-            <p class="float-note">Ilustração meramente representativa da linha de produtos.
-              <!-- substituir por foto própria licenciada da LimpaSim -->
+            <p class="float-note">Produtos da linha Quimiprol distribuída pela LimpaSim.
+              <!-- TODO: substituir por foto própria licenciada da LimpaSim (composição/estúdio) -->
             </p>
           </div>
           <div class="float-chip">
@@ -703,76 +707,59 @@
 
         <div class="carousel" id="carousel-b2b" role="region" aria-label="Carrossel de produtos para empresas" tabindex="0">
 
-          <!-- Produto B2B: Desinfetante Hoteleiro -->
+          <!-- Produto B2B: Amaciante de Roupas Lavanda (foto real) -->
           <article class="product-card">
             <div class="product-media">
               <span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Ilustração de galão de 5 litros de Desinfetante Hoteleiro Quimiprol"><rect x="46" y="6" width="28" height="16" rx="3" fill="#0369a1"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#0284c7"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#e0f2fe"/><text x="60" y="96" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="#0c4a6e" text-anchor="middle">DESINF.</text></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Hotelaria &amp; Pousadas</span>
-              <h3 class="product-name">Desinfetante Hoteleiro</h3>
-              <p class="product-desc">Ação bactericida para pisos e superfícies de grande circulação, com fragrância de longa duração.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Concentrado</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <!-- TODO: número WhatsApp real -->
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Desinfetante Hoteleiro (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-          <!-- Produto B2B: Desengordurante -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Ilustração de galão de 5 litros de Desengordurante Quimiprol"><rect x="46" y="6" width="28" height="16" rx="3" fill="#b45309"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#f59e0b"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#fffbeb"/><text x="60" y="96" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="#78350f" text-anchor="middle">DESENGOR.</text></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Gastronomia</span>
-              <h3 class="product-name">Desengordurante</h3>
-              <p class="product-desc">Remoção pesada de gordura em cozinhas industriais, coifas e fogões de restaurantes.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Cozinha industrial</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Desengordurante (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-          <!-- Produto B2B: Amaciante -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Ilustração de galão de 5 litros de Amaciante Quimiprol"><rect x="46" y="6" width="28" height="16" rx="3" fill="#9d174d"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#ec4899"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#fdf2f8"/><text x="60" y="96" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="#831843" text-anchor="middle">AMACI.</text></svg>
+              <!-- substituir por foto própria licenciada da LimpaSim, se disponível -->
+              <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Amaciante Concentrado</h3>
-              <p class="product-desc">Maciez e perfume prolongado para enxovais de hotéis, pousadas e lavanderias de alto volume.</p>
+              <h3 class="product-name">Amaciante de Roupas Lavanda</h3>
+              <p class="product-desc">Maciez e perfume intenso de lavanda para enxovais de hotéis, pousadas e lavanderias de alto volume.</p>
               <div class="product-meta">
                 <span class="meta-pill">Enxoval hoteleiro</span>
                 <span class="meta-pill">[Rendimento a confirmar]</span>
               </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Amaciante Concentrado (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
+              <!-- TODO: número WhatsApp real -->
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Amaciante de Roupas Lavanda (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
             </div>
           </article>
 
-          <!-- Produto B2B: Cera Acrílica -->
+          <!-- Produto B2B: Lava Roupas Quimiplus com Peróxido (foto real) -->
           <article class="product-card">
             <div class="product-media">
               <span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Ilustração de galão de 5 litros de Cera Acrílica Quimiprol"><rect x="46" y="6" width="28" height="16" rx="3" fill="#334155"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#64748b"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#f1f5f9"/><text x="60" y="96" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">CERA</text></svg>
+              <img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lavanderia</span>
+              <h3 class="product-name">Lava Roupas Quimiplus c/ Peróxido</h3>
+              <p class="product-desc">Detergente líquido com Poder O₂ (peróxido) para lavagem profissional de roupas brancas e coloridas.</p>
+              <div class="product-meta">
+                <span class="meta-pill">Poder O₂</span>
+                <span class="meta-pill">[Rendimento a confirmar]</span>
+              </div>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Lava Roupas Quimiplus com Peróxido (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
+            </div>
+          </article>
+
+          <!-- Produto B2B: Limpador Perfumado Pinho (foto real) -->
+          <article class="product-card">
+            <div class="product-media">
+              <span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Hotelaria &amp; Pousadas</span>
-              <h3 class="product-name">Cera Acrílica</h3>
-              <p class="product-desc">Brilho e proteção para pisos frios de lobbies, corredores e áreas comuns de grande fluxo.</p>
+              <h3 class="product-name">Limpador Perfumado Pinho</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies de grande circulação, com fragrância marcante de pinho.</p>
               <div class="product-meta">
-                <span class="meta-pill">Alto brilho</span>
+                <span class="meta-pill">Limpa e perfuma</span>
                 <span class="meta-pill">[Rendimento a confirmar]</span>
               </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse na Cera Acrílica (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Limpador Perfumado Pinho (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
             </div>
           </article>
 
@@ -803,58 +790,59 @@
 
         <div class="carousel" id="carousel-b2c" role="region" aria-label="Carrossel de produtos residenciais" tabindex="0">
 
-          <!-- Produto B2C: Limpa-Vidros -->
+          <!-- Produto B2C: Sabão Líquido Azul (foto real) -->
           <article class="product-card">
             <div class="product-media">
-              <span class="product-badge">Uso diário</span>
-              <svg viewBox="0 0 90 150" role="img" aria-label="Ilustração de frasco de Limpa-Vidros Quimiprol"><rect x="34" y="4" width="22" height="18" rx="3" fill="#0e7490"/><rect x="30" y="18" width="30" height="10" rx="3" fill="#155e75"/><path d="M22 28h46a8 8 0 0 1 8 8v92a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10V36a8 8 0 0 1 8-8z" fill="#22d3ee"/><rect x="20" y="62" width="50" height="46" rx="5" fill="#ecfeff"/><text x="45" y="90" font-family="Outfit,sans-serif" font-size="10" font-weight="700" fill="#0c4a6e" text-anchor="middle">VIDROS</text></svg>
+              <span class="product-badge">Frasco 2L</span>
+              <!-- substituir por foto própria licenciada da LimpaSim, se disponível -->
+              <img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Limpa-Vidros</h3>
-              <p class="product-desc">Brilho sem manchas em vidros, espelhos e superfícies, com secagem rápida e sem película.</p>
+              <h3 class="product-name">Sabão Líquido Azul</h3>
+              <p class="product-desc">Sabão líquido para lavagem do dia a dia de roupas brancas e coloridas, prático e rendoso.</p>
               <div class="product-meta">
-                <span class="meta-pill">Sem manchas</span>
+                <span class="meta-pill">Brancas e coloridas</span>
                 <span class="meta-pill">[Rendimento a confirmar]</span>
               </div>
               <!-- TODO: número WhatsApp real -->
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Limpa-Vidros." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Sabão Líquido Azul (2L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
             </div>
           </article>
 
-          <!-- Produto B2C: Limpador Perfumado Lavanda -->
+          <!-- Produto B2C: Alvejante Sem Cloro (foto real) -->
           <article class="product-card">
             <div class="product-media">
-              <span class="product-badge">Uso diário</span>
-              <svg viewBox="0 0 90 150" role="img" aria-label="Ilustração de frasco de Limpador Perfumado Lavanda Quimiprol"><rect x="34" y="4" width="22" height="18" rx="3" fill="#6d28d9"/><rect x="30" y="18" width="30" height="10" rx="3" fill="#5b21b6"/><path d="M22 28h46a8 8 0 0 1 8 8v92a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10V36a8 8 0 0 1 8-8z" fill="#a78bfa"/><rect x="20" y="62" width="50" height="46" rx="5" fill="#f5f3ff"/><text x="45" y="90" font-family="Outfit,sans-serif" font-size="10" font-weight="700" fill="#4c1d95" text-anchor="middle">LAVANDA</text></svg>
+              <span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Limpador Perfumado Lavanda</h3>
-              <p class="product-desc">Limpeza geral com fragrância intensa de lavanda que perfuma a casa por horas.</p>
+              <h3 class="product-name">Alvejante Sem Cloro</h3>
+              <p class="product-desc">Alvejante com Poder O₂, sem cloro, para roupas brancas e coloridas — remove manchas sem agredir os tecidos.</p>
               <div class="product-meta">
-                <span class="meta-pill">Perfume duradouro</span>
+                <span class="meta-pill">Poder O₂ · sem cloro</span>
                 <span class="meta-pill">[Rendimento a confirmar]</span>
               </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Limpador Perfumado Lavanda." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Alvejante Sem Cloro (2L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
             </div>
           </article>
 
-          <!-- Produto B2C: Tira-Gordura -->
+          <!-- Produto B2C: Limpador Perfumado Pinho (foto real) -->
           <article class="product-card">
             <div class="product-media">
-              <span class="product-badge">Uso diário</span>
-              <svg viewBox="0 0 90 150" role="img" aria-label="Ilustração de frasco de Tira-Gordura Quimiprol"><rect x="34" y="4" width="22" height="18" rx="3" fill="#b45309"/><rect x="30" y="18" width="30" height="10" rx="3" fill="#92400e"/><path d="M22 28h46a8 8 0 0 1 8 8v92a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10V36a8 8 0 0 1 8-8z" fill="#fbbf24"/><rect x="20" y="62" width="50" height="46" rx="5" fill="#fffbeb"/><text x="45" y="90" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#78350f" text-anchor="middle">GORDURA</text></svg>
+              <span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Tira-Gordura</h3>
-              <p class="product-desc">Dissolve gordura de fogões, azulejos e coifas domésticas com poucas aplicações.</p>
+              <h3 class="product-name">Limpador Perfumado Pinho</h3>
+              <p class="product-desc">Limpa e perfuma a casa inteira com a fragrância clássica de pinho, de longa duração.</p>
               <div class="product-meta">
-                <span class="meta-pill">Cozinha</span>
+                <span class="meta-pill">Limpa e perfuma</span>
                 <span class="meta-pill">[Rendimento a confirmar]</span>
               </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Tira-Gordura." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
+              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Limpador Perfumado Pinho." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
             </div>
           </article>
 
@@ -878,7 +866,6 @@
           <div class="tabs" role="tablist" aria-label="Filtrar catálogo por categoria">
             <button class="tab" role="tab" aria-selected="true"  data-filter="todos">Todos</button>
             <button class="tab" role="tab" aria-selected="false" data-filter="hotelaria">Hotelaria &amp; Pousadas</button>
-            <button class="tab" role="tab" aria-selected="false" data-filter="gastronomia">Gastronomia</button>
             <button class="tab" role="tab" aria-selected="false" data-filter="lavanderia">Lavanderia</button>
             <button class="tab" role="tab" aria-selected="false" data-filter="residencial">Uso Residencial</button>
           </div>
@@ -892,109 +879,70 @@
         </div>
 
         <div class="catalog-grid" id="catalogGrid">
-          <!-- Cada card carrega data-category e data-name para filtragem segura -->
+          <!-- Cada card carrega data-category (pode ter mais de uma, separadas por espaço) e data-name para filtragem segura -->
 
-          <article class="product-card" data-category="hotelaria" data-name="desinfetante hoteleiro">
+          <article class="product-card" data-category="hotelaria residencial" data-name="limpador perfumado pinho">
             <div class="product-media"><span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Desinfetante Hoteleiro"><rect x="46" y="6" width="28" height="16" rx="3" fill="#0369a1"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#0284c7"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#e0f2fe"/></svg>
+              <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Hotelaria &amp; Pousadas</span>
-              <h3 class="product-name">Desinfetante Hoteleiro</h3>
-              <p class="product-desc">Ação bactericida com fragrância de longa duração para áreas de grande circulação.</p>
+              <h3 class="product-name">Limpador Perfumado Pinho</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com a fragrância clássica de pinho, de longa duração.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Hoteleiro." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Pinho." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
-          <article class="product-card" data-category="gastronomia" data-name="desengordurante">
+          <article class="product-card" data-category="lavanderia hotelaria" data-name="amaciante de roupas lavanda">
             <div class="product-media"><span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Desengordurante"><rect x="46" y="6" width="28" height="16" rx="3" fill="#b45309"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#f59e0b"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#fffbeb"/></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Gastronomia</span>
-              <h3 class="product-name">Desengordurante</h3>
-              <p class="product-desc">Remoção pesada de gordura em cozinhas industriais, coifas e fogões.</p>
-              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desengordurante." href="#" target="_blank" rel="noopener">Consultar</a>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="lavanderia" data-name="amaciante concentrado">
-            <div class="product-media"><span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Amaciante Concentrado"><rect x="46" y="6" width="28" height="16" rx="3" fill="#9d174d"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#ec4899"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#fdf2f8"/></svg>
+              <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Amaciante Concentrado</h3>
-              <p class="product-desc">Maciez e perfume prolongado para enxovais de alto volume.</p>
+              <h3 class="product-name">Amaciante de Roupas Lavanda</h3>
+              <p class="product-desc">Maciez e perfume intenso de lavanda para enxovais de hotéis, pousadas e lavanderias.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Concentrado." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante de Roupas Lavanda." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
-          <article class="product-card" data-category="hotelaria" data-name="cera acrilica">
+          <article class="product-card" data-category="lavanderia hotelaria" data-name="lava roupas quimiplus peroxide peroxido">
             <div class="product-media"><span class="product-badge">Galão 5L</span>
-              <svg viewBox="0 0 120 150" role="img" aria-label="Cera Acrílica"><rect x="46" y="6" width="28" height="16" rx="3" fill="#334155"/><path d="M32 24h56a12 12 0 0 1 12 12v90a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V36a12 12 0 0 1 12-12z" fill="#64748b"/><rect x="30" y="66" width="60" height="52" rx="5" fill="#f1f5f9"/></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Hotelaria &amp; Pousadas</span>
-              <h3 class="product-name">Cera Acrílica</h3>
-              <p class="product-desc">Brilho e proteção para pisos frios de lobbies e áreas comuns.</p>
-              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre a Cera Acrílica." href="#" target="_blank" rel="noopener">Consultar</a>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="residencial" data-name="limpa-vidros">
-            <div class="product-media"><span class="product-badge">Uso diário</span>
-              <svg viewBox="0 0 90 150" role="img" aria-label="Limpa-Vidros"><rect x="34" y="4" width="22" height="18" rx="3" fill="#0e7490"/><rect x="30" y="18" width="30" height="10" rx="3" fill="#155e75"/><path d="M22 28h46a8 8 0 0 1 8 8v92a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10V36a8 8 0 0 1 8-8z" fill="#22d3ee"/><rect x="20" y="62" width="50" height="46" rx="5" fill="#ecfeff"/></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Limpa-Vidros</h3>
-              <p class="product-desc">Brilho sem manchas em vidros e espelhos, com secagem rápida.</p>
-              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpa-Vidros." href="#" target="_blank" rel="noopener">Consultar</a>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="residencial" data-name="limpador perfumado lavanda">
-            <div class="product-media"><span class="product-badge">Uso diário</span>
-              <svg viewBox="0 0 90 150" role="img" aria-label="Limpador Perfumado Lavanda"><rect x="34" y="4" width="22" height="18" rx="3" fill="#6d28d9"/><rect x="30" y="18" width="30" height="10" rx="3" fill="#5b21b6"/><path d="M22 28h46a8 8 0 0 1 8 8v92a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10V36a8 8 0 0 1 8-8z" fill="#a78bfa"/><rect x="20" y="62" width="50" height="46" rx="5" fill="#f5f3ff"/></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Limpador Perfumado Lavanda</h3>
-              <p class="product-desc">Limpeza geral com fragrância intensa que perfuma a casa por horas.</p>
-              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Lavanda." href="#" target="_blank" rel="noopener">Consultar</a>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="residencial" data-name="tira-gordura">
-            <div class="product-media"><span class="product-badge">Uso diário</span>
-              <svg viewBox="0 0 90 150" role="img" aria-label="Tira-Gordura"><rect x="34" y="4" width="22" height="18" rx="3" fill="#b45309"/><rect x="30" y="18" width="30" height="10" rx="3" fill="#92400e"/><path d="M22 28h46a8 8 0 0 1 8 8v92a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10V36a8 8 0 0 1 8-8z" fill="#fbbf24"/><rect x="20" y="62" width="50" height="46" rx="5" fill="#fffbeb"/></svg>
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Tira-Gordura</h3>
-              <p class="product-desc">Dissolve gordura de fogões, azulejos e coifas domésticas.</p>
-              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Tira-Gordura." href="#" target="_blank" rel="noopener">Consultar</a>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="lavanderia" data-name="percarbonato de sodio alvejante">
-            <div class="product-media"><span class="product-badge">1 kg</span>
-              <svg viewBox="0 0 110 150" role="img" aria-label="Percarbonato de Sódio"><path d="M25 30h60l6 14v88a10 10 0 0 1-10 10H29a10 10 0 0 1-10-10V44z" fill="#38bdf8"/><path d="M25 30l6-14h48l6 14z" fill="#0284c7"/><rect x="24" y="70" width="62" height="40" rx="4" fill="#f8fafc"/></svg>
+              <img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Percarbonato de Sódio</h3>
-              <p class="product-desc">Alvejante em pó sem cloro, potencializa a lavagem e remove manchas difíceis.</p>
+              <h3 class="product-name">Lava Roupas Quimiplus c/ Peróxido</h3>
+              <p class="product-desc">Detergente líquido com Poder O₂ para lavagem profissional de roupas brancas e coloridas.</p>
               <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
-              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Percarbonato de Sódio." href="#" target="_blank" rel="noopener">Consultar</a>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Lava Roupas Quimiplus com Peróxido." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia residencial" data-name="sabao liquido azul">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Uso Residencial</span>
+              <h3 class="product-name">Sabão Líquido Azul</h3>
+              <p class="product-desc">Sabão líquido para a lavagem diária de roupas brancas e coloridas, prático e rendoso.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Azul." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia residencial" data-name="alvejante sem cloro">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lavanderia</span>
+              <h3 class="product-name">Alvejante Sem Cloro</h3>
+              <p class="product-desc">Alvejante com Poder O₂, sem cloro, para roupas brancas e coloridas — remove manchas sem agredir os tecidos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Alvejante Sem Cloro." href="#" target="_blank" rel="noopener">Consultar</a>
             </div>
           </article>
 
@@ -1285,11 +1233,12 @@
       var visibleCount = 0;
       cards.forEach(function (card) {
         var cat = card.getAttribute("data-category") || "";
+        var cats = cat.split(/\s+/); // um produto pode pertencer a mais de uma categoria
         var name = normalize(card.getAttribute("data-name") || "");
         var descEl = card.querySelector(".product-desc");
         var desc = normalize(descEl ? descEl.textContent : "");
 
-        var matchCat = (activeFilter === "todos") || (cat === activeFilter);
+        var matchCat = (activeFilter === "todos") || (cats.indexOf(activeFilter) !== -1);
         var matchSearch = (searchTerm === "") || name.indexOf(searchTerm) !== -1 || desc.indexOf(searchTerm) !== -1;
 
         if (matchCat && matchSearch) {
