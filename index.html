@@ -332,10 +332,13 @@
     }
     .float-card__label { display: block; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
     .float-card__title { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text-hi); margin: 8px 0 22px; letter-spacing: -0.01em; line-height: 1.2; }
-    .float-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .mini-bottle { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
-    .mini-bottle img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; border: 1px solid var(--glass-border); background: rgba(7,15,30,0.6); }
+    .float-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; }
+    .mini-bottle { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 10px; text-align: center; height: 120px; }
+    /* Recorte real (fundo removido): flutua puro, sem moldura, apoiado numa "prateleira" comum */
+    .mini-bottle img { max-width: 100%; max-height: 108px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(2,8,23,0.55)); transition: transform 0.4s var(--ease-fluid); }
+    .mini-bottle:hover img { transform: translateY(-4px) scale(1.04); }
     .mini-bottle span { font-size: 0.72rem; color: var(--text-soft); font-weight: 600; }
+    .float-shelf { grid-column: 1 / -1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-line), transparent); margin-top: -4px; }
     .float-note { margin-top: 20px; font-size: 0.78rem; color: var(--text-soft); border-top: 1px solid var(--glass-border); padding-top: 16px; }
 
     /* Chip decorativo flutuante sobre o card */
@@ -429,6 +432,16 @@
         radial-gradient(ellipse 66% 74% at 50% 44%, transparent 46%, rgba(7,15,30,0.78) 100%),
         linear-gradient(180deg, rgba(7,15,30,0.10), rgba(7,15,30,0.30));
     }
+    /* Destaque com recorte real (fundo removido) — usado só nos carrosséis de vitrine,
+       nunca no catálogo. Sem máscara/vinheta: o produto já flutua puro, com sombra suave. */
+    .product-media.is-cutout::after { display: none; }
+    .product-media.is-cutout img {
+      -webkit-mask-image: none; mask-image: none;
+      padding: 26px;
+      filter: drop-shadow(0 18px 28px rgba(2,8,23,0.55));
+    }
+    .product-media.is-cutout:hover img,
+    .product-card:hover .product-media.is-cutout img { transform: scale(1.06) translateY(-3px); }
     .product-badge {
       position: absolute; top: 12px; left: 12px;
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
@@ -818,20 +831,21 @@
             <span class="float-card__label">Linha Quimiprol</span>
             <span class="float-card__title">Limpeza que perfuma o seu dia</span>
             <div class="float-products">
-              <!-- Miniaturas de produtos reais Quimiprol distribuídos pela LimpaSim -->
+              <!-- Miniaturas com recorte real (fundo removido) — flutuam sobre o card, sem moldura -->
               <div class="mini-bottle">
-                <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+                <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
                 <span>Pinho</span>
               </div>
               <div class="mini-bottle">
-                <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
-                <span>Lavanda</span>
+                <img src="assets/produtos/recorte/bem-me-quer-caricia-1l-recorte.png" width="260" height="616" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro" />
+                <span>Bem Me Quer</span>
               </div>
               <div class="mini-bottle">
-                <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
+                <img src="assets/produtos/recorte/alvejante-sem-cloro-2l-recorte.png" width="306" height="651" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
                 <span>Alvejante</span>
               </div>
             </div>
+            <div class="float-shelf" aria-hidden="true"></div>
             <p class="float-note">Produtos da linha Quimiprol distribuída pela LimpaSim.
               <!-- TODO: substituir por foto própria licenciada da LimpaSim (composição/estúdio) -->
             </p>
@@ -943,11 +957,11 @@
             </div>
           </article>
 
-          <!-- Produto B2B: Limpador Perfumado Pinho (foto real) -->
+          <!-- Produto B2B: Limpador Perfumado Pinho (recorte real, fundo removido) -->
           <article class="product-card">
-            <div class="product-media">
+            <div class="product-media is-cutout">
               <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+              <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Hotelaria &amp; Pousadas</span>
@@ -990,9 +1004,9 @@
 
           <!-- Produto B2C: Amaciante Concentrado Bem Me Quer Carícia (foto real) -->
           <article class="product-card">
-            <div class="product-media">
+            <div class="product-media is-cutout">
               <span class="product-badge">Concentrado 1L</span>
-              <img src="assets/produtos/amaciante-bem-me-quer-caricia-1l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
+              <img src="assets/produtos/recorte/bem-me-quer-caricia-1l-recorte.png" width="260" height="616" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Uso Residencial</span>
@@ -1045,11 +1059,11 @@
             </div>
           </article>
 
-          <!-- Produto B2C: Alvejante Sem Cloro (foto real) -->
+          <!-- Produto B2C: Alvejante Sem Cloro (recorte real, fundo removido) -->
           <article class="product-card">
-            <div class="product-media">
+            <div class="product-media is-cutout">
               <span class="product-badge">Frasco 2L</span>
-              <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
+              <img src="assets/produtos/recorte/alvejante-sem-cloro-2l-recorte.png" width="306" height="651" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Uso Residencial</span>
@@ -1063,11 +1077,11 @@
             </div>
           </article>
 
-          <!-- Produto B2C: Limpador Perfumado Pinho (foto real) -->
+          <!-- Produto B2C: Limpador Perfumado Pinho (recorte real, fundo removido) -->
           <article class="product-card">
-            <div class="product-media">
+            <div class="product-media is-cutout">
               <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+              <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
             </div>
             <div class="product-body">
               <span class="product-cat">Uso Residencial</span>
