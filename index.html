@@ -695,9 +695,24 @@
     html.js-motion [data-reveal="scale"] { transform: translateY(22px) scale(0.965); }
     html.js-motion [data-reveal="left"]  { transform: translateX(-28px); }
     html.js-motion [data-reveal="right"] { transform: translateX(28px); }
+    /* Cortina: revela a foto do produto com um wipe (clip-path), mais cinematográfico que um simples fade */
+    html.js-motion [data-reveal="curtain"] {
+      opacity: 1; transform: none;
+      clip-path: inset(0 0 0 100%);
+      transition: clip-path 0.85s var(--ease-fluid);
+    }
     html.js-motion [data-reveal].is-in {
       opacity: 1;
       transform: none;
+    }
+    html.js-motion [data-reveal="curtain"].is-in { clip-path: inset(0 0 0 0%); }
+
+    /* Barra de progresso de leitura — fio fino no topo, acompanha o scroll da página */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 200;
+      background: linear-gradient(90deg, var(--gold), var(--cyan-400));
+      transition: width 0.1s linear;
+      pointer-events: none;
     }
 
     /* Camada de aura para parallax sutil no hero (só decorativa) */
@@ -710,6 +725,12 @@
         radial-gradient(30% 30% at 70% 90%, rgba(216,184,120,0.08), transparent 60%);
       will-change: transform;
     }
+    /* Segunda camada de profundidade: o card 3D do hero desliza um pouco mais devagar que o scroll (parallax) */
+    html.js-motion .hero-visual { will-change: transform; }
+
+    /* Scrollspy: sublinhado dourado do link ativo, mesmo sem hover */
+    .nav a.active { color: var(--text-hi); }
+    .nav a.active::after { transform: scaleX(1); background: var(--gold); }
 
     /* Botões: acabamento mais premium */
     .btn { letter-spacing: 0.005em; }
@@ -719,13 +740,17 @@
 
     /* Respeita quem prefere menos movimento: sem reveal, sem tilt */
     @media (prefers-reduced-motion: reduce) {
-      html.js-motion [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+      html.js-motion [data-reveal] { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
       .hero-aura { display: none; }
       .product-card { transform: none !important; }
+      .scroll-progress { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Barra de progresso de leitura (decorativa, some sem JS ou com movimento reduzido) -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Sprite de ícones SVG (Lucide-style) — substitui emojis por vetores consistentes -->
   <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -1602,7 +1627,10 @@
       document.documentElement.classList.add("js-motion");
 
       // Marca automaticamente os blocos-chave para revelar ao entrar na viewport.
-      // (Cards de carrossel ficam de fora: rolagem horizontal + observer não combinam bem.)
+      // (Cards/fotos de carrossel ficam de fora: dentro de um contêiner com
+      // overflow-x + os cards com perspective(), o IntersectionObserver não
+      // reporta interseção de forma confiável — testado e confirmado; a foto
+      // ficava permanentemente invisível. Carrosséis continuam sem reveal.)
       var groups = [
         { sel: ".hero-copy > *", stagger: 60 },
         { sel: ".hero-visual", type: "scale" },
@@ -1647,19 +1675,73 @@
         });
       }
 
-      // Parallax sutil da aura do hero (só camada decorativa)
+      // Parallax em duas camadas no hero: a aura (fundo, mais lenta) e o card 3D
+      // do produto (mais rápido) — dá sensação de profundidade real ao rolar.
+      // Só roda enquanto o hero está na tela; some depois para não "derivar" pela página.
       var aura = document.querySelector(".hero-aura");
-      if (aura) {
-        var ticking = false;
+      var heroVisual = document.querySelector(".hero-visual");
+      var heroSection = document.querySelector(".hero");
+      if (aura && heroSection) {
+        var pTicking = false;
         window.addEventListener("scroll", function () {
-          if (ticking) return; ticking = true;
+          if (pTicking) return; pTicking = true;
           requestAnimationFrame(function () {
-            aura.style.transform = "translate3d(0," + (window.scrollY * 0.12).toFixed(1) + "px,0)";
-            ticking = false;
+            var heroH = heroSection.offsetHeight || 1;
+            var y = window.scrollY;
+            aura.style.transform = "translate3d(0," + (y * 0.12).toFixed(1) + "px,0)";
+            if (heroVisual && y < heroH) {
+              heroVisual.style.transform = "translate3d(0," + (y * -0.05).toFixed(1) + "px,0)";
+            }
+            pTicking = false;
           });
         }, { passive: true });
       }
     }
+
+    /* ---------------------------------------------------------
+       8. Barra de progresso de leitura + scrollspy do menu
+       (wayfinding funcional — roda mesmo com prefers-reduced-motion,
+       já que não é decoração: ajuda a saber onde a página está)
+       --------------------------------------------------------- */
+    var progressBar = document.getElementById("scrollProgress");
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+    var spySections = navLinks
+      .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+      .filter(Boolean);
+    var spTicking = false;
+    function updateProgress() {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      if (progressBar) progressBar.style.width = pct.toFixed(1) + "%";
+    }
+    // Scrollspy por posição direta (não por interseção de faixa): pega a última
+    // seção cujo topo já passou de uma linha de referência logo abaixo do header.
+    // Funciona de forma confiável mesmo com seções curtas (ex.: o CTA final).
+    function updateSpy() {
+      if (!navLinks.length || !spySections.length) return;
+      var doc = document.documentElement;
+      var activeIdx;
+      // Perto do fim absoluto da página: a última seção + rodapé podem ser mais
+      // baixos que a viewport, e o topo dela nunca chega a cruzar a linha de
+      // referência mesmo rolando até o fim — força o último link nesse caso.
+      if (doc.scrollHeight - (doc.scrollTop + doc.clientHeight) < 2) {
+        activeIdx = spySections.length - 1;
+      } else {
+        var refY = 120;
+        activeIdx = -1;
+        for (var i = 0; i < spySections.length; i++) {
+          if (spySections[i].getBoundingClientRect().top <= refY) activeIdx = i;
+        }
+      }
+      navLinks.forEach(function (a, i) { a.classList.toggle("active", i === activeIdx); });
+    }
+    window.addEventListener("scroll", function () {
+      if (spTicking) return; spTicking = true;
+      requestAnimationFrame(function () { updateProgress(); updateSpy(); spTicking = false; });
+    }, { passive: true });
+    updateProgress();
+    updateSpy();
 
   })();
   </script>
