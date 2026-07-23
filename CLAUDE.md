@@ -141,6 +141,29 @@ distribui. Achados relevantes para decisões futuras neste projeto:
   exemplos de meta description) não foi persistido em arquivo — se for
   preciso revisitar detalhe fino, refazer a análise ou pedir ao usuário.
 
+## Referência: skills de terceiros para efeitos de scroll cinematográfico
+
+Ver `docs/levantamento-claude-skills-scroll.md` — levantamento feito em
+23/07/2026 no GitHub por Claude Skills capazes de ajudar a implementar
+os 4 efeitos de `docs/referencia-scroll-cinematografico.md`. **Nada foi
+instalado** — é material pra revisão manual antes de decidir instalar
+qualquer uma. Resumo dos melhores candidatos por efeito:
+
+- **Portal reveal + video-scrubbing com stagger (efeitos 1 e 2):**
+  `roeea2/scroll-site-claude` (mais sofisticado, mas só 1 star — achado
+  recente não validado pela comunidade), `alirezarezvani/claude-skills`
+  → skill `epic-design` (23k stars — mas usar só o repo original, há
+  vários forks com nomes de conta suspeitos ao redor dele), ou
+  `greensock/gsap-skills` → `gsap-scrolltrigger` (skill **oficial** do
+  GreenSock, 12,2k stars).
+- **Mesh gradient + reveal em JS vanilla puro (efeitos 3 e 4):**
+  `nexu-io/motion-anything` (`grainient` + `scroll-reveal`) — melhor
+  achado vanilla, mas o reveal precisaria de ajuste manual (adicionar
+  `filter:blur`) pra bater com o efeito 4 exato.
+- Todos os candidatos, incluindo os descartados (com sinais de
+  scraping/repackaging em massa) e as queries de busca que não deram
+  resultado, estão documentados no arquivo linkado acima.
+
 ## Preview público
 
 Para gerar um link de preview do site (com imagens embutidas como data URI,
