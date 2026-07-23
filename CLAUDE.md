@@ -81,6 +81,39 @@ sem vídeo, sem IA generativa, sem canvas, mantendo todo o resto do site
   JS — tudo isso pego bugs reais antes de publicar (offset de header,
   largura zero no fallback, sobreposição imagem/texto).
 
+## Referência: análise do site oficial Quimiprol (fabricante)
+
+Análise feita em 23/07/2026 do site do **fabricante** Quimiprol
+(quimiprol.com.br, quimiprol.ind.br) — não é o site da LimpaSim, mas serve
+de referência de conteúdo/SEO/estrutura por ser a marca que a LimpaSim
+distribui. Achados relevantes para decisões futuras neste projeto:
+
+- **Estrutura de produto que funciona bem** e pode inspirar o catálogo
+  daqui: nome, categoria, imagem, resumo curto, "Aplicação e modo de
+  usar", "Diferenciais". 7 categorias no site deles: Aromatizantes de
+  Ambientes, Automotiva, Casa, Limpeza para Mãos, Lavanderia, Limpeza
+  Pesada, Pet.
+- **Erros a evitar aqui** (achados no site deles, não repetir no
+  LimpaSim): números institucionais inconsistentes entre páginas (ex.:
+  "60 produtos" vs "50 produtos"); link que muda de domínio sem aviso
+  (`.com.br` → `.ind.br`) quebrando a navegação; meta descriptions
+  genéricas/repetidas e cortadas ("...Saiba..." truncado — sinal de
+  geração automática mal finalizada); cards de listagem com texto
+  inconsistente entre si (alguns cortados começando em "Aplicação e modo
+  de usar…").
+- **Boas práticas técnicas confirmadas lá e já seguidas aqui:** HTTPS,
+  `lang="pt-br"`, viewport responsivo, `alt` em 100% das imagens, H1
+  único por página, meta title/description por página. Ainda faltam lá
+  (oportunidade de diferencial para o LimpaSim, se fizer sentido no
+  futuro): dados estruturados Schema.org/JSON-LD (Product, Organization,
+  LocalBusiness) e `og:image` nas páginas de produto/categoria.
+- **Coisa que o site deles não tem e o LimpaSim também não deve inventar:**
+  preço, ficha técnica estruturada, FISPQ (ficha de segurança) — segue a
+  mesma regra já estabelecida de nunca inventar dado de produto.
+- Relatório completo (todas as 7 linhas, recomendações de SEO com
+  exemplos de meta description) não foi persistido em arquivo — se for
+  preciso revisitar detalhe fino, refazer a análise ou pedir ao usuário.
+
 ## Preview público
 
 Para gerar um link de preview do site (com imagens embutidas como data URI,
