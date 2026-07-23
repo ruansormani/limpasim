@@ -205,3 +205,48 @@ aproxima do levantamento técnico completo:
 do conteúdo real do `SKILL.md` antes de decidir instalar — em especial
 `epic-design`, dado o volume de forks suspeitos ao redor do repositório
 (mesmo que o original pareça legítimo).
+
+## Veredito da revisão de conteúdo (23/07/2026)
+
+Baixei e li por completo os 5 `SKILL.md` principais (itens 1, 2, 3 e 5
+acima) mais todos os scripts/arquivos referenciados de cada um
+(`chain-step.sh`, `assemble.sh`, `verify.js`, `references/*.md` do
+roeea2; `grainient.js`, `scroll-reveal.js/css` do motion-anything) —
+não apenas os SKILL.md, o conteúdo executável também.
+
+**Segurança:** nenhuma das 5 skills apresentou sinal de problema —
+sem prompt injection, sem pedido de credencial embutida, sem
+exfiltração de dados escondida, sem instrução fora do escopo
+declarado. Os scripts do roeea2 são mecânicos e limpos (ffmpeg/
+puppeteer/CLI), e o SKILL.md declara explicitamente "zero personal
+data — no API keys, no accounts baked in". O `grainient.js` é WebGL
+puro, sem rede/eval. O risco de star-farming do `epic-design` está
+confirmado como sendo nos *forks* ao redor do repo, não no conteúdo do
+SKILL.md original em si.
+
+**Mas nenhuma foi instalada**, por incompatibilidade real com o projeto:
+
+- `epic-design`, `gsap-scrolltrigger` (oficial) e o Lane A do
+  `roeea2` **exigem GSAP** (e Lenis) — viola a regra do projeto de
+  `index.html` único, vanilla, sem dependências além do Google Fonts.
+  `epic-design` inclusive manda importar GSAP via CDN.
+- `roeea2/scroll-site-claude` é filosofia "build from scratch" (a
+  página inteira como um plano cinematográfico contínuo) — conflita
+  com o site existente (menu/catálogo/footer já estabelecidos). Não é
+  uma skill de *enhance*, é de *rebuild*.
+- `scroll-reveal` (motion-anything) é **redundante**: o site já faz
+  exatamente isso via `data-reveal` + IntersectionObserver.
+- `grainient` (motion-anything) — o único genuinamente aditivo e
+  100% vanilla — está **com dependência quebrada no repositório
+  publicado**: `grainient.js` chama `window.ShaderBG`, que deveria
+  vir de `_fx/shaderbg.js`, mas esse arquivo não existe na pasta do
+  recipe (confirmado navegando o diretório real no GitHub). Sem ele o
+  shader não roda como está.
+
+**Conclusão final:** o que já está documentado em
+`docs/referencia-scroll-cinematografico.md` (portal reveal,
+video-scrubbing, blur-reveal — tudo vanilla, com código pronto) cobre
+melhor as necessidades deste projeto do que qualquer uma das 5 skills
+avaliadas, sem adicionar dependência nem risco. Se um efeito novo for
+necessário no futuro, o caminho é adaptar à mão os blocos já
+documentados, não instalar skill de terceiro.
