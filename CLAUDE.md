@@ -81,6 +81,33 @@ sem vídeo, sem IA generativa, sem canvas, mantendo todo o resto do site
   JS — tudo isso pego bugs reais antes de publicar (offset de header,
   largura zero no fallback, sobreposição imagem/texto).
 
+## Referência: engenharia reversa de scroll cinematográfico
+
+Ver `docs/referencia-scroll-cinematografico.md` — engenharia reversa ao
+vivo (DOM, CSS computado, `currentTime` de vídeo, IntersectionObserver)
+de Apple AirPods Pro, Apple Vision Pro, Stripe e Linear, feita em
+23/07/2026 como pesquisa de técnica para futuros efeitos de scroll
+aqui (não é conteúdo do site LimpaSim). Contém blocos HTML+CSS+JS
+vanilla prontos para adaptar:
+
+- **Portal Reveal** (Vision Pro): vídeo pinado que expande de card →
+  fullscreen, com scrubbing de `video.currentTime` por scroll.
+- **Video-scrubbing com stagger de texto** (AirPods Pro): mesma ideia
+  de scrubbing, com revelação de texto palavra a palavra sincronizada
+  ao progresso (não a `setTimeout`).
+- **Gradiente mesh animado** (Stripe): efeito ambiente por tempo, não
+  por scroll — alternativa sem WebGL sugerida para este site.
+- **Reveals com blur→nítido via IntersectionObserver** (Linear):
+  confirma que o padrão `data-reveal` já usado aqui está alinhado com
+  o estado da arte.
+
+Todos os sites usam JS vanilla + `requestAnimationFrame` (nenhum usa
+GSAP/Lenis/Framer Motion) — mesmo padrão já seguido neste projeto. As
+armadilhas já conhecidas aqui (offset do header sticky, filhos
+`absolute` colapsando pai `flex-column`) se repetem nos sites
+analisados — reforça que são cuidados genéricos, não específicos desta
+implementação.
+
 ## Referência: análise do site oficial Quimiprol (fabricante)
 
 Análise feita em 23/07/2026 do site do **fabricante** Quimiprol
