@@ -45,6 +45,42 @@ sem dependências externas além do Google Fonts).
   PR #1 aberto em `ruansormani/limpasim`. Sempre commitar + push ao final
   de cada mudança aprovada.
 
+## Vitrine Cinematográfica (scroll-scrub)
+
+Seção `<section class="cine-showcase" id="destaques">`, entre o hero e o
+carrossel Empresas. Técnica adaptada de um guia externo
+(`GuiaSitesScrollHero.pdf`, "Sites de Produto com Scroll Cinematográfico")
+que originalmente propunha um vídeo gerado por IA com frame-scrubbing via
+canvas — **decisão do cliente foi usar só a técnica de scroll-scrub**,
+sem vídeo, sem IA generativa, sem canvas, mantendo todo o resto do site
+(menu, catálogo, footer) intacto. Implementação real:
+
+- Contêiner alto (`230vh`) + palco `position: sticky` (`.cine-stage`) que
+  fica "pinado" na tela enquanto o usuário rola por dentro do contêiner.
+- Progresso do scroll (0→1) calculado via `getBoundingClientRect()` do
+  contêiner, aplicado como `transform`/`opacity` inline em 3 fotos reais
+  de produto (recortes de `assets/produtos/recorte/`), cada uma com sua
+  própria janela de entrada (ease-out cúbico). Throttle por
+  `requestAnimationFrame` no listener de `scroll`, igual ao resto do site.
+- `.cine-stage` usa `top: 60px` (não `0`) para não ficar atrás do header
+  sticky — se adicionar novo bloco `position: sticky`, sempre considerar
+  a altura do header (60px) no offset.
+- Filhos `position: absolute` dentro de um pai `flex-direction: column`
+  não dão largura ao pai (encolhe pra 0) — por isso `.cine-products`
+  precisa de `width: 100%; align-self: stretch` explícito nos estados de
+  fallback (`prefers-reduced-motion` e `<noscript>`).
+- Segue o padrão de 3 camadas já estabelecido no site: (1) experiência
+  completa com JS, (2) `prefers-reduced-motion: reduce` → estado final
+  estático sem animação, (3) `<noscript><style>` → colapsa a seção alta
+  pra `height: auto` (senão sobra uma "zona de rolagem morta" sem JS).
+- Ao adicionar/testar novas seções de scroll-scrub, reproduzir o processo
+  de QA já usado aqui: script Playwright medindo overflow de documento e
+  por bloco em 5 larguras (360/390/768/1280/1920px), auditoria de
+  contraste WCAG AA com composição de canais alfa (não dá pra confiar em
+  checker ingênuo com glassmorphism/gradiente), e checagem de erros de
+  JS — tudo isso pego bugs reais antes de publicar (offset de header,
+  largura zero no fallback, sobreposição imagem/texto).
+
 ## Preview público
 
 Para gerar um link de preview do site (com imagens embutidas como data URI,
