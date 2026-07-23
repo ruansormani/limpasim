@@ -1,0 +1,41 @@
+/*
+ * reveal.css — reveal genérico ao entrar na viewport (fade + rise + blur→nítido).
+ * Customize via as custom properties abaixo (defina no :root do seu projeto,
+ * ou num wrapper específico para variar por seção).
+ */
+:root {
+  --reveal-duration: 700ms;
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-distance: 24px;
+  --reveal-blur: 8px;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  filter: blur(var(--reveal-blur));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease),
+    filter var(--reveal-duration) var(--reveal-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* 2ª camada de fallback: reduced-motion → estado final estático, sem animação. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; filter: none; transition: none; }
+}
+
+/*
+ * 3ª camada de fallback (sem JS): cole isto num <noscript><style> no <head>
+ * do seu projeto — sem JS o IntersectionObserver de reveal.js nunca roda,
+ * então os elementos ficariam presos em opacity:0 pra sempre sem isto.
+ *
+ * <noscript><style>[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
+ */

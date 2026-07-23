@@ -24,6 +24,15 @@ sem dependências externas além do Google Fonts).
   Ver `produtos-fonte/LEIA-ME.md` para o índice completo e observações.
   **Esta é a fonte a consultar sempre que o cliente pedir para adicionar
   um produto novo ao site** — provavelmente a foto já está aqui.
+- `kit-scroll-cinematografico/` — **kit reutilizável genérico**, pensado
+  pra copiar inteiro pra outros projetos (não depende de nada específico
+  da LimpaSim). Ver `kit-scroll-cinematografico/README.md`. Extrai em
+  código vanilla testado os padrões de motion já usados aqui: engine de
+  progresso de scroll (`core/scroll-progress.js`), reveal genérico
+  (`core/reveal.css`/`.js`), e 3 receitas com demo autocontido (`portal-
+  reveal`, `video-scrub-stagger`, `ambient-gradient`). Criado depois de
+  revisar skills de terceiros pro mesmo fim e decidir não instalar
+  nenhuma (ver seção de skills mais abaixo).
 
 ## Convenções de trabalho estabelecidas nesta conversa
 

@@ -1,0 +1,51 @@
+/*
+ * ambient-gradient.css — fundo com gradiente animado por tempo (não por
+ * scroll), inspirado no shader mesh da Stripe mas 100% CSS, sem WebGL/canvas,
+ * sem dependência. Alternativa direta ao "Bloco C" de
+ * docs/referencia-scroll-cinematografico.md.
+ *
+ * Ajuste as cores via --gradient-a/--gradient-b/--gradient-c no elemento.
+ */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.ambient-gradient {
+  --gradient-a: #1d4ed8;
+  --gradient-b: #7c3aed;
+  --gradient-c: #0a0e14;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ambient-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -20%; /* margem extra pra rotação não deixar cantos vazios */
+  z-index: -1;
+  background: conic-gradient(from var(--angle) at 50% 50%,
+    var(--gradient-a), var(--gradient-b), var(--gradient-c), var(--gradient-a));
+  filter: blur(80px) saturate(1.3);
+  opacity: 0.55;
+  animation: ambient-rotate 22s linear infinite;
+}
+
+@keyframes ambient-rotate {
+  to { --angle: 360deg; }
+}
+
+/* Fallback universal: sem @property (Safari antigo) ou reduced-motion,
+   mostra um gradiente estático em vez de girar — nunca precisa de <noscript>,
+   é puro CSS. */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-gradient::before { animation: none; }
+}
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .ambient-gradient::before {
+    background: radial-gradient(60% 60% at 30% 30%, var(--gradient-a), transparent 70%),
+                radial-gradient(50% 50% at 70% 70%, var(--gradient-b), transparent 70%);
+    animation: none;
+  }
+}

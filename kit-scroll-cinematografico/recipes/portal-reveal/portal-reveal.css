@@ -1,0 +1,66 @@
+/*
+ * portal-reveal.css — palco sticky que expande de card contido → fullscreen
+ * conforme o scroll. Baseado na engenharia reversa do efeito da Apple Vision
+ * Pro (ver docs/referencia-scroll-cinematografico.md no repo de origem).
+ *
+ * Defina --header-offset no elemento (ou no :root) igual à altura real do
+ * seu header fixo/sticky — se não tiver header fixo, deixe 0px (padrão).
+ */
+.portal-track {
+  --header-offset: 0px;
+  position: relative;
+  height: 300vh; /* pista de scroll: 280–320vh é a faixa observada no original */
+}
+.portal-stage {
+  position: sticky;
+  top: var(--header-offset);
+  height: calc(100vh - var(--header-offset));
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate; /* essencial: sem isto o portal expandido vaza sobre seções vizinhas */
+}
+.portal-media {
+  position: relative;
+  z-index: 1;
+  width: 980px;
+  max-width: 92vw;
+  height: 60vh;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #111; /* placeholder — substitua por vídeo/imagem real */
+  will-change: width, height, border-radius;
+  transform-origin: center center;
+}
+.portal-media video,
+.portal-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portal-caption {
+  position: absolute;
+  z-index: 4;
+  opacity: 0;
+  text-align: center;
+  max-width: 40ch;
+  will-change: opacity, transform;
+}
+
+/* Estado final (sem JS / reduced-motion): tudo já montado, nada escondido. */
+@media (prefers-reduced-motion: reduce) {
+  .portal-track { height: auto; }
+  .portal-stage { position: relative; height: auto; min-height: 0; padding-block: 48px; }
+  .portal-media { width: 100%; max-width: 100%; height: auto; aspect-ratio: 16/9; border-radius: 12px; }
+  .portal-caption { opacity: 1; transform: none; position: static; margin-top: 24px; }
+}
+
+/*
+ * <noscript><style>
+ *   .portal-track{height:auto}.portal-stage{position:relative;height:auto;min-height:0;padding-block:48px}
+ *   .portal-media{width:100%;max-width:100%;height:auto;aspect-ratio:16/9}
+ *   .portal-caption{opacity:1;position:static;margin-top:24px}
+ * </style></noscript>
+ */
