@@ -353,6 +353,67 @@
     .float-chip svg { width: 22px; height: 22px; color: var(--accent-green); }
 
     /* ============================================================
+       VITRINE CINEMATOGRÁFICA (scroll-scrub com fotos reais)
+       Técnica: contêiner alto (250vh) + palco "pinned" (sticky, 100vh).
+       O progresso do scroll (0→1) é calculado via getBoundingClientRect
+       e aplicado como transform/opacity nas 3 fotos reais (recortes já
+       usados no site). SEM vídeo, SEM IA generativa, SEM canvas — só
+       fotos reais dos produtos Quimiprol já usados alhures no site.
+       Fallback sem JS/reduced-motion: os 3 produtos aparecem já
+       montados e parados (nenhuma etapa fica escondida).
+       ============================================================ */
+    .cine-showcase { position: relative; height: 230vh; }
+    .cine-stage {
+      /* top:60px (não 0) para o palco fixo nunca ficar atrás do header sticky */
+      position: sticky; top: 60px; height: calc(100vh - 60px); min-height: 480px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      overflow: hidden; isolation: isolate;
+    }
+    .cine-bg {
+      position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(46% 50% at 50% 42%, rgba(3,105,161,0.16), transparent 68%),
+        radial-gradient(30% 34% at 78% 78%, rgba(216,184,120,0.08), transparent 62%);
+    }
+    .cine-copy { position: relative; z-index: 3; text-align: center; max-width: 640px; padding: 0 24px; margin-bottom: clamp(120px, 24vh, 300px); }
+    .cine-copy h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.015em; }
+    .cine-copy p { margin-top: 14px; color: var(--text-mid); font-size: 1.02rem; }
+    .cine-products { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .cine-product {
+      position: absolute; bottom: 14%;
+      filter: drop-shadow(0 24px 34px rgba(2,8,23,0.6));
+      transition: transform 0.1s linear; /* suaviza jitter entre ticks de scroll; a jornada em si é feita via JS */
+    }
+    .cine-product img { display: block; height: clamp(190px, 30vw, 340px); width: auto; }
+    .cine-product--pinho  { height: clamp(190px, 30vw, 340px); }
+    .cine-product--alvejante { height: clamp(160px, 25vw, 300px); }
+    .cine-product--bmq { height: clamp(140px, 22vw, 260px); }
+    .cine-cta { position: relative; z-index: 3; margin-top: clamp(140px, 26vh, 320px); }
+
+    /* Estado final (sem JS / reduced-motion): trio já montado, nada escondido */
+    .cine-product--pinho     { transform: translate(-138px, 0) scale(1); opacity: 1; }
+    .cine-product--alvejante { transform: translate(148px, 18px) scale(0.9); opacity: 1; }
+    .cine-product--bmq       { transform: translate(2px, -46px) scale(0.78); opacity: 1; z-index: -1; }
+
+    /* Com JS ativo: a jornada de entrada é controlada via style inline (progress) */
+    html.js-motion .cine-showcase[data-cine-ready] .cine-product { transition: none; }
+
+    @media (max-width: 720px) {
+      .cine-product--pinho     { transform: translate(-78px, 10px) scale(0.86); }
+      .cine-product--alvejante { transform: translate(82px, 26px) scale(0.78); }
+      .cine-product--bmq       { transform: translate(0, -30px) scale(0.66); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cine-showcase { height: auto; }
+      .cine-stage { position: relative; height: auto; min-height: 0; padding-block: 64px; }
+      .cine-copy { margin-bottom: 40px; }
+      /* align-self:stretch evita que o flex-column do palco encolha este bloco pra largura 0
+         (sem isso, os produtos — todos position:absolute, fora do fluxo — não dão largura ao pai) */
+      .cine-products { position: relative; height: 420px; width: 100%; align-self: stretch; }
+      .cine-cta { margin-top: 40px; }
+    }
+
+    /* ============================================================
        CARROSSÉIS (drag / touch / teclado)
        ============================================================ */
     .carousel-wrap { position: relative; }
@@ -776,6 +837,14 @@
       <!-- TODO: inserir número real da LimpaSim no lugar de [SEU_NUMERO_WHATSAPP] -->
       <strong>[SEU_NUMERO_WHATSAPP]</strong> — Gramado e Serra Gaúcha (RS).
     </div>
+    <!-- Sem JS, o scroll-scrub da vitrine não roda: encolhe a faixa alta para não deixar uma zona de rolagem vazia -->
+    <style>
+      .cine-showcase { height: auto !important; }
+      .cine-stage { position: relative !important; height: auto !important; min-height: 0 !important; padding-block: 64px !important; }
+      .cine-copy { margin-bottom: 40px !important; }
+      .cine-products { position: relative !important; height: 420px !important; width: 100% !important; align-self: stretch !important; }
+      .cine-cta { margin-top: 40px !important; }
+    </style>
   </noscript>
 
   <!-- ============================================================
@@ -891,6 +960,42 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             Entrega rápida em Gramado
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VITRINE CINEMATOGRÁFICA — scroll-scrub com fotos reais
+         (contêiner alto + palco fixo; progresso do scroll anima as
+         3 fotos reais já usadas no site. Sem vídeo, sem IA generativa.)
+         ============================================================ -->
+    <section class="cine-showcase" id="destaques" aria-labelledby="cine-title">
+      <div class="cine-stage">
+        <div class="cine-bg" aria-hidden="true"></div>
+
+        <div class="cine-copy" data-reveal>
+          <span class="eyebrow" style="justify-content:center;">Destaques da linha</span>
+          <h2 id="cine-title">Do galão profissional ao frasco de casa.</h2>
+          <p>Três produtos que resumem o padrão Quimiprol: limpa, perfuma e rende — na empresa e em casa.</p>
+        </div>
+
+        <div class="cine-products" aria-hidden="true">
+          <div class="cine-product cine-product--pinho">
+            <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="" />
+          </div>
+          <div class="cine-product cine-product--bmq">
+            <img src="assets/produtos/recorte/bem-me-quer-caricia-1l-recorte.png" width="260" height="616" loading="lazy" decoding="async" alt="" />
+          </div>
+          <div class="cine-product cine-product--alvejante">
+            <img src="assets/produtos/recorte/alvejante-sem-cloro-2l-recorte.png" width="306" height="651" loading="lazy" decoding="async" alt="" />
+          </div>
+        </div>
+
+        <div class="cine-cta" data-reveal>
+          <!-- TODO: número WhatsApp real -->
+          <a class="btn btn-whats js-whats" data-msg="Olá! Vi os destaques da linha Quimiprol no site e gostaria de mais informações." href="#" target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg> Quero conhecer esses produtos
+          </a>
         </div>
       </div>
     </section>
@@ -1695,6 +1800,60 @@
             pTicking = false;
           });
         }, { passive: true });
+      }
+
+      // Vitrine cinematográfica: contêiner alto (230vh) + palco fixo (sticky).
+      // O progresso do scroll dentro do contêiner (0→1) anima 3 fotos REAIS
+      // dos produtos via transform/opacity — técnica de "scroll-scrub" sem
+      // vídeo e sem geração por IA. Cada produto tem uma janela de entrada
+      // [início, fim] dentro do progresso; fora dela fica parado no estado
+      // inicial (antes) ou final (depois) — nunca "recua" ao rolar de volta.
+      var cineShowcase = document.querySelector(".cine-showcase");
+      if (cineShowcase) {
+        var cinePinho = cineShowcase.querySelector(".cine-product--pinho");
+        var cineAlvejante = cineShowcase.querySelector(".cine-product--alvejante");
+        var cineBmq = cineShowcase.querySelector(".cine-product--bmq");
+        cineShowcase.setAttribute("data-cine-ready", "");
+        var cineMobile = window.matchMedia("(max-width: 720px)").matches;
+
+        function cineStage(progress, start, end, fromX, fromY, fromScale, toX, toY, toScale) {
+          var t = end > start ? (progress - start) / (end - start) : 1;
+          t = Math.max(0, Math.min(1, t));
+          var e = 1 - Math.pow(1 - t, 3); // ease-out cúbico
+          return {
+            x: fromX + (toX - fromX) * e,
+            y: fromY + (toY - fromY) * e,
+            s: fromScale + (toScale - fromScale) * e,
+            op: t
+          };
+        }
+        function cineApply(el, st) {
+          if (!el) return;
+          el.style.transform = "translate(" + st.x.toFixed(1) + "px," + st.y.toFixed(1) + "px) scale(" + st.s.toFixed(3) + ")";
+          el.style.opacity = st.op.toFixed(3);
+        }
+
+        var cTicking = false;
+        function updateCine() {
+          var total = cineShowcase.offsetHeight - window.innerHeight;
+          var progress = total > 0 ? (-cineShowcase.getBoundingClientRect().top) / total : 0;
+          progress = Math.max(0, Math.min(1, progress));
+
+          var m = cineMobile;
+          cineApply(cinePinho,     cineStage(progress, 0.00, 0.30, m ? -78 : -138, 70, 0.8, m ? -78 : -138, m ? 10 : 0,  m ? 0.86 : 1));
+          cineApply(cineAlvejante, cineStage(progress, 0.30, 0.60, m ?  82 : 148,  80, 0.62, m ?  82 : 148, m ? 26 : 18, m ? 0.78 : 0.9));
+          cineApply(cineBmq,       cineStage(progress, 0.55, 0.85, 0, 26, 0.5, 0, m ? -30 : -46, m ? 0.66 : 0.78));
+        }
+
+        window.addEventListener("scroll", function () {
+          if (cTicking) return; cTicking = true;
+          requestAnimationFrame(function () { updateCine(); cTicking = false; });
+        }, { passive: true });
+        window.addEventListener("resize", function () {
+          cineMobile = window.matchMedia("(max-width: 720px)").matches;
+          updateCine();
+        }, { passive: true });
+        updateCine();
       }
     }
 
