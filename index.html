@@ -129,10 +129,10 @@
       text-align: center;
     }
     .btn .ic { width: 1.15em; height: 1.15em; }
-    .btn-primary { background: var(--green-600); color: #fff; box-shadow: var(--shadow-sm); }
-    .btn-primary:hover { background: var(--green-700); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .btn-secondary { background: var(--paper); color: var(--blue-700); border: 1.5px solid var(--blue-200); }
-    .btn-secondary:hover { border-color: var(--blue-400); background: var(--blue-50); transform: translateY(-2px); }
+    .btn.btn-primary { background: var(--green-600); color: #fff; box-shadow: var(--shadow-sm); }
+    .btn.btn-primary:hover { background: var(--green-700); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn.btn-secondary { background: var(--paper); color: var(--blue-700); border: 1.5px solid var(--blue-200); }
+    .btn.btn-secondary:hover { border-color: var(--blue-400); background: var(--blue-50); transform: translateY(-2px); }
     .btn-ghost { background: transparent; color: var(--blue-700); }
     .btn-sm { padding: 10px 18px; font-size: 0.88rem; }
     .btn-lg { padding: 17px 32px; font-size: 1.05rem; }
@@ -178,8 +178,8 @@
       transition: all 0.2s var(--ease); white-space: nowrap; flex-shrink: 0;
     }
     .audience-pill:hover { background: var(--blue-500); border-color: var(--blue-500); color: #fff; }
-    .audience-pill--primary { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
-    .audience-pill--primary:hover { background: var(--blue-700); }
+    .audience-pill.audience-pill--primary { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+    .audience-pill.audience-pill--primary:hover { background: var(--blue-700); }
     .audience-pill .ic { width: 15px; height: 15px; }
 
     .header-actions { display: flex; align-items: center; gap: 12px; }
@@ -398,6 +398,93 @@
       .catalog-section { padding: 60px 0; }
       .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
     }
+
+    /* ============================================================
+       QUEM SOMOS / DIFERENCIAIS
+       ============================================================ */
+    .partnership-seal {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
+      padding: 26px 30px; border-radius: var(--radius-lg); margin-bottom: 48px;
+      background: linear-gradient(120deg, var(--blue-50), var(--paper-tint2));
+      border: 1px solid var(--blue-200);
+    }
+    .partnership-seal .seal-mark { width: 56px; height: 56px; flex-shrink: 0; color: var(--blue-600); }
+    .partnership-seal h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink-900); }
+    .partnership-seal p { font-size: 0.9rem; margin-top: 4px; }
+    .partnership-seal .disclaimer { font-size: 0.76rem; opacity: 0.75; }
+
+    .differentials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .differential-card {
+      padding: 28px 26px; border-radius: var(--radius-lg); background: var(--paper);
+      border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .differential-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-300); }
+    .differential-ic { width: 52px; height: 52px; border-radius: 15px; background: var(--blue-50); color: var(--blue-600); display: grid; place-items: center; margin-bottom: 16px; }
+    .differential-ic .ic { width: 26px; height: 26px; }
+    .differential-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; color: var(--ink-900); }
+    .differential-card p { font-size: 0.9rem; }
+
+    /* ============================================================
+       CTA FINAL
+       ============================================================ */
+    .cta-final { padding: 90px 0 100px; }
+    .cta-panel {
+      position: relative; overflow: hidden; text-align: center;
+      padding: 60px 32px; border-radius: 32px;
+      background: linear-gradient(160deg, var(--blue-700), var(--blue-900));
+      color: #fff;
+    }
+    .cta-panel::before {
+      content: ''; position: absolute; top: -30%; left: 50%; width: 60%; padding-bottom: 60%;
+      transform: translateX(-50%); border-radius: 50%; background: var(--green-500); filter: blur(120px); opacity: 0.3; pointer-events: none;
+    }
+    .cta-panel > * { position: relative; z-index: 1; }
+    .cta-panel .eyebrow { color: var(--blue-200); justify-content: center; }
+    .cta-panel .eyebrow .ic { color: var(--blue-200); }
+    .cta-panel h2 { color: #fff; font-size: clamp(1.7rem, 3.6vw, 2.4rem); margin-top: 10px; }
+    .cta-panel p { color: rgba(255,255,255,0.78); margin-top: 12px; max-width: 52ch; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px; }
+    .cta-buttons .btn-secondary { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
+    .cta-buttons .btn-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
+    .cta-number { margin-top: 22px; font-size: 0.86rem; color: rgba(255,255,255,0.6); display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer { background: var(--blue-900); color: rgba(255,255,255,0.7); padding: 56px 0 28px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .footer-brand .brand { color: #fff; margin-bottom: 14px; }
+    .footer-brand .brand img { filter: brightness(0) invert(1); }
+    .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.88rem; max-width: 34ch; }
+    .footer-col h4 { color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-col a, .footer-col p { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.65); margin-bottom: 9px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-col a.footer-cta { color: var(--blue-300); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+    .footer-bottom { padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.62); }
+    .footer-bottom .privacy-note { max-width: 60ch; }
+
+    @media (max-width: 820px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    /* ============================================================
+       BOTÃO FLUTUANTE WHATSAPP
+       ============================================================ */
+    .whats-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 90;
+      width: 58px; height: 58px; border-radius: 50%; background: var(--green-500);
+      display: grid; place-items: center; color: #fff; box-shadow: var(--shadow-lg);
+      transition: transform 0.25s var(--ease), background 0.2s var(--ease);
+    }
+    .whats-float:hover { background: var(--green-600); transform: scale(1.08); }
+    .whats-float svg { width: 28px; height: 28px; }
+
+    /* ============================================================
+       BARRA DE PROGRESSO DE SCROLL
+       ============================================================ */
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--blue-400), var(--green-500)); z-index: 300; transition: width 0.1s linear; }
+    @media (prefers-reduced-motion: reduce) { .scroll-progress { display: none; } }
   </style>
 </head>
 <body>
@@ -1538,7 +1625,121 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         QUEM SOMOS / DIFERENCIAIS
+         ============================================================ -->
+    <section class="section" id="quem-somos" aria-labelledby="quem-somos-title">
+      <div class="container">
+        <div class="partnership-seal" data-reveal>
+          <svg class="seal-mark" viewBox="0 0 64 64" role="img" aria-label="Selo de parceria exclusiva" aria-hidden="true">
+            <circle cx="32" cy="28" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M23 28l6 6 12-12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 46l-4 14 16-8 16 8-4-14" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h3>Parceria Exclusiva Quimiprol</h3>
+            <p>Distribuidora exclusiva há mais de 5 anos em Gramado e Serra Gaúcha.
+              <span class="disclaimer">[sujeito à confirmação contratual]</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="section-head" data-reveal>
+          <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg> Quem somos</span>
+          <h2 id="quem-somos-title">Consistência não é sorte. É processo repetido todo mês.</h2>
+          <p>
+            A LimpaSim nasceu para resolver um problema simples de empresário: comprar produto
+            de limpeza de qualidade sem depender de atravessador, sem imprevisto de estoque e
+            sem abrir mão do padrão que o cliente final espera. Somos distribuidora exclusiva
+            Quimiprol em Gramado e Serra Gaúcha — atendimento direto, o mesmo lote, o mesmo
+            resultado, mês após mês.
+          </p>
+        </div>
+
+        <div class="differentials-grid">
+          <div class="differential-card" data-reveal>
+            <span class="differential-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span>
+            <h3>Entrega Local Rápida e Garantida</h3>
+            <p>Logística própria em Gramado e Serra Gaúcha. Você recebe rápido, sem depender de transportadora de fora da região.</p>
+          </div>
+          <div class="differential-card" data-reveal data-reveal-delay="80">
+            <span class="differential-ic"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg></span>
+            <h3>Consultoria Técnica de Higienização</h3>
+            <p>Orientação genérica de dosagem e boas práticas alinhadas às normas da ANVISA, para você usar cada produto com segurança e eficiência.
+              <!-- TODO: confirmar com a LimpaSim se há responsável técnico; não prometer laudo técnico não verificado -->
+            </p>
+          </div>
+          <div class="differential-card" data-reveal data-reveal-delay="160">
+            <span class="differential-ic"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span>
+            <h3>Menor Custo por Litro Limpo</h3>
+            <p>Produtos concentrados rendem mais: você dilui, economiza e mantém o mesmo padrão de limpeza a um custo final menor por litro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA FINAL
+         ============================================================ -->
+    <section class="cta-final" id="contato" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-panel" data-reveal>
+          <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Fale com a LimpaSim agora</span>
+          <h2 id="cta-title">Peça sua cotação pelo WhatsApp</h2>
+          <p>Atendimento direto para empresas e residências de Gramado e toda a Serra Gaúcha. Escolha o seu perfil abaixo — e aproveite os 5% OFF na primeira compra.</p>
+          <div class="cta-buttons">
+            <a class="btn btn-primary btn-lg js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia." href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Sou Empresa / Hotel</a>
+            <a class="btn btn-secondary btn-lg js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa." href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Quero para Minha Casa</a>
+          </div>
+          <p class="cta-number"><span>WhatsApp: <strong>[SEU_NUMERO_WHATSAPP]</strong></span><span>· Gramado e Serra Gaúcha (RS)</span></p>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- ============================================================
+       RODAPÉ
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#topo" aria-label="LimpaSim — início">
+            <img src="assets/logo/limpasim-logo-completa.png" width="1077" height="821" style="width:150px; height:auto;" loading="lazy" decoding="async" alt="LimpaSim — Produtos de Limpeza" />
+          </a>
+          <p>Distribuidora exclusiva Quimiprol de produtos de limpeza profissional e residencial. Atendimento direto e entrega local em Gramado e Serra Gaúcha (RS).</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Navegação do rodapé">
+          <h4>Navegação</h4>
+          <a href="#empresas">Para Empresas</a>
+          <a href="#moradores">Para Casa</a>
+          <a href="#produtos">Catálogo</a>
+          <a href="#quem-somos">Quem Somos</a>
+        </nav>
+
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <!-- TODO: inserir número real da LimpaSim -->
+          <p>WhatsApp: [SEU_NUMERO_WHATSAPP]</p>
+          <p>Gramado e Serra Gaúcha — RS</p>
+          <a class="footer-cta js-whats" data-msg="Olá! Encontrei a LimpaSim pelo site e gostaria de mais informações." href="#" target="_blank" rel="noopener">Falar no WhatsApp <svg class="ic" aria-hidden="true" style="width:0.9em;height:0.9em"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> LimpaSim. Todos os direitos reservados.</span>
+        <span class="privacy-note">
+          Não coletamos nenhum dado pessoal além do necessário para o contato via WhatsApp que você mesmo iniciar. Quimiprol é marca de terceiro citada apenas para referência de produto.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whats-float js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de atendimento." href="#" target="_blank" rel="noopener" aria-label="Falar com a LimpaSim no WhatsApp">
+    <svg class="ic ic--fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+  </a>
 
   <script>
     document.documentElement.classList.add("js-motion");
