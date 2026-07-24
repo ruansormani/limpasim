@@ -335,6 +335,69 @@
     .home-mini-item { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; color: var(--ink-700); }
     .home-mini-item .ic { width: 17px; height: 17px; color: var(--green-600); flex-shrink: 0; }
     .compact-cta { display: flex; align-items: center; gap: 16px; margin-top: 30px; flex-wrap: wrap; }
+
+    /* ============================================================
+       CATÁLOGO COMPLETO — 61 produtos, abas + busca (dados/imagens
+       reaproveitados do v2, só o visual mudou; fotos sempre raw,
+       nunca assets/produtos/recorte/*)
+       ============================================================ */
+    .catalog-section { padding: 84px 0; background: var(--blue-900); }
+    .catalog-section .section-head { color: #fff; max-width: 100%; text-align: center; margin: 0 auto 36px; }
+    .catalog-section .section-head .eyebrow { color: var(--blue-200); justify-content: center; }
+    .catalog-section .section-head .eyebrow .ic { color: var(--blue-200); }
+    .catalog-section .section-head h2 { color: #fff; }
+    .catalog-section .section-head p { color: rgba(255,255,255,0.72); margin-left: auto; margin-right: auto; }
+
+    .catalog-toolbar { display: flex; flex-direction: column; gap: 18px; align-items: center; margin-bottom: 34px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; }
+    .tab {
+      font-size: 0.86rem; font-weight: 700; color: rgba(255,255,255,0.75);
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
+      transition: all 0.2s var(--ease);
+    }
+    .tab:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+    .tab[aria-selected="true"] { background: linear-gradient(135deg, var(--blue-400), var(--green-500)); color: #fff; border-color: transparent; }
+    .tab-count { display: inline-block; margin-left: 5px; padding: 1px 7px; border-radius: var(--radius-pill); font-size: 0.74rem; font-weight: 800; background: rgba(255,255,255,0.14); }
+    .tab[aria-selected="true"] .tab-count { background: rgba(255,255,255,0.28); }
+
+    .search-box { position: relative; width: 100%; max-width: 480px; }
+    .search-box svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: rgba(255,255,255,0.5); pointer-events: none; }
+    .search-box input {
+      width: 100%; padding: 13px 18px 13px 46px; border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.95rem; font-family: var(--font-body);
+    }
+    .search-box input::placeholder { color: rgba(255,255,255,0.5); }
+    .search-box input:focus-visible { outline-color: var(--blue-300); }
+
+    .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+    .catalog-grid .product-card.is-hidden { display: none; }
+    .product-card {
+      background: var(--paper); border-radius: var(--radius-md); overflow: hidden;
+      display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .product-media { position: relative; aspect-ratio: 4/3.3; background: var(--blue-50); overflow: hidden; }
+    .product-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12px; box-sizing: border-box; }
+    .product-badge { position: absolute; top: 9px; left: 9px; background: var(--paper); border-radius: var(--radius-pill); padding: 3px 9px; font-size: 0.74rem; font-weight: 700; color: var(--blue-700); box-shadow: var(--shadow-sm); }
+    .product-body { padding: 14px 15px 16px; display: flex; flex-direction: column; flex: 1; }
+    .product-cat { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-600); }
+    .product-name { font-family: var(--font-display); font-size: 0.94rem; font-weight: 700; color: var(--ink-900); margin-top: 3px; line-height: 1.3; }
+    .product-desc { font-size: 0.78rem; color: var(--ink-500); margin-top: 5px; line-height: 1.4; flex: 1; }
+    .product-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .meta-pill { font-size: 0.72rem; font-weight: 600; color: var(--blue-600); background: var(--blue-50); padding: 3px 8px; border-radius: var(--radius-pill); }
+    .product-body .btn { margin-top: 10px; width: 100%; }
+
+    .empty-state { display: none; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.6); }
+    .empty-state.visible { display: block; }
+    .empty-state .ic { width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.6; }
+    .empty-state strong { display: block; font-family: var(--font-display); color: #fff; font-size: 1.2rem; margin-bottom: 6px; }
+
+    @media (max-width: 640px) {
+      .catalog-section { padding: 60px 0; }
+      .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -642,6 +705,839 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         CATÁLOGO COMPLETO — todos os produtos, abas + busca
+         ============================================================ -->
+    <section class="catalog-section" id="produtos" aria-labelledby="catalog-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg> Catálogo Completo</span>
+          <h2 id="catalog-title">Todos os nossos produtos em um só lugar</h2>
+          <p>Filtre por categoria ou digite o nome do produto. Todos os valores e rendimentos são confirmados no atendimento.</p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="tabs" role="tablist" aria-label="Filtrar catálogo por categoria">
+            <button type="button" class="tab" role="tab" aria-selected="true" data-filter="all">Todos <span class="tab-count">61</span></button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-filter="lavanderia">Lavanderia <span class="tab-count">15</span></button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-filter="cozinha">Cozinha <span class="tab-count">8</span></button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-filter="limpeza-geral">Limpeza Geral <span class="tab-count">27</span></button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-filter="ambientes">Ambientes <span class="tab-count">6</span></button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-filter="automotivo">Automotivo <span class="tab-count">5</span></button>
+          </div>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <label for="catalogSearch" class="visually-hidden">Buscar produto no catálogo</label>
+            <input type="search" id="catalogSearch" placeholder="Buscar produto (ex.: lavanda, sabão, alvejante)..." autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid">
+          <!-- Abas de categoria + busca. Cada card carrega data-category (filtro) e data-name (busca). -->
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado pinho limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Pinho</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com a fragrância clássica de pinho, de longa duração.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Pinho (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="desinfetante lavanda">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/desinfetante-lavanda-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Desinfetante Lavanda Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Desinfetante Lavanda</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes com fragrância suave de lavanda, ideal para uso frequente.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Lavanda (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="lava roupas quimiplus peroxide peroxido poder o2">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Lava Roupas Quimiplus c/ Peróxido</h3>
+              <p class="product-desc">Detergente líquido com Poder O₂ para lavagem profissional de roupas brancas e coloridas.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Lava Roupas Quimiplus com Peróxido (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="sabao liquido azul 5l roupas brancas coloridas">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/sabao-liquido-azul-5l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Sabão Líquido Azul — 5L</h3>
+              <p class="product-desc">Sabão líquido para roupas brancas e coloridas no tamanho econômico de 5 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Azul (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="sabao liquido azul 2l roupas brancas coloridas">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Sabão Líquido Azul — 2L</h3>
+              <p class="product-desc">Mesmo sabão líquido para roupas brancas e coloridas, no prático frasco de 2 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Azul (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="alvejante sem cloro poder o2 roupas brancas coloridas">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Alvejante</span>
+              <h3 class="product-name">Alvejante Sem Cloro</h3>
+              <p class="product-desc">Alvejante com Poder O₂, sem cloro, para roupas brancas e coloridas — remove manchas sem agredir os tecidos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Alvejante Sem Cloro (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante premium encapsulado perfume maciez">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/amaciante-premium-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Amaciante Premium Encapsulado Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Premium Encapsulado</h3>
+              <p class="product-desc">Cápsulas de perfume prolongado para máxima maciez e fragrância duradoura nas roupas.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Premium Encapsulado (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante de roupas lavanda 5l galao">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante de Roupas Lavanda — 5L</h3>
+              <p class="product-desc">Maciez e perfume intenso de lavanda no tamanho profissional de 5 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante de Roupas Lavanda (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante liquido lavanda 2l">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/amaciante-lavanda-2l.jpg" width="828" height="1013" loading="lazy" decoding="async" alt="Amaciante Líquido Lavanda Quimiprol, frasco de 2 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Líquido Lavanda — 2L</h3>
+              <p class="product-desc">O mesmo perfume de lavanda com bioativos de maciez, no prático frasco de 2 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Líquido Lavanda (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante concentrado bem me quer caricia floral rende 4l">
+            <div class="product-media"><span class="product-badge">Concentrado 1L</span>
+              <img src="assets/produtos/amaciante-bem-me-quer-caricia-1l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Concentrado "Bem Me Quer" Carícia</h3>
+              <p class="product-desc">Concentrado floral que rende 4L: mais maciez e perfume por mais tempo, com menos volume.</p>
+              <div class="product-meta"><span class="meta-pill">Rende 4L</span><span class="meta-pill">[Consulte valores]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Concentrado Bem Me Quer Carícia (1L, rende 4L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante azul 2 em 1 amaciante lavanderia">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/amaciante-azul-2em1-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Azul 2 em 1 Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Azul 2 em 1</h3>
+              <p class="product-desc">Amacia e perfuma as roupas em uma única etapa, com fragrância clássica.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Azul 2 em 1 (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante concentrado &quot;bem me quer&quot; romance amaciante lavanderia">
+            <div class="product-media"><span class="product-badge">Concentrado 1L</span>
+              <img src="assets/produtos/amaciante-bem-me-quer-romance-1l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Amaciante Concentrado &quot;Bem Me Quer&quot; Romance Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante Concentrado &quot;Bem Me Quer&quot; Romance</h3>
+              <p class="product-desc">Concentrado floral que rende 4L: maciez e perfume duradouros com menos volume.</p>
+              <div class="product-meta"><span class="meta-pill">Rende 4L</span><span class="meta-pill">[Consulte valores]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante Concentrado &quot;Bem Me Quer&quot; Romance (1L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="amaciante de roupas rosas amaciante lavanderia">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/amaciante-rosas-5l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante de Roupas Rosas Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Amaciante</span>
+              <h3 class="product-name">Amaciante de Roupas Rosas</h3>
+              <p class="product-desc">Maciez e perfume floral de rosas no tamanho profissional de 5 litros.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Amaciante de Roupas Rosas (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="percarbonato de sódio tira-manchas lavanderia">
+            <div class="product-media"><span class="product-badge">Pote 1kg</span>
+              <img src="assets/produtos/percarbonato-sodio-1kg.jpg" width="828" height="821" loading="lazy" decoding="async" alt="Percarbonato de Sódio Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Tira-Manchas</span>
+              <h3 class="product-name">Percarbonato de Sódio</h3>
+              <p class="product-desc">Pó multiuso para remoção de manchas e alvejamento de roupas e superfícies.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Percarbonato de Sódio (1kg)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="quimiox tira-manchas tira-manchas lavanderia">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/quimiox-tira-manchas-5l.jpg" width="828" height="697" loading="lazy" decoding="async" alt="QuimiOx Tira-Manchas Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Tira-Manchas</span>
+              <h3 class="product-name">QuimiOx Tira-Manchas</h3>
+              <p class="product-desc">Remove manchas difíceis das roupas com ação oxigenada, sem cloro.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o QuimiOx Tira-Manchas (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="sabão líquido coco lava-roupas lavanderia">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/sabao-liquido-coco-5l.jpg" width="828" height="687" loading="lazy" decoding="async" alt="Sabão Líquido Coco Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Sabão Líquido Coco</h3>
+              <p class="product-desc">Sabão líquido para roupas brancas e coloridas, com fragrância de coco.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Coco (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lavanderia" data-name="sabão líquido herbal lava-roupas lavanderia">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/sabao-liquido-herbal-5l.jpg" width="828" height="688" loading="lazy" decoding="async" alt="Sabão Líquido Herbal Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Roupas</span>
+              <h3 class="product-name">Sabão Líquido Herbal</h3>
+              <p class="product-desc">Sabão líquido para roupas brancas e coloridas, com fragrância herbal.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Sabão Líquido Herbal (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="desengordurante quimi90 5 em 1 desengordurante cozinha">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/desengordurante-quimi90-5em1-5l.jpg" width="828" height="690" loading="lazy" decoding="async" alt="Desengordurante Quimi90 5 em 1 Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Desengordurante</span>
+              <h3 class="product-name">Desengordurante Quimi90 5 em 1</h3>
+              <p class="product-desc">Remove gordura pesada de fogões, coifas e superfícies da cozinha.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desengordurante Quimi90 5 em 1 (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="desengordurante quimi90 cozinha 2 em 1 desengordurante cozinha">
+            <div class="product-media"><span class="product-badge">Spray 1L</span>
+              <img src="assets/produtos/desengordurante-quimi90-cozinha-2em1-1l.jpg" width="828" height="702" loading="lazy" decoding="async" alt="Desengordurante Quimi90 Cozinha 2 em 1 Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Desengordurante</span>
+              <h3 class="product-name">Desengordurante Quimi90 Cozinha 2 em 1</h3>
+              <p class="product-desc">Remove gordura do dia a dia da cozinha, pronto uso em spray.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desengordurante Quimi90 Cozinha 2 em 1 (1L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="detergente lava-louças limão lava-louças cozinha">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-limao-lava-loucas-5l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Detergente Lava-Louças Limão Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Louças</span>
+              <h3 class="product-name">Detergente Lava-Louças Limão</h3>
+              <p class="product-desc">Remove a gordura da louça com fragrância cítrica de limão.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Lava-Louças Limão (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="detergente lava-louças neutro lava-louças cozinha">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-neutro-lava-loucas-5l.jpg" width="828" height="687" loading="lazy" decoding="async" alt="Detergente Lava-Louças Neutro Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Louças</span>
+              <h3 class="product-name">Detergente Lava-Louças Neutro</h3>
+              <p class="product-desc">Remove a gordura da louça com fórmula neutra, suave às mãos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Lava-Louças Neutro (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="detergente perfumado dovar lava-louças cozinha">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/detergente-dovar-2l.jpg" width="828" height="680" loading="lazy" decoding="async" alt="Detergente Perfumado Dovar Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Louças</span>
+              <h3 class="product-name">Detergente Perfumado Dovar</h3>
+              <p class="product-desc">Remove a gordura da louça com a fragrância característica da linha Dovar.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Perfumado Dovar (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="detergente perfumado doxar lava-louças cozinha">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-doxar-5l.jpg" width="828" height="687" loading="lazy" decoding="async" alt="Detergente Perfumado Doxar Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Louças</span>
+              <h3 class="product-name">Detergente Perfumado Doxar</h3>
+              <p class="product-desc">Remove a gordura da louça com a fragrância característica da linha Doxar.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Perfumado Doxar (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="detergente perfumado erva-doce lava-louças cozinha">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-erva-doce-5l.jpg" width="828" height="682" loading="lazy" decoding="async" alt="Detergente Perfumado Erva-Doce Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Louças</span>
+              <h3 class="product-name">Detergente Perfumado Erva-Doce</h3>
+              <p class="product-desc">Remove a gordura da louça com fragrância suave de erva-doce.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Perfumado Erva-Doce (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cozinha" data-name="detergente perfumado vinólia lava-louças cozinha">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-vinolia-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Detergente Perfumado Vinólia Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Lava-Louças</span>
+              <h3 class="product-name">Detergente Perfumado Vinólia</h3>
+              <p class="product-desc">Remove a gordura da louça com a clássica fragrância Vinólia.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Perfumado Vinólia (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="água sanitária água sanitária limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/agua-sanitaria-5l.jpg" width="828" height="672" loading="lazy" decoding="async" alt="Água Sanitária Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Água Sanitária</span>
+              <h3 class="product-name">Água Sanitária</h3>
+              <p class="product-desc">Desinfeta e alveja superfícies e tecidos brancos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Água Sanitária (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="água sanitária perfumada água sanitária limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/agua-sanitaria-perfumada-5l.jpg" width="828" height="680" loading="lazy" decoding="async" alt="Água Sanitária Perfumada Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Água Sanitária</span>
+              <h3 class="product-name">Água Sanitária Perfumada</h3>
+              <p class="product-desc">Desinfeta e alveja superfícies e tecidos brancos, com fragrância suave.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Água Sanitária Perfumada (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="álcool perfumado flores álcool limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/alcool-perfumado-flores-5l.jpg" width="828" height="819" loading="lazy" decoding="async" alt="Álcool Perfumado Flores Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Álcool</span>
+              <h3 class="product-name">Álcool Perfumado Flores</h3>
+              <p class="product-desc">Álcool líquido perfumado para limpeza geral, com fragrância floral.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Álcool Perfumado Flores (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="álcool perfumado lavanda álcool limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/alcool-perfumado-lavanda-5l.jpg" width="828" height="696" loading="lazy" decoding="async" alt="Álcool Perfumado Lavanda Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Álcool</span>
+              <h3 class="product-name">Álcool Perfumado Lavanda</h3>
+              <p class="product-desc">Álcool líquido perfumado para limpeza geral, com fragrância de lavanda.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Álcool Perfumado Lavanda (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="cloro água sanitária limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/cloro-5l.jpg" width="828" height="690" loading="lazy" decoding="async" alt="Cloro Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Água Sanitária</span>
+              <h3 class="product-name">Cloro</h3>
+              <p class="product-desc">Desinfeta e alveja superfícies e tecidos brancos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Cloro (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="desinfetante citronela desinfetante limpeza geral">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/desinfetante-citronela-2l.jpg" width="828" height="821" loading="lazy" decoding="async" alt="Desinfetante Citronela Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Desinfetante</span>
+              <h3 class="product-name">Desinfetante Citronela</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes com fragrância de citronela.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Citronela (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="desinfetante citrus desinfetante limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/desinfetante-citrus-5l.jpg" width="828" height="689" loading="lazy" decoding="async" alt="Desinfetante Citrus Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Desinfetante</span>
+              <h3 class="product-name">Desinfetante Citrus</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes com fragrância cítrica.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Citrus (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="desinfetante eucalipto desinfetante limpeza geral">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/desinfetante-eucalipto-2l.jpg" width="828" height="819" loading="lazy" decoding="async" alt="Desinfetante Eucalipto Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Desinfetante</span>
+              <h3 class="product-name">Desinfetante Eucalipto</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes com fragrância de eucalipto.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Eucalipto (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="desinfetante pinho desinfetante limpeza geral">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/desinfetante-pinho-2l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Desinfetante Pinho Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Desinfetante</span>
+              <h3 class="product-name">Desinfetante Pinho</h3>
+              <p class="product-desc">Limpa, desinfeta e perfuma ambientes com a fragrância clássica de pinho.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Desinfetante Pinho (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="detergente clorado limpeza pesada limpeza pesada limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-clorado-limpeza-pesada-5l.jpg" width="828" height="689" loading="lazy" decoding="async" alt="Detergente Clorado Limpeza Pesada Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Pesada</span>
+              <h3 class="product-name">Detergente Clorado Limpeza Pesada</h3>
+              <p class="product-desc">Detergente clorado de alto poder para limpeza pesada de pisos e superfícies.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Clorado Limpeza Pesada (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="eliminador de odores 2 em 1 mentol eliminador de odores limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/eliminador-odores-mentol-5l.jpg" width="828" height="1023" loading="lazy" decoding="async" alt="Eliminador de Odores 2 em 1 Mentol Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Eliminador de Odores</span>
+              <h3 class="product-name">Eliminador de Odores 2 em 1 Mentol</h3>
+              <p class="product-desc">Elimina odores e perfuma ambientes com fragrância de mentol.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Eliminador de Odores 2 em 1 Mentol (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpa-porcelanato limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpa-porcelanato-5l.jpg" width="828" height="689" loading="lazy" decoding="async" alt="Limpa-Porcelanato Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpa-Porcelanato</h3>
+              <p class="product-desc">Limpa porcelanatos e pisos frios sem deixar resíduos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpa-Porcelanato (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado bambu limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-bamboo-5l.jpg" width="828" height="823" loading="lazy" decoding="async" alt="Limpador Perfumado Bambu Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Bambu</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de bambu.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Bambu (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado cravo e canela limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-cravo-canela-5l.jpg" width="828" height="690" loading="lazy" decoding="async" alt="Limpador Perfumado Cravo e Canela Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Cravo e Canela</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de cravo e canela.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Cravo e Canela (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado eucalipto limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-eucalipto-5l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Limpador Perfumado Eucalipto Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Eucalipto</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de eucalipto.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Eucalipto (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado floral limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-floral-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Limpador Perfumado Floral Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Floral</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância floral.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Floral (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado frutas vermelhas limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-frutas-vermelhas-5l.jpg" width="828" height="809" loading="lazy" decoding="async" alt="Limpador Perfumado Frutas Vermelhas Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Frutas Vermelhas</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de frutas vermelhas.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Frutas Vermelhas (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado kaiak limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-kaiak-5l.jpg" width="828" height="814" loading="lazy" decoding="async" alt="Limpador Perfumado Kaiak Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Kaiak</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância Kaiak.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Kaiak (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado lavanda limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-lavanda-5l.jpg" width="828" height="1014" loading="lazy" decoding="async" alt="Limpador Perfumado Lavanda Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Lavanda</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de lavanda.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Lavanda (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado rosas limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-rosas-5l.jpg" width="828" height="687" loading="lazy" decoding="async" alt="Limpador Perfumado Rosas Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Rosas</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de rosas.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Rosas (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="limpador perfumado talco limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/limpador-talco-5l.jpg" width="828" height="811" loading="lazy" decoding="async" alt="Limpador Perfumado Talco Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Limpador Perfumado Talco</h3>
+              <p class="product-desc">Limpa e perfuma pisos e superfícies com fragrância de talco.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Limpador Perfumado Talco (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="multiuso multiuso limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/multi-uso-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Multiuso Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Multiuso</span>
+              <h3 class="product-name">Multiuso</h3>
+              <p class="product-desc">Limpador multiuso para diversas superfícies da casa.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Multiuso (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="multiuso bicarbonato + álcool multiuso limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/multiuso-bicarbonato-alcool-5l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Multiuso Bicarbonato + Álcool Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Multiuso</span>
+              <h3 class="product-name">Multiuso Bicarbonato + Álcool</h3>
+              <p class="product-desc">Limpador multiuso com bicarbonato de sódio e álcool.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Multiuso Bicarbonato + Álcool (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="multiuso laranja multiuso limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/multiuso-laranja-5l.jpg" width="828" height="700" loading="lazy" decoding="async" alt="Multiuso Laranja Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Multiuso</span>
+              <h3 class="product-name">Multiuso Laranja</h3>
+              <p class="product-desc">Limpador multiuso com fragrância cítrica de laranja.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Multiuso Laranja (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="limpeza-geral" data-name="solumax limpeza geral limpeza geral">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/solumax-5l.jpg" width="828" height="687" loading="lazy" decoding="async" alt="Solumax Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Limpeza Geral</span>
+              <h3 class="product-name">Solumax</h3>
+              <p class="product-desc">Produto de limpeza para remoção de sujeira pesada.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Solumax (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="ambientes" data-name="aromatizante de ambientes amadeirado aromatizante ambientes">
+            <div class="product-media"><span class="product-badge">Spray</span>
+              <img src="assets/produtos/aromatizante-ambientes-amadeirado.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Aromatizante de Ambientes Amadeirado Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Aromatizante</span>
+              <h3 class="product-name">Aromatizante de Ambientes Amadeirado</h3>
+              <p class="product-desc">Perfuma e refresca o ambiente com fragrância amadeirada.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Aromatizante de Ambientes Amadeirado (Spray)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="ambientes" data-name="aromatizante de ambientes limão aromatizante ambientes">
+            <div class="product-media"><span class="product-badge">Spray</span>
+              <img src="assets/produtos/aromatizante-ambientes-limao.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Aromatizante de Ambientes Limão Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Aromatizante</span>
+              <h3 class="product-name">Aromatizante de Ambientes Limão</h3>
+              <p class="product-desc">Perfuma e refresca o ambiente com fragrância cítrica de limão.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Aromatizante de Ambientes Limão (Spray)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="ambientes" data-name="aromatizante bambu aromatizante ambientes">
+            <div class="product-media"><span class="product-badge">Spray</span>
+              <img src="assets/produtos/aromatizante-bambu.jpg" width="828" height="679" loading="lazy" decoding="async" alt="Aromatizante Bambu Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Aromatizante</span>
+              <h3 class="product-name">Aromatizante Bambu</h3>
+              <p class="product-desc">Perfuma e refresca o ambiente com fragrância de bambu.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Aromatizante Bambu (Spray)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="ambientes" data-name="multiuso perfumado algodão multiuso ambientes">
+            <div class="product-media"><span class="product-badge">Spray</span>
+              <img src="assets/produtos/multiuso-perfumado-algodao.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Multiuso Perfumado Algodão Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Multiuso</span>
+              <h3 class="product-name">Multiuso Perfumado Algodão</h3>
+              <p class="product-desc">Limpador multiuso perfumado com fragrância de algodão.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Multiuso Perfumado Algodão (Spray)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="ambientes" data-name="neutralizador de odores mentol 2 em 1 eliminador de odores ambientes">
+            <div class="product-media"><span class="product-badge">Frasco 2L</span>
+              <img src="assets/produtos/neutralizador-odores-mentol-2l.jpg" width="828" height="688" loading="lazy" decoding="async" alt="Neutralizador de Odores Mentol 2 em 1 Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Eliminador de Odores</span>
+              <h3 class="product-name">Neutralizador de Odores Mentol 2 em 1</h3>
+              <p class="product-desc">Neutraliza odores e perfuma ambientes com fragrância de mentol.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Neutralizador de Odores Mentol 2 em 1 (2L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="ambientes" data-name="perfumador flor de cerejeira aromatizante ambientes">
+            <div class="product-media"><span class="product-badge">Spray</span>
+              <img src="assets/produtos/perfumador-flor-de-cerejeira.jpg" width="828" height="690" loading="lazy" decoding="async" alt="Perfumador Flor de Cerejeira Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Aromatizante</span>
+              <h3 class="product-name">Perfumador Flor de Cerejeira</h3>
+              <p class="product-desc">Perfuma e refresca o ambiente com fragrância de flor de cerejeira.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Perfumador Flor de Cerejeira (Spray)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="automotivo" data-name="aromatizador automotivo classic automotivo automotivo">
+            <div class="product-media"><span class="product-badge">Spray</span>
+              <img src="assets/produtos/aromatizador-automotivo-classic.jpg" width="828" height="702" loading="lazy" decoding="async" alt="Aromatizador Automotivo Classic Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Automotivo</span>
+              <h3 class="product-name">Aromatizador Automotivo Classic</h3>
+              <p class="product-desc">Perfuma o interior do veículo com fragrância marcante e duradoura.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Aromatizador Automotivo Classic (Spray)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="automotivo" data-name="detergente automotivo automotivo automotivo">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/detergente-automotivo-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Detergente Automotivo Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Automotivo</span>
+              <h3 class="product-name">Detergente Automotivo</h3>
+              <p class="product-desc">Detergente concentrado para lavagem de veículos.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Detergente Automotivo (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="automotivo" data-name="gel para painel automotivo automotivo">
+            <div class="product-media"><span class="product-badge">Pote 500g</span>
+              <img src="assets/produtos/gel-para-painel-500g.jpg" width="828" height="683" loading="lazy" decoding="async" alt="Gel para Painel Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Automotivo</span>
+              <h3 class="product-name">Gel para Painel</h3>
+              <p class="product-desc">Gel de limpeza e proteção para o painel do veículo.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Gel para Painel (500g)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="automotivo" data-name="preteador de pneu automotivo automotivo">
+            <div class="product-media"><span class="product-badge">Frasco 500ml</span>
+              <img src="assets/produtos/preteador-de-pneu-500ml.jpg" width="828" height="683" loading="lazy" decoding="async" alt="Preteador de Pneu Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Automotivo</span>
+              <h3 class="product-name">Preteador de Pneu</h3>
+              <p class="product-desc">Realça o preto dos pneus e protege contra o ressecamento.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Preteador de Pneu (500ml)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="automotivo" data-name="protetor de pneu automotivo automotivo">
+            <div class="product-media"><span class="product-badge">Galão 5L</span>
+              <img src="assets/produtos/protetor-de-pneu-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Protetor de Pneu Quimiprol" />
+            </div>
+            <div class="product-body">
+              <span class="product-cat">Automotivo</span>
+              <h3 class="product-name">Protetor de Pneu</h3>
+              <p class="product-desc">Protege e dá brilho aos pneus.</p>
+              <div class="product-meta"><span class="meta-pill">[Consulte valores]</span><span class="meta-pill">[Rendimento a confirmar]</span></div>
+              <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vi no catálogo do site e gostaria de informações sobre o Protetor de Pneu (5L)." href="#" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="empty-state" id="emptyState" role="status" aria-live="polite">
+          <svg class="ic" aria-hidden="true"><use href="#i-package"/></svg>
+          <strong>Nenhum produto encontrado</strong>
+          <p id="emptyMsg" style="color:rgba(255,255,255,0.6)"></p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script>
@@ -707,6 +1603,68 @@
         });
       }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
       els.forEach(function (el) { io.observe(el); });
+    })();
+
+    (function () {
+      var cards = Array.prototype.slice.call(document.querySelectorAll("#catalogGrid .product-card"));
+      var searchInput = document.getElementById("catalogSearch");
+      var tabButtons = Array.prototype.slice.call(document.querySelectorAll(".tabs .tab"));
+      var emptyState = document.getElementById("emptyState");
+      var emptyMsg = document.getElementById("emptyMsg");
+      if (!cards.length || !searchInput) return;
+
+      var searchTerm = "";
+      var activeFilter = "all";
+
+      function normalize(str) {
+        return (str || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+      }
+
+      function applyFilters() {
+        var visibleCount = 0;
+        cards.forEach(function (card) {
+          var category = card.getAttribute("data-category") || "";
+          var matchCategory = (activeFilter === "all") || (category === activeFilter);
+
+          var name = normalize(card.getAttribute("data-name") || "");
+          var descEl = card.querySelector(".product-desc");
+          var desc = normalize(descEl ? descEl.textContent : "");
+          var matchSearch = (searchTerm === "") || name.indexOf(searchTerm) !== -1 || desc.indexOf(searchTerm) !== -1;
+
+          if (matchCategory && matchSearch) {
+            card.classList.remove("is-hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("is-hidden");
+          }
+        });
+
+        if (visibleCount === 0) {
+          emptyState.classList.add("visible");
+          emptyMsg.textContent = "Nenhum resultado para o que você buscou. Tente outro termo, mude de categoria, ou fale com a gente pelo WhatsApp — temos muito mais no estoque.";
+        } else {
+          emptyState.classList.remove("visible");
+        }
+      }
+
+      tabButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (btn.getAttribute("aria-selected") === "true") return;
+          tabButtons.forEach(function (b) { b.setAttribute("aria-selected", "false"); });
+          btn.setAttribute("aria-selected", "true");
+          activeFilter = btn.getAttribute("data-filter") || "all";
+          applyFilters();
+        });
+      });
+
+      var debounceTimer = null;
+      searchInput.addEventListener("input", function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+          searchTerm = normalize(searchInput.value.trim());
+          applyFilters();
+        }, 200);
+      });
     })();
   </script>
 </body>
