@@ -274,6 +274,67 @@
       .hero-showcase { order: -1; }
       .hero-showcase img { max-width: 260px; }
     }
+
+    /* ============================================================
+       SEÇÕES — genérico
+       ============================================================ */
+    .section { padding: 88px 0; }
+    .section-head { max-width: 640px; margin-bottom: 44px; }
+    .section-head h2 { font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 800; margin-top: 12px; }
+    .section-head p { margin-top: 14px; font-size: 1.03rem; }
+    .section--tint { background: var(--paper-tint); }
+
+    /* ============================================================
+       EMPRESAS — seção robusta B2B
+       ============================================================ */
+    .argument-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 56px; }
+    .argument-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 26px 24px; box-shadow: var(--shadow-sm); }
+    .argument-card-ic { width: 44px; height: 44px; border-radius: 12px; background: var(--blue-50); color: var(--blue-600); display: grid; place-items: center; margin-bottom: 16px; }
+    .argument-card-ic .ic { width: 22px; height: 22px; }
+    .argument-card h3 { font-family: var(--font-display); font-size: 1.08rem; font-weight: 800; color: var(--ink-900); margin-bottom: 8px; }
+    .argument-card p { font-size: 0.94rem; }
+
+    .b2b-subhead { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+    .b2b-subhead h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: var(--ink-900); }
+    .link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 0.92rem; color: var(--blue-600); flex-shrink: 0; }
+    .link-arrow .ic { width: 16px; height: 16px; transition: transform 0.2s var(--ease); }
+    .link-arrow:hover .ic { transform: translateX(3px); }
+
+    .carousel-viewport { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 14px; margin: 0 -4px; -webkit-overflow-scrolling: touch; }
+    .carousel-card { scroll-snap-align: start; flex: 0 0 auto; width: 228px; background: var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--line); }
+    .carousel-card-media { position: relative; aspect-ratio: 4 / 3.3; background: var(--blue-50); overflow: hidden; }
+    .carousel-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    .carousel-card-badge { position: absolute; top: 10px; left: 10px; z-index: 1; background: rgba(255,255,255,0.92); color: var(--blue-700); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); }
+    .carousel-card-body { padding: 14px 16px 18px; }
+    .carousel-card-cat { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-600); }
+    .carousel-card-name { font-family: var(--font-display); font-weight: 800; font-size: 0.98rem; color: var(--ink-900); margin-top: 4px; line-height: 1.3; }
+    .carousel-card-cta { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; font-size: 0.84rem; font-weight: 700; color: var(--green-600); }
+
+    .cta-banner {
+      margin-top: 56px; background: linear-gradient(120deg, var(--blue-900), var(--blue-700));
+      border-radius: var(--radius-lg); padding: 38px 40px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap; box-shadow: var(--shadow-lg);
+    }
+    .cta-banner h3 { font-family: var(--font-display); color: #fff; font-size: 1.4rem; font-weight: 800; }
+    .cta-banner p { color: rgba(255,255,255,0.78); margin-top: 8px; max-width: 44ch; }
+    .cta-banner .btn-primary { flex-shrink: 0; }
+
+    @media (max-width: 900px) {
+      .argument-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .section { padding: 64px 0; }
+      .cta-banner { padding: 30px 24px; }
+    }
+
+    /* ============================================================
+       MORADORES — seção secundária, mais enxuta
+       ============================================================ */
+    .section--compact { padding: 64px 0; }
+    .home-mini-list { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 18px 0 32px; }
+    .home-mini-item { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; color: var(--ink-700); }
+    .home-mini-item .ic { width: 17px; height: 17px; color: var(--green-600); flex-shrink: 0; }
+    .compact-cta { display: flex; align-items: center; gap: 16px; margin-top: 30px; flex-wrap: wrap; }
   </style>
 </head>
 <body>
@@ -414,6 +475,169 @@
               <small>Galão 5L · uso comercial</small>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EMPRESAS — dor, argumentos, produtos, CTA
+         ============================================================ -->
+    <section class="section section--tint" id="empresas" aria-labelledby="empresas-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Para empresas</span>
+          <h2 id="empresas-title" data-reveal data-reveal-delay="60">Fornecimento que sua operação pode contar todos os meses.</h2>
+          <p data-reveal data-reveal-delay="120">
+            Hotel, pousada, restaurante ou lavanderia não pode parar por falta de produto —
+            e não pode entregar um padrão de limpeza diferente pro hóspede a cada semana.
+            A LimpaSim resolve isso com fornecimento direto da linha Quimiprol, sem
+            intermediário e sem surpresa.
+          </p>
+        </div>
+
+        <div class="argument-grid">
+          <div class="argument-card" data-reveal>
+            <span class="argument-card-ic"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span>
+            <h3>Nunca fique sem estoque</h3>
+            <p>Reposição programada pra sua operação, pra ruptura de estoque nunca virar
+              problema do seu hóspede ou cliente final.</p>
+          </div>
+          <div class="argument-card" data-reveal data-reveal-delay="80">
+            <span class="argument-card-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span>
+            <h3>Padrão de qualidade constante</h3>
+            <p>Mesma linha Quimiprol, mesmo resultado em cada lote — sem variar o produto
+              pra economizar num mês ruim.</p>
+          </div>
+          <div class="argument-card" data-reveal data-reveal-delay="160">
+            <span class="argument-card-ic"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span>
+            <h3>Condição especial por volume</h3>
+            <p>Comprando pra operação, o orçamento é sob medida pro seu consumo —
+              fale direto com a gente e sem intermediário.</p>
+          </div>
+        </div>
+
+        <div class="b2b-subhead" data-reveal>
+          <h3>Linha profissional 5L — as mais pedidas por hotéis e restaurantes</h3>
+          <a class="link-arrow" href="#produtos">Ver catálogo completo <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+
+        <div class="carousel-viewport" role="list" aria-label="Produtos em destaque para empresas">
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span><img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Limpeza Geral</span>
+              <h4 class="carousel-card-name">Limpador Perfumado Pinho</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um orçamento do Limpador Perfumado Pinho (5L) para minha empresa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span><img src="assets/produtos/desinfetante-lavanda-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Desinfetante Lavanda Quimiprol, galão de 5 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Limpeza Geral</span>
+              <h4 class="carousel-card-name">Desinfetante Lavanda</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um orçamento do Desinfetante Lavanda (5L) para minha empresa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span><img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Lava-Roupas</span>
+              <h4 class="carousel-card-name">Lava Roupas Quimiplus c/ Peróxido</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um orçamento do Lava Roupas Quimiplus com Peróxido (5L) para minha empresa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span><img src="assets/produtos/amaciante-premium-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Amaciante Premium Encapsulado Quimiprol, galão de 5 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Amaciante</span>
+              <h4 class="carousel-card-name">Amaciante Premium Encapsulado</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um orçamento do Amaciante Premium Encapsulado (5L) para minha empresa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span><img src="assets/produtos/detergente-neutro-lava-loucas-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Detergente Lava-Louças Neutro Quimiprol, galão de 5 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Lava-Louças</span>
+              <h4 class="carousel-card-name">Detergente Lava-Louças Neutro</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um orçamento do Detergente Lava-Louças Neutro (5L) para minha empresa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-banner" data-reveal>
+          <div>
+            <h3>Peça agora seu orçamento comercial</h3>
+            <p>Resposta direto pelo WhatsApp, sem formulário e sem espera — conte o que sua empresa precisa e a gente monta a condição.</p>
+          </div>
+          <a class="btn btn-primary btn-lg js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um orçamento comercial para minha empresa." href="#" target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar com a LimpaSim
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MORADORES — secundária, mais enxuta
+         ============================================================ -->
+    <section class="section section--compact" id="moradores" aria-labelledby="moradores-title">
+      <div class="container">
+        <div class="section-head" style="margin-bottom: 8px;">
+          <span class="eyebrow" data-reveal><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Para sua casa</span>
+          <h2 id="moradores-title" data-reveal data-reveal-delay="60" style="font-size: clamp(1.5rem, 2.4vw, 1.9rem);">A mesma linha profissional, em tamanho de casa.</h2>
+          <p data-reveal data-reveal-delay="120">
+            A LimpaSim também atende morador de Gramado e Serra Gaúcha — mesma qualidade
+            Quimiprol que abastece hotel e pousada da região, em frascos residenciais.
+          </p>
+        </div>
+
+        <div class="home-mini-list" data-reveal data-reveal-delay="160">
+          <span class="home-mini-item"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-check"/></svg> Tamanhos residenciais (1L e 2L)</span>
+          <span class="home-mini-item"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-check"/></svg> Mesma qualidade Quimiprol</span>
+          <span class="home-mini-item"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-check"/></svg> Entrega em Gramado e Serra Gaúcha</span>
+        </div>
+
+        <div class="carousel-viewport" role="list" aria-label="Produtos em destaque para casa">
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Concentrado 1L</span><img src="assets/produtos/amaciante-bem-me-quer-caricia-1l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, 1 litro" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Amaciante</span>
+              <h4 class="carousel-card-name">Amaciante "Bem Me Quer" Carícia</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de informações sobre o Amaciante Bem Me Quer Carícia (1L) para minha casa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Frasco 2L</span><img src="assets/produtos/amaciante-azul-2em1-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Azul 2 em 1 Quimiprol, frasco de 2 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Amaciante</span>
+              <h4 class="carousel-card-name">Amaciante Azul 2 em 1</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de informações sobre o Amaciante Azul 2 em 1 (2L) para minha casa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Frasco 2L</span><img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Lava-Roupas</span>
+              <h4 class="carousel-card-name">Sabão Líquido Azul</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de informações sobre o Sabão Líquido Azul (2L) para minha casa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="carousel-card" role="listitem">
+            <div class="carousel-card-media"><span class="carousel-card-badge">Spray</span><img src="assets/produtos/aromatizante-ambientes-amadeirado.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Aromatizante de Ambientes Amadeirado Quimiprol" /></div>
+            <div class="carousel-card-body">
+              <span class="carousel-card-cat">Aromatizante</span>
+              <h4 class="carousel-card-name">Aromatizante de Ambientes Amadeirado</h4>
+              <a class="carousel-card-cta js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de informações sobre o Aromatizante de Ambientes Amadeirado para minha casa." href="#" target="_blank" rel="noopener">Consultar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="compact-cta" data-reveal>
+          <a class="btn btn-secondary" href="#produtos">
+            <svg class="ic" aria-hidden="true"><use href="#i-package"/></svg> Ver todos os produtos
+          </a>
+          <a class="link-arrow js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de informações para minha casa." href="#" target="_blank" rel="noopener">
+            Falar no WhatsApp <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
         </div>
       </div>
     </section>
