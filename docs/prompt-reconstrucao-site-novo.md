@@ -182,10 +182,28 @@ conversão imediata (CTA de revendedor logo no banner principal).
    outros botões de "etc" você quer (Revendedores? Condomínios?
    Comércio local? Hotelaria como categoria própria dentro de
    Empresas?)?
-5. **Arquitetura técnica:** mantém o formato de arquivo único vanilla
-   (como hoje, e como todo o kit/skills foram desenhados para suportar),
-   ou está aberto a múltiplas páginas / build tooling agora que é uma
-   reconstrução completa?
+5. **Arquitetura técnica:** a arquitetura real da Quimiprol foi levantada
+   em 24/07/2026 (ver `docs/auditoria-quimiprol-completa.md`, seção 8) —
+   é **CMS proprietário em PHP + nginx + Bootstrap 5/jQuery**, com URLs
+   amigáveis tipo `/produtos/{categoria}/{produto}`. Isso é uma
+   arquitetura **de servidor com back-end**, bem diferente do `index.html`
+   único, estático, vanilla, sem back-end que a LimpaSim usa hoje —
+   replicar literalmente exige hospedar um servidor PHP, não é só
+   trocar código. Três caminhos possíveis, preciso saber qual:
+   - (a) **Só inspirar, não replicar a stack:** manter arquivo único
+     vanilla (como hoje), mas adotar o *padrão* de URL amigável como
+     âncoras internas (`#produtos/lavanderia` etc.) e a simplicidade
+     visual — sem back-end real. Caminho de menor risco/custo, mantém
+     tudo que já foi construído (kit de scroll, convenções) funcionando
+     sem mudança de infraestrutura.
+   - (b) **Replicar de verdade:** back-end PHP customizado, hospedagem
+     com nginx, URLs reais por categoria/produto. Muda a infraestrutura
+     do projeto inteiro (deixa de ser um `index.html` que abre local/
+     Artifact e passa a exigir servidor rodando).
+   - (c) **Meio-termo:** site multi-página estático (sem PHP, mas com
+     uma página HTML por categoria/produto e URLs amigáveis via
+     hospedagem estática com rewrite) — ganha URLs reais sem precisar
+     de back-end/servidor PHP.
 6. **Catálogo:** as abas de categoria + 61 produtos que acabaram de
    ser reconstruídos continuam como estão (só o visual muda), ou você
    quer repensar a organização do catálogo também dentro do site novo?

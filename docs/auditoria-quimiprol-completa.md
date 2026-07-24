@@ -112,6 +112,63 @@ uso.
 7. Considerar exibir **dados de embalagem/rendimento** de forma
    estruturada, já que economia/rendimento é um dos pilares vendidos.
 
+## 8. Arquitetura técnica (levantada em 24/07/2026 via Claude in Chrome)
+
+A análise original (23/07/2026) foi só de conteúdo/UX/SEO, via inspeção
+visual no navegador — não investigou a stack técnica. Essa lacuna foi
+levantada depois, com acesso direto ao site pelo navegador do cliente
+(nesta sessão o domínio está bloqueado pela política de rede). Achados:
+
+**Conclusão: CMS proprietário/customizado em PHP** — não é WordPress,
+Shopify, Wix nem Next.js. Front-end simples: Bootstrap 5 + jQuery + JS
+vanilla, sem framework moderno de build.
+
+> A página "Seja um Revendedor" fica no domínio irmão
+> `quimiprol.ind.br`, que **é WordPress + Elementor** — mas isso é só a
+> parte de captação de revendedor, num CMS separado do site principal.
+
+- **Código-fonte:** sem `<meta name="generator">`. Comentários HTML de
+  um template engine caseiro (`<!-- HEAD REPOSÁVEL PELAS PÁGINAS
+  ESTÁTICAS -->`, `<!-- STARTSCRIPTSHEADER -->`/`<!-- ENDSCRIPTSHEADER
+  -->`, `<!-- Menu brasmodulos -->`, `<!-- Nível da sessão-->`, `<!--
+  Nível da categoria -->`, `<!-- STARTBANNER -->`/`<!-- ENDBANNER -->`,
+  `<!-- STARTCOMPONENTS -->`/`<!-- ENDCOMPONENTS -->`, `<!-- INICIO
+  CARD -->`/`<!-- FIM CARD -->`, `<!-- Logica Footer -->`, `<!--
+  STARTSCRIPTSFOOTER -->`/`<!-- ENDSCRIPTSFOOTER -->`). Imagens/logo
+  servidos em `/doutor/uploads/...` (`/doutor/` = painel administrativo
+  do CMS interno). Scripts: `bootstrap@5.3.3` (jsdelivr), `/js/
+  maskinput.js`, `gtag/js`, `/js/header-scroll.js`. CSS: Google Fonts,
+  Font Awesome 6.5.2 (cdnjs), Bootstrap Icons 1.11.3 — tudo via CDN,
+  sem arquivos com hash (`main.a1b2c3.js`), ou seja, sem pipeline
+  Webpack/Vite. Nenhuma classe `elementor-*`/`wp-block-*`/React/Vue.
+- **Servidor:** header `Server: nginx`. Sem `X-Powered-By`, sem
+  Cloudflare (`cf-ray`). Fontes/ícones direto de CDNs públicas, não
+  hospedados localmente.
+- **Console:** `window.jQuery` presente (função); `window.wp`,
+  `window.React`, `window.__NEXT_DATA__`, `window.Shopify`,
+  `window.Wix` todos `undefined`.
+- **Estrutura de URL:** `/` (home), `/produtos` (listagem), `/produtos/
+  linha-lavanderia` (categoria), `/produtos/linha-lavanderia/agua-
+  sanitaria-5l-2l` (produto), `/sobre-nos`. Padrão `/produtos/
+  {categoria}/{produto}` com slugs amigáveis, sem `.php`/`?id=` —
+  roteamento customizado (URL rewriting manual), não o padrão fixo de
+  WooCommerce/Shopify.
+- **robots.txt:** `Disallow: /doutor/`, `/inc/`, `/imagens/informacoes/
+  thumb/`, `/*.webp$`; `Sitemap: https://www.quimiprol.com.br/
+  sitemap.xml`. `/doutor/` confirma pasta de admin do CMS interno;
+  `/inc/` sugere includes PHP típicos de sistema caseiro.
+- **sitemap.xml:** gerado manualmente com Screaming Frog SEO Spider
+  19.8 (comentário na primeira linha) — não por plugin automático,
+  reforça a ausência de WordPress/Yoast no domínio principal.
+
+**Implicação prática:** essa é uma arquitetura de **servidor com
+back-end** (PHP customizado + nginx + roteamento server-side), bem
+diferente do `index.html` único, estático, sem build e sem back-end que
+a LimpaSim usa hoje. Replicar essa stack literalmente exigiria hospedar
+um servidor PHP — uma mudança de infraestrutura, não só de código. Ver
+`docs/prompt-reconstrucao-site-novo.md` (pergunta em aberto sobre
+arquitetura) para a decisão de até que ponto isso deve ser adotado.
+
 ## Nota de transparência (da análise original)
 
 Análise feita nas páginas públicas navegáveis (home, catálogo de
