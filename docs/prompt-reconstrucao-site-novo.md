@@ -79,10 +79,13 @@ arquivo de imagens dos produtos, as skills que vai precisar"*.
   visualmente e narrativamente o cliente B2B** (hotéis, pousadas,
   restaurantes, lavanderias, comércio — já é o público de maior volume
   hoje, conforme carrossel "Empresas" existente).
-- **Botões de segmentação de audiência** logo no topo/hero: no mínimo
-  "Empresas" e "Moradores" — o cliente pediu "e etc", ou seja, pode
-  haver mais segmentos além desses dois (ex.: Revendedores? Condomínios?
-  Comércio local?). **Isso precisa de confirmação — ver seção 6.**
+- **Botões de segmentação de audiência** logo no topo/hero: **só
+  "Empresas" e "Moradores"** — confirmado (24/07/2026): o "e etc" da
+  instrução original não era sobre mais segmentos de público, era sobre
+  os itens normais de menu que o site vai ter de qualquer forma
+  ("tipo catálogo, quem somos, e etc") — ou seja, navegação padrão
+  (Catálogo, Quem Somos, Contato...) **junto com**, não em vez de, os 2
+  botões de audiência.
 - Cada botão pode levar a uma seção/âncora com copy, produtos e CTA de
   WhatsApp específicos para aquele público (padrão já existe
   parcialmente hoje nos carrosséis "Empresas" e "Para a Sua Casa" — a
@@ -104,11 +107,13 @@ conversão imediata (CTA de revendedor logo no banner principal).
 
 - Abertura institucional forte no hero/logo abaixo dele: quem é a
   LimpaSim, há quanto tempo atua, o que representa a parceria com a
-  Quimiprol — **usando o dado que o próprio site já usa hoje: "+10 Anos
-  em Gramado"** (badge já existente no header atual). Entendo que "10
-  anos" nesta instrução se refere a esse dado já aprovado — **não** um
-  novo número de "anos de parceria" inventado. Se for outra coisa, favor
-  confirmar (seção 6).
+  Quimiprol. **Correção de dado (24/07/2026): o número certo é 5 anos,
+  não 10.** O badge atual "+10 Anos em Gramado" está **desatualizado/
+  incorreto** e precisa ser substituído por algo como "+5 Anos" (ou
+  "5 anos de LimpaSim" — redigir no tom do resto do copy) em **todo
+  lugar** onde "10 anos"/"+10 Anos" aparece no site atual (badge do
+  header, qualquer menção institucional). Não existe um segundo número
+  de "anos de parceria" separado — é um dado só, e o valor certo é 5.
 - Pilares equivalentes aos da Quimiprol, mas com voz própria da LimpaSim
   como **distribuidora** (não fabricante): ex. algo como "qualidade
   Quimiprol + agilidade local" — a redigir do zero, nunca reaproveitando
@@ -130,12 +135,12 @@ conversão imediata (CTA de revendedor logo no banner principal).
   não o azul-noite carregado atual) — transmite limpeza, confiança,
   leveza.
 - Cor(es) de destaque pontual, aplicadas com moderação, só onde há
-  informação de valor real (preço/cupom quando liberado, CTA principal,
-  badge "+10 Anos", contadores do catálogo) — **cor de destaque exata
-  ainda não definida**, precisa de decisão (ver seção 6): manter o
-  dourado/champagne atual como accent (já testado, já aprovado em
-  contraste WCAG AA) é o caminho de menor risco, mas o cliente pode
-  preferir outra cor de destaque agora que a base mudou para azul claro.
+  informação de valor real (cupom, CTA principal, badge "+5 Anos",
+  contadores do catálogo) — **RESPONDIDO (24/07/2026): verde**
+  (associação direta com frescor/limpeza, contraste natural sobre azul
+  suave). Tom exato do verde ainda a escolher na hora de codar (testar
+  contraste WCAG AA real contra o azul suave de fundo antes de fixar o
+  hex final — não presumir que um verde genérico passa sem medir).
 - Qualquer paleta nova precisa refazer a auditoria de contraste WCAG AA
   do zero (não dá pra assumir que os pares antigos de contraste
   continuam válidos com uma base de cor diferente).
@@ -146,10 +151,12 @@ conversão imediata (CTA de revendedor logo no banner principal).
 
 - Precisa de um elemento de UI (badge no hero, banner, ou seção
   dedicada) anunciando desconto na primeira compra.
-- **Valor do desconto e código do cupom não podem ser inventados** —
-  segue a mesma regra de nunca inventar dado comercial. Até ter o valor
-  real, o texto usa um placeholder no mesmo padrão dos demais
-  (`[X% OFF na primeira compra — código a confirmar]`).
+- **RESPONDIDO (24/07/2026): 5% de desconto na primeira compra.**
+  Código do cupom ainda não veio do cliente — como não é um dado de
+  produto/preço e sim um rótulo de marketing, uma sugestão inicial
+  (ex.: `LIMPASIM5` ou `BEMVINDO5`) pode ser proposta na hora de
+  construir, deixando claro que é sugestão e fácil de trocar — mas o
+  **5% em si já está confirmado e não é placeholder**.
 
 ## 7. Experiência de scroll completa
 
@@ -169,35 +176,30 @@ conversão imediata (CTA de revendedor logo no banner principal).
   - Manter o padrão de 3 camadas de fallback em toda seção nova: JS
     completo → `prefers-reduced-motion` → `<noscript>`.
 
-## 8. Perguntas em aberto — preciso que você confirme antes de eu construir
+## 8. Perguntas em aberto — status (todas respondidas em 24/07/2026)
 
-1. **Cor de destaque:** mantém o dourado/champagne atual como accent
-   sobre o novo azul suave, ou quer uma cor de destaque diferente?
-2. **Cupom:** qual o valor real do desconto (%) e o código do cupom?
-   (Sem isso, entra como placeholder.)
-3. **"10 anos":** confirma que é o mesmo dado já usado hoje ("+10 Anos
-   em Gramado", tempo de mercado da LimpaSim), e não um número diferente
-   de "anos de parceria" com a Quimiprol?
-4. **Segmentos de audiência:** além de "Empresas" e "Moradores", que
-   outros botões de "etc" você quer (Revendedores? Condomínios?
-   Comércio local? Hotelaria como categoria própria dentro de
-   Empresas?)?
-5. ~~**Arquitetura técnica**~~ — **RESPONDIDO (24/07/2026): opção (a),
-   só inspirar, não replicar a stack.** A Quimiprol usa CMS proprietário
-   em PHP + nginx + Bootstrap 5/jQuery, com URLs amigáveis tipo
-   `/produtos/{categoria}/{produto}` (ver `docs/auditoria-quimiprol-
-   completa.md`, seção 8) — mas isso não será replicado (exigiria
-   hospedar um servidor PHP, mudança de infraestrutura). O site novo da
-   LimpaSim **continua em arquivo único vanilla, estático, sem
-   back-end**, como hoje. O único empréstimo é de *padrão*, não de
-   tecnologia: usar âncoras internas com o mesmo espírito de URL
-   amigável (`#produtos/lavanderia` etc., navegáveis e "linkáveis"
-   dentro da página) no lugar de rotas reais de servidor.
-6. **Catálogo:** as abas de categoria + 61 produtos que acabaram de
-   ser reconstruídos continuam como estão (só o visual muda), ou você
-   quer repensar a organização do catálogo também dentro do site novo?
+1. ~~**Cor de destaque**~~ — **RESPONDIDO: verde.** Ver seção 5.
+2. ~~**Cupom**~~ — **RESPONDIDO: 5% na primeira compra.** Código ainda
+   em aberto (sugestão a propor na hora de construir). Ver seção 6.
+3. ~~**"10 anos"**~~ — **RESPONDIDO: era um erro, o certo é 5 anos.**
+   Substitui o badge "+10 Anos em Gramado" em todo o site (não é um
+   segundo dado, é correção do único dado). Ver seção 4.
+4. ~~**Segmentos de audiência**~~ — **RESPONDIDO: só Empresas e
+   Moradores.** O "etc" era sobre itens de menu normais (Catálogo, Quem
+   Somos...), não mais botões de público. Ver seção 3.
+5. ~~**Arquitetura técnica**~~ — **RESPONDIDO: opção (a), só inspirar,
+   não replicar a stack PHP da Quimiprol.** Continua arquivo único
+   vanilla, sem back-end; só o padrão de URL amigável vira âncora
+   interna. Ver seção 2.
+6. ~~**Catálogo**~~ — **RESPONDIDO:** reaproveitar as imagens e a
+   organização (categorias, dados) do catálogo atual **como estão**,
+   dentro de um bloco de apresentação novo — a liberdade é sobre o
+   *visual* do bloco (layout, cards, motion), não sobre os dados/fotos
+   em si, que já estão certos e não devem ser refeitos.
 
-Assim que essas respostas chegarem, a reconstrução é feita seguindo
-exatamente este documento — sem precisar repetir o contexto, porque
-tudo que já foi decidido/arquivado nesta conversa está listado acima
-com referência ao arquivo exato onde mora.
+**Todas as 6 perguntas foram respondidas — este documento está pronto
+para orientar a construção.** Próximo passo: implementar seguindo
+exatamente as seções 1–7 acima, com o processo de QA da seção 1 antes
+de publicar. Se surgir qualquer decisão nova durante a construção que
+não esteja coberta aqui (e não for uma escolha puramente técnica de
+implementação), voltar a perguntar em vez de presumir.

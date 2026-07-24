@@ -10,12 +10,18 @@ O cliente pediu um site **100% novo** (design/layout/copy atuais
 descartados), mantendo só produtos/imagens/skills já validados. Antes de
 qualquer código, foi produzido o briefing completo em
 `docs/prompt-reconstrucao-site-novo.md` — **leia esse arquivo primeiro**
-se a tarefa for continuar/executar essa reconstrução. Ele já reúne toda
-a memória relevante (o que reaproveitar, o que muda, paleta nova azul
+se a tarefa for continuar/executar essa reconstrução. Ele reúne toda a
+memória relevante (o que reaproveitar, o que muda, paleta nova azul
 suave, cupom de primeira compra, audiência dupla Empresas/Moradores,
-etc.) e lista **perguntas em aberto ainda não respondidas pelo
-cliente** (cor de destaque, valor do cupom, segmentos de audiência
-além de Empresas/Moradores, etc.) — não presumir essas respostas.
+etc.). **Todas as 6 perguntas em aberto já foram respondidas
+(24/07/2026)** — resumo: accent **verde** (não dourado), cupom **5% na
+primeira compra**, o badge "+10 Anos em Gramado" está **errado, o
+certo é 5 anos** (corrigir em todo o site), botões de audiência **só
+Empresas/Moradores** (sem mais segmentos), arquitetura **continua
+vanilla single-file sem back-end** (só o padrão de URL da Quimiprol
+vira âncora interna), catálogo **reaproveita imagens/dados como estão**
+dentro de um bloco de apresentação novo. Documento pronto pra guiar a
+construção — ver seção 8 do arquivo pra detalhe de cada resposta.
 Ver também `docs/auditoria-quimiprol-completa.md` (relatório completo,
 persistido nesta data — antes só havia um resumo condensado abaixo).
 
