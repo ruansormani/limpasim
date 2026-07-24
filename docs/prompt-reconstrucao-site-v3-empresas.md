@@ -108,15 +108,26 @@ como CONCEITO, só não é mais o que a home mostra por padrão):
   de estúdio azul), não os recortes. Isso vale pra qualquer vitrine/
   destaque também — nada de `assets/produtos/recorte/`.
 
-## 5. Pendência não resolvida — vídeos
+## 5. ~~Pendência~~ RESOLVIDO — vídeo de referência recebido (24/07/2026)
 
-O cliente mencionou *"pegue mesma informação dos vídeos que pedi para
-analisar"* — **não existe nenhum pedido de análise de vídeo registrado
-nesta conversa**. Perguntei diretamente (duas vezes) e a pergunta foi
-dispensada sem resposta nas duas ocasiões, sem confirmação de que era
-engano nem envio do vídeo. **Tratando como não aplicável por enquanto**
-— se o cliente mandar o vídeo depois, incorporar a informação na hora;
-não inventar o que não foi enviado.
+O cliente enviou o material: 1 vídeo (22s, produto único "Amaciante
+Lavanda") + 2 imagens, de contas de Instagram de um revendedor regional
+Quimiprol (`@quimiprolerechim`) e do perfil oficial. Análise completa
+de estilo/técnica em `docs/referencia-video-produto-premium.md` — não
+copiar fotos/vídeo literalmente (é material de marca de terceiro), só
+a técnica: iluminação quente com bokeh, macro sensorial como transição
+(líquido escorrendo, gota em tecido), reveal do nome do produto em
+tipografia serifada/script no clímax, tom comercial direto/energético,
+argumento de autoridade por escala/consistência de processo.
+
+**Implicação prática pra v3:** ao construir a vitrine/hero de produto,
+considerar aplicar esse tipo de composição (luz quente, profundidade de
+campo rasa, zoom/crossfade dirigido por scroll simulando o movimento de
+câmera do vídeo) nas fotos REAIS da LimpaSim (`assets/produtos/*.jpg`),
+e avaliar se vale introduzir uma fonte script/serifada pontual só pro
+momento de reveal do nome do produto (hoje o site é 100%
+Manrope+Work Sans, ambas sans-serif) — decisão de design a confirmar
+na hora de construir, não bloqueante.
 
 ## 6. O que já está pronto e deve ser 100% reaproveitado
 

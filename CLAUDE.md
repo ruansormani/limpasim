@@ -17,8 +17,13 @@ produtos na home (curadoria pequena + link pro catálogo completo),
 recorte/*.png` — cliente achou ruim, usar sempre `assets/produtos/
 *.jpg` originais), e **logo real do cliente já processada** em
 `assets/logo/` (ícone + lockup completo, fundo transparente,
-substituindo o SVG genérico usado até aqui). 3 perguntas ainda em
-aberto — ver seção 7 do arquivo. Nada disso foi implementado ainda.
+substituindo o SVG genérico usado até aqui). Ver também
+`docs/referencia-video-produto-premium.md` — análise de um vídeo
+publicitário de produto (revendedor regional Quimiprol) enviado como
+referência de estilo: luz quente/bokeh, macro sensorial de transição,
+reveal do nome do produto em tipografia script/serifada. 2 perguntas
+ainda em aberto (a 3ª, sobre vídeo, já foi resolvida) — ver seção 7 do
+arquivo v3. Nada disso foi implementado ainda.
 
 ## ✅ Reconstrução completa do site v2 — concluída (24/07/2026, substituída pela v3 acima)
 
