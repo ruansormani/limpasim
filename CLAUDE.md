@@ -4,26 +4,33 @@ Site institucional da LimpaSim (distribuidora exclusiva Quimiprol, Gramado e
 Serra Gaúcha/RS) em um único arquivo `index.html` (HTML+CSS+JS, sem build,
 sem dependências externas além do Google Fonts).
 
-## ⚠ Reconstrução v3 (foco 100% em vender pra empresas) — em planejamento (24/07/2026)
+## ✅ Reconstrução v3 (foco 100% em vender pra empresas) — concluída (24/07/2026)
 
-O cliente pediu uma **terceira reconstrução**, insatisfeito com pontos
-específicos da v2 abaixo. Briefing completo em
-`docs/prompt-reconstrucao-site-v3-empresas.md` — **leia esse arquivo
-primeiro** antes de tocar em `index.html` de novo. Resumo do que muda:
-site pensado pra vender pra empresa em primeiro lugar (não mais
-audiência "igualitária"), catálogo deixa de mostrar todos os 61
-produtos na home (curadoria pequena + link pro catálogo completo),
-**nunca mais usar as fotos com fundo removido** (`assets/produtos/
-recorte/*.png` — cliente achou ruim, usar sempre `assets/produtos/
-*.jpg` originais), e **logo real do cliente já processada** em
-`assets/logo/` (ícone + lockup completo, fundo transparente,
-substituindo o SVG genérico usado até aqui). Ver também
-`docs/referencia-video-produto-premium.md` — análise de um vídeo
-publicitário de produto (revendedor regional Quimiprol) enviado como
-referência de estilo: luz quente/bokeh, macro sensorial de transição,
-reveal do nome do produto em tipografia script/serifada. 2 perguntas
-ainda em aberto (a 3ª, sobre vídeo, já foi resolvida) — ver seção 7 do
-arquivo v3. Nada disso foi implementado ainda.
+Briefing completo em `docs/prompt-reconstrucao-site-v3-empresas.md` —
+histórico de decisão, mas o site já reflete o resultado. Mudou em
+relação à v2 abaixo: site pensado pra vender pra empresa em primeiro
+lugar (não mais audiência "igualitária" — Empresas tem seção mais longa
+e robusta, Moradores é deliberadamente mais enxuta, ver seção
+"Arquitetura de audiência" abaixo); catálogo completo (61 produtos) saiu
+da home e virou seção secundária `#produtos` — a home mostra só
+curadorias pequenas (5 itens linha 5L em Empresas, 4 itens tamanho
+residencial em Moradores), cada uma com link "Ver catálogo completo";
+**fotos com fundo removido não são mais usadas em nenhum lugar do site**
+(nem vitrine, nem hero — `assets/produtos/recorte/*.png` ficou sem uso;
+tudo usa `assets/produtos/*.jpg` originais, inclusive o hero, que usa
+uma máscara radial em CSS pra suavizar a borda do fundo de estúdio em
+vez de recortar o fundo de verdade); **logo real do cliente** em
+`assets/logo/` (ícone no header, lockup completo — invertido pra branco
+via `filter: brightness(0) invert(1)` — no footer), substituindo o SVG
+genérico usado até a v2. A vitrine cinematográfica scroll-scrub da v2
+(`.portal-track`) **não foi reconstruída na v3** — o cliente pediu
+"efeitos sutis", então o hero ficou com só a vitrine de produto mascarada
+(ver seção "Hero e vitrine de produto" abaixo); o `kit-scroll-
+cinematografico/` continua no repo pra uso futuro se fizer sentido.
+Nova seção institucional `#quem-somos` (era `#parceria` na v2, mesmo
+conteúdo de diferenciais, copy de abertura reescrita pro tom "vende de
+verdade" do briefing). Ver `docs/referencia-video-produto-premium.md`
+para a análise do vídeo de referência que inspirou o tratamento do hero.
 
 ## ✅ Reconstrução completa do site v2 — concluída (24/07/2026, substituída pela v3 acima)
 
@@ -39,21 +46,23 @@ visual — nunca copiar a identidade da Quimiprol).
 
 ## Estrutura do repositório
 
-- `index.html` — o site inteiro. **Design novo** (24/07/2026): paleta
-  **azul suave** dominante em todo o site + **verde** como único acento
-  pontual (cupom, CTAs, badges de valor) — substituiu completamente o
-  azul-noite/dourado antigo. Tipografia nova: **Manrope** (display) +
-  **Work Sans** (corpo), no lugar de Fraunces/Plus Jakarta Sans.
-  Arquitetura de **audiência dupla** com Empresas priorizada (cards de
-  audiência no hero, seções B2B/B2C dedicadas com carrosséis
-  curados) — ver seção "Arquitetura de audiência" abaixo. Catálogo com
-  **61 produtos** em abas de categoria + busca (mesmos dados/imagens de
-  sempre, bloco de apresentação redesenhado — ver seção "Catálogo"
-  abaixo). Vitrine cinematográfica reconstruída como portal-reveal
-  (`.portal-track`/`.portal-stage`, não mais `.cine-showcase`) — ver
-  seção "Vitrine Cinematográfica" abaixo. Cupom de **5% na primeira
-  compra** e badge **"+5 Anos em Gramado"** (corrigido — o antigo "+10
-  Anos" estava errado).
+- `index.html` — o site inteiro. **Design v3** (24/07/2026, sobre a
+  mesma base de paleta/tipografia da v2): **azul suave** dominante +
+  **verde** como acento pontual (cupom, CTAs, badges de valor).
+  Tipografia **Manrope** (display) + **Work Sans** (corpo) + **Playfair
+  Display** itálica (`--font-accent`, só pro momento de reveal do nome
+  do produto na vitrine do hero — nova na v3). Ordem das seções:
+  header → hero (headline B2B + vitrine de produto mascarada, foto real)
+  → `#empresas` (robusta: 3 argument-cards de dor/argumento + carrossel
+  de 5 produtos 5L + banner CTA escuro) → `#moradores` (deliberadamente
+  mais enxuta: heading menor, lista inline em vez de cards, carrossel de
+  4 produtos residenciais, CTA compacto) → `#produtos` (catálogo
+  completo, 61 produtos, abas + busca — era `#catalogo` na v2) →
+  `#quem-somos` (selo de parceria + 3 diferenciais) → `#contato` (CTA
+  final com os 2 botões de audiência) → footer (logo real). Ver seções
+  "Arquitetura de audiência", "Hero e vitrine de produto" e "Catálogo"
+  abaixo. Cupom de **5% na primeira compra** e badge **"+5 Anos em
+  Gramado"** mantidos da v2.
 - `assets/produtos/` — fotos **já usadas no site**, tratadas/otimizadas.
   Não editar as originais de `produtos-fonte/` diretamente; sempre copiar
   e ajustar para cá antes de referenciar no HTML.
@@ -100,36 +109,51 @@ visual — nunca copiar a identidade da Quimiprol).
 
 ## Arquitetura de audiência (Empresas em primeiro lugar)
 
-Decisão do cliente: a experiência do cliente empresário vem primeiro,
-mas os dois públicos (Empresas e Moradores) são atendidos. Implementado
-como a primeira decisão do visitante, não uma seção no meio da rolagem:
+Decisão do cliente, aprofundada na v3: a experiência do cliente
+empresário vem primeiro e tem bem mais profundidade de conteúdo que a
+residencial — não é mais só um card de hero + carrossel curto (v2), é
+seção inteira com argumento de venda.
 
-- **Hero:** dois `.audience-card` lado a lado logo abaixo do H1 —
-  `.audience-card--primary` ("Sou Empresa", estilo escuro/destacado,
-  kicker "Prioridade") sempre antes de `.audience-card` comum ("Sou
-  Morador", kicker "Residencial"). Mesma dupla de botões no header
-  (`.audience-pill`, desktop) e no menu mobile (`.mobile-audience`).
-- **Seções dedicadas** `#empresas` (bg `--paper-tint`, aparece primeiro)
-  e `#moradores` (bg branco, aparece depois), cada uma com copy própria
-  e um carrossel de 5 produtos curados (não os 61 do catálogo — seleção
-  intencional: Empresas = linha profissional 5L; Moradores = tamanhos
-  menores/residenciais). CTA de WhatsApp com mensagem própria por
-  audiência.
-- **"E etc" do pedido original** não virou mais botões de audiência —
-  o cliente esclareceu que era sobre itens de menu normais (Catálogo,
-  Quem Somos, Contato), não mais segmentos de público. Só existem 2
-  audience buttons: Empresas e Moradores.
+- **Botões "Minha Empresa"/"Minha Casa"** (`.audience-pill`,
+  `.audience-pill--primary` pro empresa) aparecem em 3 lugares: nav
+  desktop (`.main-nav`), menu mobile (`.mobile-audience`) e um toggle
+  dedicado no hero (`.hero-toggle`, abaixo dos CTAs principais). Todos
+  levam pra `#empresas`/`#moradores`.
+- **`#empresas`** (bg `--paper-tint`): eyebrow + H2 + parágrafo de dor
+  (ruptura de estoque, padrão inconsistente pro hóspede) → 3
+  `.argument-card` (nunca fica sem estoque / padrão de qualidade
+  constante / condição por volume) → carrossel de 5 produtos da linha
+  profissional 5L (`.carousel-card`, mesmo padrão de imagem
+  `object-fit:contain` do catálogo) → `.cta-banner` escuro
+  (gradiente `--blue-900`→`--blue-700`) com WhatsApp.
+- **`#moradores`** (bg branco, **deliberadamente mais enxuto** — heading
+  menor, sem argument-cards, só uma `.home-mini-list` inline de 3 itens,
+  carrossel de 4 produtos em tamanho residencial (1L/2L), CTA compacto
+  em vez de banner) — subordinado em espaço/destaque, não em qualidade,
+  conforme o briefing v3 seção 2.
+- **Carrosséis usam fotos originais** (`assets/produtos/*.jpg`), nunca
+  `recorte/`. Ao escolher produto pra um carrossel nesses dois blocos,
+  conferir a cor de fundo real da foto antes de fechar a curadoria — uma
+  foto (`amaciante-lavanda-2l.jpg`) tem fundo de estúdio escuro/azul-
+  marinho (lote fotográfico diferente do resto, que é azul-claro) e
+  destoava visualmente ao lado das outras no carrossel de Moradores;
+  foi trocada por `amaciante-azul-2em1-2l.jpg`. Sempre olhar a miniatura
+  renderizada lado a lado com as vizinhas antes de finalizar a escolha.
+- Carrosséis **não usam `[data-reveal]`** nos cards (só no
+  heading/CTA da seção) — mesma cautela já documentada abaixo sobre
+  `IntersectionObserver` em `overflow-x`.
 
 ## Catálogo — abas de categoria (61 produtos)
 
 Catálogo com abas de categoria (Todos / Lavanderia / Cozinha / Limpeza
 Geral / Ambientes / Automotivo, cada uma com contador) + busca em tempo
-real, seção `#catalogo`. Estrutura e dados **reaproveitados como estão**
-da reconstrução anterior (24/07/2026, catálogo expandido de 10→61
-produtos) — na reconstrução completa do site, só o bloco de
-apresentação (CSS/paleta) foi refeito, os 61 `<article class="product-
-card">` com seus `data-category`/`data-name`/imagens/descrições vieram
-copiados 1:1 do HTML anterior.
+real, seção **`#produtos`** (era `#catalogo` até a v2 — o id mudou na v3
+pra bater com o link "Produtos" do nav e os CTAs "Ver catálogo completo"
+espalhados pelas seções Empresas/Moradores). Estrutura, dados e os 61
+`<article class="product-card">` (com seus `data-category`/`data-name`/
+imagens/descrições) são **reaproveitados como estão** desde a
+reconstrução de 24/07/2026 (catálogo expandido de 10→61 produtos) — só
+o id da seção mudou na v3, o resto veio copiado 1:1.
 
 - **Categorias = as 5 de `produtos-fonte/`**, não as 7 do site da
   Quimiprol — de propósito, pra não criar abas vazias (ver
@@ -153,28 +177,43 @@ copiados 1:1 do HTML anterior.
   object-fit:contain }` no lugar de `max-height`/`width:auto`. Mesma
   regra vale pro `.carousel-card-media img`.
 
-## Vitrine Cinematográfica (scroll-scrub)
+## Hero e vitrine de produto (v3 — substitui a vitrine cinematográfica)
 
-Seção `<section class="portal-track" id="destaques">` (renomeada de
-`.cine-showcase`/`.cine-stage` para `.portal-track`/`.portal-stage` na
-reconstrução completa — mesma técnica, nomes de classe novos), entre o
-hero e a seção Empresas. Técnica de scroll-scrub sem vídeo/IA/canvas
-(decisão original mantida). Implementação:
+A v3 **não reconstruiu** a vitrine cinematográfica scroll-scrub da v2
+(`.portal-track`/`.portal-stage`) — o briefing pedia "efeitos sutis", e
+o cliente rejeitou explicitamente as fotos recortadas que essa vitrine
+usava. Em vez disso, o hero ganhou uma vitrine de produto mais simples e
+contida:
 
-- Contêiner alto (`240vh`) + palco `position: sticky` (`.portal-stage`)
-  pinado, fundo `--blue-900`→`--blue-700` com glow azul/verde.
-- Progresso do scroll (0→1) via `getBoundingClientRect()`, aplicado como
-  `transform`/`opacity` inline em 3 fotos reais (recortes de
-  `assets/produtos/recorte/`), throttle por `requestAnimationFrame`.
-- `.portal-stage` usa `top: var(--header-h)` (72px, não 0 nem um número
-  fixo) — o offset do header agora é um token CSS (`--header-h`), não
-  um valor mágico espalhado pelo CSS/JS. Se mudar a altura do header,
-  mudar só esse token.
-- Mesma armadilha de sempre: filhos `position:absolute` dentro de pai
-  `flex-direction:column` colapsam a largura do pai — `.portal-products`
-  precisa de `width:100%; align-self:stretch` nos fallbacks.
-- Padrão de 3 camadas mantido: JS completo → `prefers-reduced-motion` →
-  `<noscript>`.
+- `.hero-showcase`: uma foto real (`assets/produtos/*.jpg`, fundo de
+  estúdio azul, nunca `recorte/`) suavizada com
+  `mask-image: radial-gradient(ellipse ... transparent 100%)` — a
+  técnica original é do site v1 (`.product-media img`), reaproveitada
+  aqui pra esconder a borda retangular do fundo de estúdio sem precisar
+  de recorte de verdade. Legenda em `--font-accent` (Playfair Display
+  itálica) sobreposta perto da base da imagem.
+- `.hero-ambient::before`: blob de gradiente cônico (`@property --angle`
+  + `conic-gradient`) girando devagar (28s) atrás do conteúdo do hero,
+  `filter: blur(90px)`, desligado via `prefers-reduced-motion`.
+- **Bug real de layout corrigido nesta seção:** `.hero-grid` com
+  `align-items: center` centralizava a vitrine (coluna mais curta)
+  contra a altura da coluna de texto (bem mais alta), deixando um vão
+  vazio grande acima da imagem. Fix: `align-items: start` +
+  `margin-top` fixo na `.hero-showcase` — a imagem passa a alinhar
+  perto do topo, igual à badges row, sem vão.
+- **Falso alarme de screenshot (mais uma vez):** em capturas headless
+  (Playwright/Chromium sem GPU), a imagem mascarada às vezes renderiza
+  **totalmente invisível** num screenshot "frio" (logo após o load, sem
+  nenhum scroll/repaint) mesmo com todos os estilos computados
+  corretos (`opacity:1`, `mask-image` válido, imagem `complete`) — mas
+  aparece perfeitamente com um `clip` de screenshot menor, ou após
+  qualquer scroll de 1-2px (forçando um repaint). É um artefato de
+  compositing do headless com `mask-image`, não um bug real — confirmar
+  sempre com um pequeno scroll antes de reportar uma imagem como
+  "sumida".
+- O `kit-scroll-cinematografico/` continua no repo (não foi usado nesta
+  versão, mas fica disponível se um efeito scroll-scrub fizer sentido de
+  novo no futuro).
 
 ## Bugs reais encontrados na reconstrução completa (24/07/2026)
 
@@ -209,6 +248,28 @@ pegou mais dois problemas reais que vale lembrar pra próximas seções:
   pro branco/fallback). Nesses casos, verificar manualmente contra os
   stops de cor do gradiente (ver commit da reconstrução pra exemplo de
   cálculo) antes de decidir se é bug real ou falso positivo.
+
+## Bug real encontrado na v3: especificidade CSS engolindo cor de botão/pill
+
+Auditoria de contraste da v3 achou um bug de verdade (não um falso
+positivo de gradiente): seletores de contêiner com tag+classe, tipo
+`.main-nav a { color: var(--ink-700) }` ou `.mobile-nav-panel a { color:
+var(--ink-900) }`, têm especificidade `(0,1,1)` — **maior** que
+`.audience-pill--primary { color: #fff }` ou `.btn-primary { color: #fff
+}`, que são só `(0,1,0)`. Resultado: o "Minha Empresa" pill do nav e o
+botão "Falar no WhatsApp" do menu mobile renderizavam com texto escuro
+sobre fundo azul/verde — ilegível, contraste ~1.5-3.0 (falha WCAG AA de
+verdade, confirmado por cálculo manual, não blind spot de gradiente).
+Fix: aumentar a especificidade do componente pra ele sempre vencer,
+independente de onde for aninhado — `.audience-pill.audience-pill--
+primary`, `.btn.btn-primary`, `.btn.btn-secondary`, `.footer-col
+a.footer-cta` (duas classes/seletor composto, em vez de confiar na
+ordem de declaração no arquivo). **Lição geral:** qualquer regra do tipo
+`.container a { color: ... }` é uma armadilha de especificidade pra
+qualquer botão/pill/link estilizado que for aninhado dentro desse
+contêiner — ao criar uma regra assim, sempre conferir se componentes
+com classe própria (`.btn`, `.audience-pill`, etc.) podem aparecer lá
+dentro, e blindar o seletor do componente com uma classe composta.
 
 ## Referência: engenharia reversa de scroll cinematográfico
 
