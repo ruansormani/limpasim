@@ -1,823 +1,556 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <!-- TODO: confirmar autorização de uso da marca Quimiprol e da condição de "distribuidor exclusivo" com o fabricante antes de publicar -->
 
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LimpaSim — Distribuidora de Produtos de Limpeza em Gramado e Serra Gaúcha</title>
-  <meta name="description" content="LimpaSim: distribuidora de produtos de limpeza profissional e residencial em Gramado e Serra Gaúcha. Atendimento exclusivo via WhatsApp e entrega local rápida. Padrão hoteleiro para hotéis, pousadas, gastronomia, lavanderias e residências." />
-  <meta name="theme-color" content="#070f1e" />
-
-  <!-- Open Graph básico -->
-  <meta property="og:title" content="LimpaSim — Soluções em Limpeza Profissional e Residencial" />
-  <meta property="og:description" content="Distribuidora de produtos de limpeza de padrão hoteleiro em Gramado e Serra Gaúcha. Atendimento express via WhatsApp e entrega local garantida." />
+  <meta name="description" content="LimpaSim: distribuidora exclusiva Quimiprol para empresas (hotéis, pousadas, gastronomia, lavanderias) e residências em Gramado e Serra Gaúcha. 5% de desconto na primeira compra. Atendimento via WhatsApp." />
+  <link rel="canonical" href="https://www.limpasim.com.br/" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/produtos/pinho-5l.jpg" />
-  <!-- TODO: adicionar og:url e trocar og:image por imagem de compartilhamento própria/licenciada da LimpaSim (1200x630) -->
+  <meta property="og:title" content="LimpaSim — Distribuidora Quimiprol em Gramado e Serra Gaúcha" />
+  <meta property="og:description" content="Produtos de limpeza para empresas e residências, com a qualidade Quimiprol e entrega local. 5% OFF na primeira compra." />
+  <meta name="theme-color" content="#4A8CC4" />
 
-  <!-- Favicon placeholder: gota d'água em SVG inline (identidade LimpaSim). TODO: substituir por favicon .ico/.png oficial -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3C11 11 7 15 7 20a9 9 0 0 0 18 0c0-5-4-9-9-17z' fill='%2338bdf8'/%3E%3C/svg%3E" />
-
-  <!-- Google Fonts: Fraunces (display serif, elegante) + Plus Jakarta Sans (corpo/UI) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Dados estruturados schema.org LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "LimpaSim",
-    "description": "Distribuidora de produtos de limpeza profissional e residencial de padrão hoteleiro, com atendimento exclusivo em Gramado e Serra Gaúcha.",
-    "areaServed": [
-      { "@type": "City", "name": "Gramado", "addressRegion": "RS", "addressCountry": "BR" },
-      { "@type": "Place", "name": "Serra Gaúcha", "addressRegion": "RS", "addressCountry": "BR" }
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Gramado",
-      "addressRegion": "RS",
-      "addressCountry": "BR"
-    },
-    "priceRange": "$$",
-    "slogan": "Soluções em Limpeza Profissional e Residencial",
-    "knowsAbout": ["Higienização hoteleira", "Produtos de limpeza concentrados", "Limpeza residencial", "Lavanderia profissional"]
-    /* TODO: adicionar "telephone", "url", "image", "openingHours" e "geo" reais da LimpaSim */
+    "description": "Distribuidora exclusiva Quimiprol de produtos de limpeza profissional e residencial em Gramado e Serra Gaúcha.",
+    "areaServed": "Gramado e Serra Gaúcha, RS",
+    "priceRange": "$$"
   }
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     /* ============================================================
-       DESIGN TOKENS
+       RESET
        ============================================================ */
-    :root {
-      /* Azul Royal Profundo */
-      --royal-900: #0c4a6e;
-      --royal-700: #0369a1;
-      /* Ciano Iluminado */
-      --cyan-400: #38bdf8;
-      --cyan-600: #0284c7;
-      /* Fundos escuros */
-      --bg-950: #070f1e;
-      --bg-900: #0f172a;
-      /* Acento premium — dourado / champagne (usado só em detalhes) */
-      --gold: #d8b878;
-      --gold-soft: rgba(216, 184, 120, 0.16);
-      --gold-line: rgba(216, 184, 120, 0.35);
-      /* Superfícies vidro / texto */
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-strong: rgba(255, 255, 255, 0.07);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --hairline: rgba(255, 255, 255, 0.08);
-      --text-hi: #f4f8fc;   /* alto contraste sobre fundo escuro */
-      --text-mid: #c6d5e4;  /* ~7:1 sobre #070f1e — AA garantido */
-      --text-soft: #9fb3c8; /* ~4.7:1 sobre #070f1e — AA garantido */
-      --accent-green: #22c55e; /* ponto verde / identidade "Sim" */
-
-      /* Tipografia */
-      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-      --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
-
-      /* Ritmo de espaçamento (base 8px) */
-      --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
-      --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
-
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --maxw: 1200px;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
-      --shadow-card: 0 12px 34px -14px rgba(2, 8, 23, 0.78);
-      --shadow-hover: 0 26px 52px -20px rgba(3, 105, 161, 0.6);
-      --shadow-soft: 0 2px 10px -4px rgba(2, 8, 23, 0.6);
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
     }
+    body { margin: 0; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    h1, h2, h3, p { margin: 0; }
 
     /* ============================================================
-       RESET / BASE
+       DESIGN TOKENS — paleta azul suave + verde de destaque
        ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      /* azul suave — cor dominante em todo o site */
+      --blue-50:  #EEF6FC;
+      --blue-100: #DFEEFA;
+      --blue-200: #C3DFF4;
+      --blue-300: #99C7E8;
+      --blue-400: #6BA9D8;
+      --blue-500: #4A8CC4;
+      --blue-600: #3A72A3;
+      --blue-700: #2C5883;
+      --blue-800: #1F4064;
+      --blue-900: #142C47;
 
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      /* verde — destaque pontual (cupom, CTA, badges de valor) */
+      --green-100: #DCF3E7;
+      --green-400: #3FBE8E;
+      --green-500: #1E9670;
+      --green-600: #167A5A;
+      --green-700: #115E45;
+
+      /* neutros com viés azul (nunca cinza puro) */
+      --ink-900: #14222E;
+      --ink-700: #3C5163;
+      --ink-500: #54697C;
+      --ink-300: #A9BCC9;
+
+      --paper:      #FFFFFF;
+      --paper-tint: #F4FAFD;
+      --paper-tint2:#E9F2F9;
+      --line:       #D6E7F1;
+
+      --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 26px;
+      --radius-pill: 999px;
+
+      --shadow-sm: 0 6px 16px -8px rgba(20,44,71,0.18);
+      --shadow-md: 0 20px 44px -20px rgba(20,44,71,0.28);
+      --shadow-lg: 0 30px 70px -24px rgba(20,44,71,0.32);
+
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --header-h: 72px;
+    }
 
     body {
       font-family: var(--font-body);
-      background-color: var(--bg-950);
-      color: var(--text-mid);
-      line-height: 1.6;
-      overflow-x: hidden;
+      color: var(--ink-900);
+      background: var(--paper);
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      /* Luzes de fundo radiais difusas (opacidade discreta 8–15%) */
-      background-image:
-        radial-gradient(60% 45% at 15% 0%, rgba(3, 105, 161, 0.15), transparent 60%),
-        radial-gradient(50% 40% at 92% 8%, rgba(56, 189, 248, 0.10), transparent 55%),
-        radial-gradient(70% 50% at 50% 100%, rgba(12, 74, 110, 0.14), transparent 60%);
-      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1220px; margin: 0 auto; padding: 0 24px; }
+    /* Âncoras internas (nav/menu) não podem ficar atrás do header sticky */
+    section[id] { scroll-margin-top: var(--header-h); }
+    h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; letter-spacing: -0.01em; }
+    p { line-height: 1.6; color: var(--ink-700); }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2.5px solid var(--blue-600); outline-offset: 3px; border-radius: 4px;
     }
 
-    h1, h2, h3, h4, .font-display {
-      font-family: var(--font-display);
-      color: var(--text-hi);
-      line-height: 1.12;
-      letter-spacing: -0.005em;
-      font-optical-sizing: auto;
-      font-weight: 600;
-    }
-    /* Nomes de produto e wordmark permanecem em sans para máxima legibilidade/crispness */
-    .product-name, .brand__name { font-family: var(--font-body); letter-spacing: -0.01em; }
-
-    a { color: inherit; text-decoration: none; }
-    img, svg { display: block; max-width: 100%; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-
-    /* Foco visível acessível para navegação por teclado */
-    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
-      outline: 3px solid var(--cyan-400);
-      outline-offset: 3px;
-      border-radius: 6px;
-    }
-
-    .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(16px, 4vw, 32px); }
-
-    .visually-hidden {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-    }
-
-    /* Link "pular para conteúdo" (acessibilidade) */
-    .skip-link {
-      position: absolute; left: 12px; top: -60px; z-index: 200;
-      background: var(--cyan-600); color: #fff; padding: 10px 18px; border-radius: 10px;
-      font-weight: 600; transition: top 0.2s var(--ease);
-    }
-    .skip-link:focus { top: 12px; }
-
-    /* ============================================================
-       BOTÕES + EFEITO SHIMMER
-       ============================================================ */
-    .btn {
-      position: relative;
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
-      padding: 0.85em 1.4em;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      line-height: 1;
-      text-align: center;
-      overflow: hidden;
-      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
-      isolation: isolate;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:active { transform: translateY(0); }
-
-    /* Brilho diagonal (shimmer) que atravessa o botão */
-    .btn::after {
-      content: "";
-      position: absolute; inset: 0; z-index: -1;
-      background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.35) 48%, transparent 66%);
-      transform: translateX(-120%);
-      transition: transform 0.7s var(--ease);
-    }
-    .btn:hover::after, .btn:focus-visible::after { transform: translateX(120%); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--cyan-600), var(--royal-700));
-      color: #ffffff;
-      box-shadow: 0 8px 24px -10px rgba(2, 132, 199, 0.9);
-    }
-    .btn-whats {
-      background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #04240f;
-      box-shadow: 0 8px 24px -10px rgba(34, 197, 94, 0.85);
-    }
-    .btn-ghost {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-hi);
-      backdrop-filter: blur(8px);
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.09); }
-
-    .btn-sm { padding: 0.68em 1.1em; font-size: 0.9rem; }
-
-    /* ============================================================
-       HEADER FIXO (80px -> 60px ao rolar)
-       ============================================================ */
-    .site-header {
-      position: sticky; top: 0; z-index: 100;
-      height: 80px;
-      display: flex; align-items: center;
-      /* Fallback de cor sólida caso backdrop-filter não seja suportado */
-      background: rgba(7, 15, 30, 0.92);
-      border-bottom: 1px solid transparent;
-      transition: height 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
-    }
-    @supports (backdrop-filter: blur(1px)) {
-      .site-header { background: rgba(7, 15, 30, 0.55); backdrop-filter: blur(16px) saturate(140%); }
-    }
-    .site-header.scrolled {
-      height: 60px;
-      background: rgba(7, 15, 30, 0.97);
-      border-bottom-color: var(--glass-border);
-      box-shadow: 0 8px 24px -12px rgba(2, 8, 23, 0.6);
-    }
-    @supports (backdrop-filter: blur(1px)) {
-      /* Opacidade alta o suficiente para nunca deixar o conteúdo abaixo (títulos grandes) "vazar" pelo blur */
-      .site-header.scrolled { background: rgba(7, 15, 30, 0.9); backdrop-filter: blur(20px) saturate(140%); }
-    }
-
-    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; }
-
-    /* Logo LimpaSim (SVG original — gota + folha, marca própria do cliente) */
-    .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .brand__mark { width: 34px; height: 34px; flex-shrink: 0; }
-    .brand__name { font-family: var(--font-body); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; }
-    .brand__name .limpa { color: var(--cyan-400); }
-    .brand__name .sim { color: var(--accent-green); }
-    .brand__tag { display: block; font-family: "Plus Jakarta Sans", sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--text-soft); font-weight: 600; margin-top: -1px; }
-
-    .nav { display: flex; align-items: center; gap: 26px; }
-    .nav a { position: relative; font-weight: 600; font-size: 0.95rem; color: var(--text-mid); transition: color 0.2s var(--ease); white-space: nowrap; }
-    .nav a:hover { color: var(--text-hi); }
-    /* Sublinhado dourado fino no hover — detalhe editorial */
-    .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.28s var(--ease); }
-    .nav a:hover::after { transform: scaleX(1); }
-
-    .header-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.78rem; font-weight: 600; color: var(--cyan-400);
-      background: rgba(56, 189, 248, 0.10);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      padding: 6px 12px; border-radius: 999px; white-space: nowrap;
-    }
-
-    .header-actions { display: flex; align-items: center; gap: 14px; }
-
-    /* Botão hambúrguer (mobile) */
-    .nav-toggle { display: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--glass-border); background: var(--glass-bg); align-items: center; justify-content: center; }
-    .nav-toggle svg { width: 22px; height: 22px; }
-
-    /* ============================================================
-       SEÇÕES GERAIS
-       ============================================================ */
-    section { position: relative; padding-block: clamp(64px, 9vw, 110px); }
-    .section-head { max-width: 720px; margin-bottom: 44px; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--cyan-400); margin-bottom: 14px;
+      font-family: var(--font-body); font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-600);
     }
-    .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 500; letter-spacing: -0.015em; }
-    .section-head p { margin-top: 14px; font-size: 1.05rem; color: var(--text-soft); }
+    .ic { width: 1.05em; height: 1.05em; flex: 0 0 auto; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .ic--fill { fill: currentColor; stroke: none; }
 
-    /* Cartão de vidro base */
-    .glass {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-card);
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 14px 26px; border-radius: var(--radius-pill); max-width: 100%;
+      font-family: var(--font-body); font-weight: 700; font-size: 0.98rem;
+      border: none; cursor: pointer; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.2s var(--ease);
+      text-align: center;
     }
+    .btn .ic { width: 1.15em; height: 1.15em; }
+    .btn-primary { background: var(--green-600); color: #fff; box-shadow: var(--shadow-sm); }
+    .btn-primary:hover { background: var(--green-700); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-secondary { background: var(--paper); color: var(--blue-700); border: 1.5px solid var(--blue-200); }
+    .btn-secondary:hover { border-color: var(--blue-400); background: var(--blue-50); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--blue-700); }
+    .btn-sm { padding: 10px 18px; font-size: 0.88rem; }
+    .btn-lg { padding: 17px 32px; font-size: 1.05rem; }
+
+    /* ============================================================
+       REVEAL genérico (adaptado do kit-scroll-cinematografico)
+       ============================================================ */
+    [data-reveal] {
+      opacity: 0; transform: translateY(22px); filter: blur(6px);
+      transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1), filter 700ms cubic-bezier(0.16,1,0.3,1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    [data-reveal].is-in { opacity: 1; transform: none; filter: none; }
+    @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; transform: none; filter: none; transition: none; } }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      position: sticky; top: 0; z-index: 100; height: var(--header-h);
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(14px) saturate(1.4);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow 0.3s var(--ease);
+    }
+    .site-header.is-scrolled { box-shadow: var(--shadow-sm); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.28rem; color: var(--blue-800); }
+    .brand-mark { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--blue-400), var(--blue-600)); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
+    .brand-mark .ic { width: 20px; height: 20px; }
+    .brand small { display: block; font-family: var(--font-body); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); }
+
+    .main-nav { display: flex; align-items: center; gap: 6px; }
+    .main-nav a {
+      padding: 9px 14px; border-radius: var(--radius-pill); font-weight: 600; font-size: 0.92rem;
+      color: var(--ink-700); transition: background 0.2s var(--ease), color 0.2s var(--ease);
+    }
+    .main-nav a:hover { background: var(--blue-50); color: var(--blue-700); }
+    .audience-pills { display: flex; gap: 8px; margin-left: 10px; padding-left: 14px; border-left: 1px solid var(--line); }
+    .audience-pill {
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-pill);
+      font-weight: 700; font-size: 0.86rem; border: 1.5px solid var(--blue-200); color: var(--blue-700);
+      transition: all 0.2s var(--ease);
+    }
+    .audience-pill:hover { background: var(--blue-500); border-color: var(--blue-500); color: #fff; }
+    .audience-pill .ic { width: 15px; height: 15px; }
+
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--paper); align-items: center; justify-content: center; }
+    .menu-toggle .ic { width: 22px; height: 22px; color: var(--blue-700); }
+
+    @media (max-width: 980px) {
+      .main-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+    }
+    /* Abaixo de 640px, brand + botão WhatsApp + toggle não cabem numa linha
+       só (causava overflow horizontal real, medido). O WhatsApp continua
+       acessível pelo botão flutuante e dentro do menu mobile. */
+    @media (max-width: 640px) {
+      .header-actions .btn { display: none; }
+    }
+
+    /* Menu mobile (painel deslizante) */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 200; background: rgba(20,44,71,0.35); backdrop-filter: blur(2px);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease);
+    }
+    .mobile-nav.is-open { opacity: 1; pointer-events: auto; }
+    .mobile-nav-panel {
+      position: absolute; top: 0; right: 0; height: 100%; width: min(340px, 86vw);
+      background: var(--paper); box-shadow: var(--shadow-lg); padding: 24px;
+      transform: translateX(100%); transition: transform 0.35s var(--ease);
+      display: flex; flex-direction: column; gap: 22px; overflow-y: auto;
+    }
+    .mobile-nav.is-open .mobile-nav-panel { transform: translateX(0); }
+    .mobile-nav-close { align-self: flex-end; width: 40px; height: 40px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--paper-tint); display: grid; place-items: center; }
+    .mobile-nav-panel a { display: block; padding: 12px 4px; font-weight: 600; font-size: 1.05rem; color: var(--ink-900); border-bottom: 1px solid var(--line); }
+    .mobile-audience { display: flex; flex-direction: column; gap: 10px; }
+    .mobile-audience .audience-pill { justify-content: center; padding: 13px; }
 
     /* ============================================================
        HERO
        ============================================================ */
-    .hero { padding-top: clamp(48px, 7vw, 80px); overflow: hidden; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+    .hero {
+      position: relative; overflow: hidden; isolation: isolate;
+      padding: 68px 0 84px;
+    }
+    @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+    .hero-ambient {
+      position: absolute; inset: 0; z-index: -1; overflow: hidden;
+      background: linear-gradient(180deg, var(--blue-50), var(--paper) 78%);
+    }
+    .hero-ambient::before {
+      content: ''; position: absolute; top: -30%; right: -18%; width: 70%; padding-bottom: 70%;
+      border-radius: 50%;
+      background: conic-gradient(from var(--angle) at 50% 50%, var(--blue-300), var(--green-400), var(--blue-200), var(--blue-400), var(--blue-300));
+      filter: blur(90px) saturate(1.15); opacity: 0.45;
+      animation: hero-rotate 26s linear infinite;
+    }
+    .hero-ambient::after {
+      content: ''; position: absolute; bottom: -20%; left: -12%; width: 50%; padding-bottom: 50%;
+      border-radius: 50%; background: var(--blue-200); filter: blur(100px); opacity: 0.55;
+    }
+    @keyframes hero-rotate { to { --angle: 360deg; } }
+    @media (prefers-reduced-motion: reduce) { .hero-ambient::before { animation: none; } }
 
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--glass-bg); border: 1px solid var(--glass-border);
-      border-radius: 999px; padding: 8px 16px; font-size: 0.86rem; font-weight: 600; color: var(--text-hi);
+    .hero-top-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 7px; padding: 8px 15px; border-radius: var(--radius-pill);
+      font-size: 0.84rem; font-weight: 700; background: var(--paper); border: 1px solid var(--line); color: var(--blue-700);
+      box-shadow: var(--shadow-sm);
     }
-    .pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 0 0 rgba(34,197,94,0.6); animation: pulse 2s infinite; flex-shrink: 0; }
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); }
-      70%  { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
-      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
-    }
+    .badge-pill .ic { color: var(--blue-500); }
+    .badge-pill--coupon { background: var(--green-100); border-color: var(--green-400); color: var(--green-700); }
+    .badge-pill--coupon .ic { color: var(--green-600); }
 
-    .hero h1 { font-size: clamp(2.4rem, 6.2vw, 4.3rem); font-weight: 500; margin: 22px 0 20px; letter-spacing: -0.02em; }
-    .hero h1 .grad {
-      font-style: italic; font-weight: 500;
-      background: linear-gradient(120deg, var(--cyan-400), #7dd3fc 55%, var(--royal-700));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero p.lead { font-size: 1.12rem; color: var(--text-mid); max-width: 540px; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-    .hero-trust { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 34px; color: var(--text-soft); font-size: 0.9rem; }
-    .hero-trust span { display: inline-flex; align-items: center; gap: 8px; }
-    .hero-trust svg { width: 18px; height: 18px; color: var(--cyan-400); }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 52px; align-items: center; }
+    .hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.15rem); font-weight: 800; color: var(--ink-900); line-height: 1.1; }
+    .hero h1 .accent { color: var(--blue-600); }
+    .hero-sub { margin-top: 20px; font-size: 1.08rem; max-width: 54ch; }
 
-    /* Card 3D flutuante com produtos */
-    .hero-visual { perspective: 1400px; padding-bottom: 26px; }
-    .float-card {
-      position: relative;
-      border-radius: var(--radius-lg);
-      padding: 30px;
-      background: linear-gradient(160deg, rgba(3,105,161,0.28), rgba(15,23,42,0.6));
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 40px 80px -30px rgba(2, 132, 199, 0.5);
-      transform: rotateY(-9deg) rotateX(6deg);
-      transform-style: preserve-3d;
-      animation: float 6s ease-in-out infinite;
-      backdrop-filter: blur(12px);
-    }
-    @keyframes float {
-      0%, 100% { transform: rotateY(-9deg) rotateX(6deg) translateY(0); }
-      50%      { transform: rotateY(-9deg) rotateX(6deg) translateY(-14px); }
-    }
-    .float-card__label { display: block; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
-    .float-card__title { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text-hi); margin: 8px 0 22px; letter-spacing: -0.01em; line-height: 1.2; }
-    .float-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; }
-    .mini-bottle { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 10px; text-align: center; height: 120px; }
-    /* Recorte real (fundo removido): flutua puro, sem moldura, apoiado numa "prateleira" comum */
-    .mini-bottle img { max-width: 100%; max-height: 108px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(2,8,23,0.55)); transition: transform 0.4s var(--ease-fluid); }
-    .mini-bottle:hover img { transform: translateY(-4px) scale(1.04); }
-    .mini-bottle span { font-size: 0.72rem; color: var(--text-soft); font-weight: 600; }
-    .float-shelf { grid-column: 1 / -1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-line), transparent); margin-top: -4px; }
-    .float-note { margin-top: 20px; font-size: 0.78rem; color: var(--text-soft); border-top: 1px solid var(--glass-border); padding-top: 16px; }
+    .hero-pillars { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 30px; }
+    .hero-pillar { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: var(--ink-700); }
+    .hero-pillar-ic { width: 36px; height: 36px; border-radius: 11px; background: var(--blue-50); color: var(--blue-600); display: grid; place-items: center; flex-shrink: 0; }
+    .hero-pillar-ic .ic { width: 18px; height: 18px; }
 
-    /* Chip decorativo flutuante sobre o card */
-    .float-chip {
-      position: absolute; right: 18px; bottom: -20px;
-      background: rgba(7,15,30,0.9); border: 1px solid var(--glass-border);
-      border-radius: 14px; padding: 12px 16px; box-shadow: var(--shadow-card);
-      display: flex; align-items: center; gap: 10px; font-size: 0.82rem; font-weight: 700; color: var(--text-hi);
-    }
-    .float-chip svg { width: 22px; height: 22px; color: var(--accent-green); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 
-    /* ============================================================
-       VITRINE CINEMATOGRÁFICA (scroll-scrub com fotos reais)
-       Técnica: contêiner alto (250vh) + palco "pinned" (sticky, 100vh).
-       O progresso do scroll (0→1) é calculado via getBoundingClientRect
-       e aplicado como transform/opacity nas 3 fotos reais (recortes já
-       usados no site). SEM vídeo, SEM IA generativa, SEM canvas — só
-       fotos reais dos produtos Quimiprol já usados alhures no site.
-       Fallback sem JS/reduced-motion: os 3 produtos aparecem já
-       montados e parados (nenhuma etapa fica escondida).
-       ============================================================ */
-    .cine-showcase { position: relative; height: 230vh; }
-    .cine-stage {
-      /* top:60px (não 0) para o palco fixo nunca ficar atrás do header sticky */
-      position: sticky; top: 60px; height: calc(100vh - 60px); min-height: 480px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      overflow: hidden; isolation: isolate;
+    /* Cartões de audiência — a primeira decisão do visitante */
+    .audience-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .audience-card {
+      position: relative; display: flex; flex-direction: column; gap: 12px; padding: 26px 24px;
+      border-radius: var(--radius-lg); background: var(--paper); border: 1.5px solid var(--line);
+      box-shadow: var(--shadow-md); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
     }
-    .cine-bg {
-      position: absolute; inset: 0; z-index: -1; pointer-events: none;
-      background:
-        radial-gradient(46% 50% at 50% 42%, rgba(3,105,161,0.16), transparent 68%),
-        radial-gradient(30% 34% at 78% 78%, rgba(216,184,120,0.08), transparent 62%);
-    }
-    .cine-copy { position: relative; z-index: 3; text-align: center; max-width: 640px; padding: 0 24px; margin-bottom: clamp(120px, 24vh, 300px); }
-    .cine-copy h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.015em; }
-    .cine-copy p { margin-top: 14px; color: var(--text-mid); font-size: 1.02rem; }
-    .cine-products { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-    .cine-product {
-      position: absolute; bottom: 14%;
-      filter: drop-shadow(0 24px 34px rgba(2,8,23,0.6));
-      transition: transform 0.1s linear; /* suaviza jitter entre ticks de scroll; a jornada em si é feita via JS */
-    }
-    .cine-product img { display: block; height: clamp(190px, 30vw, 340px); width: auto; }
-    .cine-product--pinho  { height: clamp(190px, 30vw, 340px); }
-    .cine-product--alvejante { height: clamp(160px, 25vw, 300px); }
-    .cine-product--bmq { height: clamp(140px, 22vw, 260px); }
-    .cine-cta { position: relative; z-index: 3; margin-top: clamp(140px, 26vh, 320px); }
+    .audience-card:hover { transform: translateY(-5px); border-color: var(--blue-300); box-shadow: var(--shadow-lg); }
+    .audience-card--primary { background: linear-gradient(160deg, var(--blue-600), var(--blue-800)); border-color: transparent; color: #fff; }
+    .audience-card--primary .audience-card-desc { color: rgba(255,255,255,0.82); }
+    .audience-card--primary .audience-card-ic { background: rgba(255,255,255,0.16); color: #fff; }
+    .audience-card-kicker { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; }
+    .audience-card-ic { width: 46px; height: 46px; border-radius: 13px; background: var(--blue-50); color: var(--blue-600); display: grid; place-items: center; }
+    .audience-card-ic .ic { width: 24px; height: 24px; }
+    .audience-card h3 { font-size: 1.18rem; font-weight: 800; }
+    .audience-card-desc { font-size: 0.88rem; color: var(--ink-500); line-height: 1.5; }
+    .audience-card-cta { margin-top: auto; display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 0.9rem; }
+    .audience-card--primary .audience-card-cta { color: #fff; }
+    .audience-card:not(.audience-card--primary) .audience-card-cta { color: var(--blue-700); }
+    .audience-card-cta .ic { transition: transform 0.25s var(--ease); }
+    .audience-card:hover .audience-card-cta .ic { transform: translateX(4px); }
 
-    /* Estado final (sem JS / reduced-motion): trio já montado, nada escondido */
-    .cine-product--pinho     { transform: translate(-138px, 0) scale(1); opacity: 1; }
-    .cine-product--alvejante { transform: translate(148px, 18px) scale(0.9); opacity: 1; }
-    .cine-product--bmq       { transform: translate(2px, -46px) scale(0.78); opacity: 1; z-index: -1; }
-
-    /* Com JS ativo: a jornada de entrada é controlada via style inline (progress) */
-    html.js-motion .cine-showcase[data-cine-ready] .cine-product { transition: none; }
-
-    @media (max-width: 720px) {
-      .cine-product--pinho     { transform: translate(-78px, 10px) scale(0.86); }
-      .cine-product--alvejante { transform: translate(82px, 26px) scale(0.78); }
-      .cine-product--bmq       { transform: translate(0, -30px) scale(0.66); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .cine-showcase { height: auto; }
-      .cine-stage { position: relative; height: auto; min-height: 0; padding-block: 64px; }
-      .cine-copy { margin-bottom: 40px; }
-      /* align-self:stretch evita que o flex-column do palco encolha este bloco pra largura 0
-         (sem isso, os produtos — todos position:absolute, fora do fluxo — não dão largura ao pai) */
-      .cine-products { position: relative; height: 420px; width: 100%; align-self: stretch; }
-      .cine-cta { margin-top: 40px; }
-    }
-
-    /* ============================================================
-       CARROSSÉIS (drag / touch / teclado)
-       ============================================================ */
-    .carousel-wrap { position: relative; }
-    .carousel-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
-    .carousel-controls { display: flex; gap: 10px; }
-    .carousel-btn {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-hi);
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .carousel-btn:hover:not(:disabled) { background: rgba(56,189,248,0.16); transform: scale(1.06); }
-    .carousel-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-    .carousel-btn svg { width: 22px; height: 22px; }
-
-    .carousel {
-      display: flex; gap: 22px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 6px 6px 24px;
-      scrollbar-width: none;
-      cursor: grab;
-      -webkit-overflow-scrolling: touch;
-    }
-    .carousel::-webkit-scrollbar { display: none; }
-    .carousel.dragging { cursor: grabbing; scroll-snap-type: none; }
-    .carousel.dragging * { pointer-events: none; }
-
-    /* ============================================================
-       CARD DE PRODUTO
-       ============================================================ */
-    .product-card {
-      scroll-snap-align: start;
-      flex: 0 0 clamp(240px, 78vw, 290px);
-      display: flex; flex-direction: column;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transform-style: preserve-3d;
-      /* transform composto: tilt (rx/ry) + elevação (ty) — controlado por CSS+JS */
-      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
-      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
-      backdrop-filter: blur(8px);
-    }
-    .product-card:hover {
-      --ty: -8px;
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(56,189,248,0.45);
-    }
-    /* Enquanto o mouse move sobre o card (tilt ativo), corta a transição para acompanhar em tempo real */
-    .product-card.tilting { transition: box-shadow 0.35s var(--ease), border-color 0.35s var(--ease); }
-    .product-media {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      background:
-        radial-gradient(68% 68% at 50% 34%, rgba(56,189,248,0.13), transparent 72%),
-        linear-gradient(180deg, rgba(15,23,42,0.5), rgba(7,15,30,0.78));
-      border-bottom: 1px solid var(--hairline);
-    }
-    .product-media svg { height: 74%; width: auto; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.4)); }
-    /* Foto real do produto: mostra o produto INTEIRO (sem cortar), com zoom suave no hover.
-       A máscara radial dissolve as bordas de cada foto no painel — assim os fundos de estúdio
-       (azuis, uns mais claros que outros) ficam UNIFORMES entre todos os cards. */
-    .product-media img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: contain; padding: 16px;
-      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 46%, #000 44%, transparent 100%);
-              mask-image: radial-gradient(ellipse 70% 80% at 50% 46%, #000 44%, transparent 100%);
-      transition: transform 0.55s var(--ease-fluid);
-    }
-    .product-card:hover .product-media img { transform: scale(1.05); }
-    /* Vinheta uniforme por cima: aprofunda as bordas e harmoniza fundos claros */
-    .product-media::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 66% 74% at 50% 44%, transparent 46%, rgba(7,15,30,0.78) 100%),
-        linear-gradient(180deg, rgba(7,15,30,0.10), rgba(7,15,30,0.30));
-    }
-    /* Destaque com recorte real (fundo removido) — usado só nos carrosséis de vitrine,
-       nunca no catálogo. Sem máscara/vinheta: o produto já flutua puro, com sombra suave. */
-    .product-media.is-cutout::after { display: none; }
-    .product-media.is-cutout img {
-      -webkit-mask-image: none; mask-image: none;
-      padding: 26px;
-      filter: drop-shadow(0 18px 28px rgba(2,8,23,0.55));
-    }
-    .product-media.is-cutout:hover img,
-    .product-card:hover .product-media.is-cutout img { transform: scale(1.06) translateY(-3px); }
-    .product-badge {
-      position: absolute; top: 12px; left: 12px; z-index: 2;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em;
-      padding: 5px 11px; border-radius: 999px;
-      background: rgba(3,105,161,0.4); border: 1px solid rgba(56,189,248,0.4); color: var(--cyan-400);
-      backdrop-filter: blur(4px);
-    }
-    .product-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-    .product-cat { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); font-weight: 700; }
-    .product-name { font-family: var(--font-body); font-weight: 700; font-size: 1.14rem; color: var(--text-hi); }
-    .product-desc { font-size: 0.9rem; color: var(--text-soft); flex: 1; }
-    .product-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .meta-pill {
-      font-size: 0.74rem; font-weight: 600; color: var(--text-mid);
-      background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-      padding: 4px 10px; border-radius: 8px;
-    }
-    .product-body .btn { margin-top: 8px; width: 100%; }
-
-    /* ============================================================
-       CATÁLOGO — abas + busca
-       ============================================================ */
-    .catalog-toolbar { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; margin-bottom: 30px; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 10px; }
-    .tab {
-      font-size: 0.88rem; font-weight: 600; color: var(--text-mid);
-      padding: 9px 16px; border-radius: 999px;
-      background: var(--glass-bg); border: 1px solid var(--glass-border);
-      transition: all 0.2s var(--ease);
-    }
-    .tab:hover { color: var(--text-hi); border-color: rgba(56,189,248,0.4); }
-    .tab[aria-selected="true"] {
-      background: linear-gradient(135deg, var(--cyan-600), var(--royal-700));
-      color: #fff; border-color: transparent;
-    }
-    .tab-count {
-      display: inline-block; margin-left: 5px; padding: 1px 7px; border-radius: 999px;
-      font-size: 0.76rem; font-weight: 700;
-      background: rgba(255,255,255,0.14); color: inherit; opacity: 0.85;
-    }
-    .tab[aria-selected="true"] .tab-count { background: rgba(255,255,255,0.24); opacity: 1; }
-
-    .search-box { position: relative; flex: 1; min-width: 220px; max-width: 340px; }
-    .search-box svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-soft); pointer-events: none; }
-    .search-box input {
-      width: 100%; padding: 12px 16px 12px 42px;
-      background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 999px;
-      color: var(--text-hi); font-size: 0.95rem;
-    }
-    .search-box input::placeholder { color: var(--text-soft); }
-
-    .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
-    .catalog-grid .product-card { flex: initial; }
-
-    /* Card oculto por filtro/busca */
-    .product-card.is-hidden { display: none; }
-
-    /* Estado "nenhum produto encontrado" */
-    .empty-state {
-      display: none;
-      text-align: center; padding: 60px 20px;
-      color: var(--text-soft);
-    }
-    .empty-state.visible { display: block; }
-    .empty-state svg { width: 54px; height: 54px; margin: 0 auto 18px; color: var(--text-soft); opacity: 0.7; }
-    .empty-state strong { display: block; font-family: var(--font-display); color: var(--text-hi); font-size: 1.3rem; margin-bottom: 6px; }
-
-    /* ============================================================
-       AUTORIDADE
-       ============================================================ */
-    .authority-seal {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
-      padding: 26px 30px; border-radius: var(--radius-lg); margin-bottom: 44px;
-      background: linear-gradient(120deg, rgba(3,105,161,0.22), rgba(15,23,42,0.5));
-      border: 1px solid rgba(56,189,248,0.28);
-    }
-    .seal-mark { width: 64px; height: 64px; flex-shrink: 0; color: var(--cyan-400); }
-    .authority-seal h3 { font-size: 1.25rem; font-weight: 700; }
-    .authority-seal p { font-size: 0.9rem; color: var(--text-soft); margin-top: 4px; }
-    .authority-seal .disclaimer { font-size: 0.78rem; opacity: 0.85; }
-
-    .authority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-    .authority-card {
-      padding: 30px; border-radius: var(--radius-lg);
-      background: var(--glass-bg); border: 1px solid var(--glass-border);
-      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
-    }
-    .authority-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: rgba(56,189,248,0.4); }
-    .authority-icon {
-      width: 56px; height: 56px; border-radius: 16px; margin-bottom: 18px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); color: var(--cyan-400);
-    }
-    .authority-icon svg { width: 30px; height: 30px; }
-    .authority-card h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 10px; }
-    .authority-card p { font-size: 0.94rem; color: var(--text-soft); }
-
-    /* ============================================================
-       CTA FINAL + RODAPÉ
-       ============================================================ */
-    .cta-final { text-align: center; }
-    .cta-panel {
-      position: relative; overflow: hidden;
-      padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 60px);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(3,105,161,0.35), rgba(12,74,110,0.28));
-      border: 1px solid rgba(56,189,248,0.3);
-    }
-    .cta-panel::before {
-      content: ""; position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(50% 60% at 50% 0%, rgba(56,189,248,0.15), transparent 70%);
-    }
-    .cta-panel > * { position: relative; z-index: 1; }
-    .cta-panel h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 500; margin-bottom: 14px; letter-spacing: -0.015em; }
-    .cta-panel p { color: var(--text-mid); max-width: 560px; margin: 0 auto 30px; font-size: 1.05rem; }
-    .cta-buttons { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-    .cta-number { margin-top: 24px; font-size: 0.9rem; color: var(--text-soft); display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 10px; max-width: 100%; }
-    .cta-number strong { color: var(--text-hi); }
-    /* Cada frase só vira um bloco "átomo" (nowrap) quando há espaço garantido;
-       no mobile estreito, quebra normalmente para nunca estourar o card. */
-    @media (min-width: 480px) {
-      .cta-number span { white-space: nowrap; }
-    }
-
-    .site-footer { padding-block: 56px 40px; border-top: 1px solid var(--glass-border); margin-top: 20px; }
-    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-brand p { color: var(--text-soft); font-size: 0.92rem; margin-top: 14px; max-width: 320px; }
-    .footer-col h4 { font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 16px; }
-    .footer-col a, .footer-col p { display: block; color: var(--text-mid); font-size: 0.94rem; margin-bottom: 10px; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--cyan-400); }
-    /* Link com ícone: nunca quebra entre o texto e a seta */
-    .footer-cta { display: inline-flex !important; align-items: center; gap: 6px; white-space: nowrap; font-weight: 600; }
-    .footer-cta .ic { transition: transform 0.25s var(--ease); }
-    .footer-cta:hover .ic { transform: translateX(3px); }
-    .footer-bottom { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; border-top: 1px solid var(--glass-border); padding-top: 24px; font-size: 0.84rem; color: var(--text-soft); }
-    .privacy-note { max-width: 620px; }
-
-    /* Botão WhatsApp flutuante */
-    .whats-float {
-      position: fixed; right: 20px; bottom: 20px; z-index: 90;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg, #16a34a, #22c55e);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 12px 30px -8px rgba(34,197,94,0.7);
-      transition: transform 0.25s var(--ease);
-    }
-    .whats-float:hover { transform: scale(1.08); }
-    .whats-float svg { width: 32px; height: 32px; color: #fff; }
-
-    /* ============================================================
-       RESPONSIVO (mobile-first ajustes)
-       ============================================================ */
-    @media (max-width: 940px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-visual { order: -1; max-width: 460px; margin-inline: auto; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-brand { grid-column: 1 / -1; }
-    }
-    @media (max-width: 780px) {
-      .nav, .header-badge { display: none; }
-      .nav-toggle { display: flex; }
-      .header-actions .btn-text-full { display: none; }
-      /* Menu mobile expandido */
-      .nav.open {
-        display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
-        position: absolute; top: 100%; left: 0; right: 0; z-index: 60;
-        background: var(--bg-950); border-bottom: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-card);
-        padding: 16px clamp(16px,4vw,32px) 22px;
-      }
-      .nav.open a { padding: 10px 0; width: 100%; }
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 560px) {
-      .float-products { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .catalog-toolbar { flex-direction: column; align-items: stretch; }
-      .search-box { max-width: none; }
-      .footer-grid { grid-template-columns: 1fr; }
+      .audience-cards { grid-template-columns: 1fr; }
     }
 
     /* ============================================================
-       PREFERS-REDUCED-MOTION
+       VITRINE CINEMATOGRÁFICA — portal reveal adaptado do kit
+       (kit-scroll-cinematografico/recipes/portal-reveal), paleta azul/verde.
        ============================================================ */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-      .btn::after { display: none; }
-      .float-card { transform: none; }
-      .pulse-dot { animation: none; }
+    .portal-track { position: relative; height: 240vh; }
+    .portal-stage {
+      position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); min-height: 460px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      overflow: hidden; isolation: isolate;
+      background: linear-gradient(180deg, var(--blue-900), var(--blue-800) 60%, var(--blue-700));
     }
-
-    /* ============================================================
-       SENIOR POLISH — ícones SVG, acento dourado, refinamentos
-       ============================================================ */
-    /* Sistema de ícones inline (Lucide-style), herda cor e tamanho do texto */
-    .ic { width: 1.05em; height: 1.05em; flex: 0 0 auto; stroke: currentColor; stroke-width: 2;
-          fill: none; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.16em; }
-    .ic--fill { fill: currentColor; stroke: none; }
-    .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-
-    /* Eyebrow editorial com fio dourado */
-    .eyebrow { color: var(--gold); letter-spacing: 0.18em; gap: 10px; }
-    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--gold-line); display: inline-block; }
-    .eyebrow .ic { color: var(--gold); }
-
-    /* Divisor fino dourado entre seções (aplicado onde fizer sentido) */
-    .gold-rule { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, var(--gold-line), transparent); border: 0; }
-
-    /* Vidro mais sofisticado + brilho superior sutil */
-    .glass, .product-card, .authority-card, .float-card, .cta-panel {
-      background-image: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0) 40%);
-    }
-
-    /* Selo de autoridade com acento dourado */
-    .authority-seal { border-color: var(--gold-line); background: linear-gradient(120deg, rgba(216,184,120,0.10), rgba(15,23,42,0.55)); }
-    .authority-seal .seal-mark { color: var(--gold); }
-
-    /* Ícone "+10 anos" dourado no header */
-    .header-badge { color: var(--gold); background: var(--gold-soft); border-color: var(--gold-line); }
-    .header-badge .ic { color: var(--gold); }
-
-    /* Cartão de produto: fio dourado no topo ao passar o mouse */
-    .product-card { position: relative; }
-    .product-card::before {
-      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 2;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0; transition: opacity 0.3s var(--ease);
-    }
-    .product-card:hover::before { opacity: 0.9; }
-
-    /* Micro-interação fluida do vidro (dentro da faixa recomendada) */
-    .float-card { transition: transform 0.5s var(--ease-fluid); }
-
-    /* cursor-pointer explícito em tudo que é clicável (regra do skill) */
-    a[href], button, .tab, [role="tab"], .carousel-btn, input[type="search"] { cursor: pointer; }
-    input[type="search"] { cursor: text; }
-
-    /* Números de destaque (prova social) */
-    .stat-num { font-family: var(--font-display); font-weight: 600; color: var(--text-hi); }
-    .stat-num em { font-style: normal; color: var(--gold); }
-
-    /* ============================================================
-       CINEMATIC SCROLL MOTION
-       (skill ui-ux-pro-max: "Scroll Reveal" + "Stagger List")
-       Fallback: sem JS, tudo fica visível (nada esconde por padrão).
-       ============================================================ */
-    html.js-motion [data-reveal] {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.7s var(--ease-fluid), transform 0.7s var(--ease-fluid);
-      transition-delay: var(--reveal-delay, 0ms);
-      will-change: opacity, transform;
-    }
-    html.js-motion [data-reveal="scale"] { transform: translateY(22px) scale(0.965); }
-    html.js-motion [data-reveal="left"]  { transform: translateX(-28px); }
-    html.js-motion [data-reveal="right"] { transform: translateX(28px); }
-    /* Cortina: revela a foto do produto com um wipe (clip-path), mais cinematográfico que um simples fade */
-    html.js-motion [data-reveal="curtain"] {
-      opacity: 1; transform: none;
-      clip-path: inset(0 0 0 100%);
-      transition: clip-path 0.85s var(--ease-fluid);
-    }
-    html.js-motion [data-reveal].is-in {
-      opacity: 1;
-      transform: none;
-    }
-    html.js-motion [data-reveal="curtain"].is-in { clip-path: inset(0 0 0 0%); }
-
-    /* Barra de progresso de leitura — fio fino no topo, acompanha o scroll da página */
-    .scroll-progress {
-      position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 200;
-      background: linear-gradient(90deg, var(--gold), var(--cyan-400));
-      transition: width 0.1s linear;
-      pointer-events: none;
-    }
-
-    /* Camada de aura para parallax sutil no hero (só decorativa) */
-    .hero { isolation: isolate; }
-    .hero-aura {
-      position: absolute; inset: -15% -10% auto -10%; height: 130%; z-index: -1; pointer-events: none;
+    .portal-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none;
       background:
-        radial-gradient(42% 38% at 22% 18%, rgba(3,105,161,0.22), transparent 62%),
-        radial-gradient(38% 34% at 84% 12%, rgba(56,189,248,0.14), transparent 58%),
-        radial-gradient(30% 30% at 70% 90%, rgba(216,184,120,0.08), transparent 60%);
-      will-change: transform;
+        radial-gradient(48% 55% at 50% 40%, rgba(74,140,196,0.35), transparent 68%),
+        radial-gradient(30% 34% at 80% 78%, rgba(30,150,112,0.28), transparent 62%);
     }
-    /* Segunda camada de profundidade: o card 3D do hero desliza um pouco mais devagar que o scroll (parallax) */
-    html.js-motion .hero-visual { will-change: transform; }
+    .portal-copy { position: relative; z-index: 3; text-align: center; max-width: 620px; padding: 0 24px; margin-bottom: clamp(110px, 22vh, 280px); color: #fff; }
+    .portal-copy .eyebrow { color: var(--blue-200); justify-content: center; }
+    .portal-copy .eyebrow .ic { color: var(--blue-200); }
+    .portal-copy h2 { font-size: clamp(1.7rem, 3.8vw, 2.5rem); font-weight: 800; margin-top: 10px; }
+    .portal-copy p { margin-top: 12px; color: rgba(255,255,255,0.78); font-size: 1rem; }
+    .portal-products { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .portal-product { position: absolute; bottom: 15%; filter: drop-shadow(0 24px 34px rgba(6,20,36,0.55)); }
+    .portal-product img { display: block; height: clamp(180px, 28vw, 320px); width: auto; }
+    .portal-product--pinho     { transform: translate(-138px, 0) scale(1); opacity: 1; }
+    .portal-product--alvejante { transform: translate(148px, 18px) scale(0.9); opacity: 1; }
+    .portal-product--bmq       { transform: translate(2px, -46px) scale(0.78); opacity: 1; z-index: -1; }
+    html.js-motion .portal-track[data-cine-ready] .portal-product { transition: none; }
+    .portal-cta { position: relative; z-index: 3; margin-top: clamp(130px, 24vh, 300px); }
 
-    /* Scrollspy: sublinhado dourado do link ativo, mesmo sem hover */
-    .nav a.active { color: var(--text-hi); }
-    .nav a.active::after { transform: scaleX(1); background: var(--gold); }
-
-    /* Botões: acabamento mais premium */
-    .btn { letter-spacing: 0.005em; }
-    .btn-primary { background: linear-gradient(135deg, var(--cyan-600), var(--royal-700)); box-shadow: 0 10px 26px -12px rgba(2,132,199,0.95), inset 0 1px 0 rgba(255,255,255,0.18); }
-    .btn-primary:hover { box-shadow: 0 16px 34px -14px rgba(2,132,199,1), inset 0 1px 0 rgba(255,255,255,0.22); }
-    .btn-ghost:hover { border-color: var(--gold-line); }
-
-    /* Respeita quem prefere menos movimento: sem reveal, sem tilt */
+    @media (max-width: 720px) {
+      .portal-product--pinho     { transform: translate(-78px, 10px) scale(0.86); }
+      .portal-product--alvejante { transform: translate(82px, 26px) scale(0.78); }
+      .portal-product--bmq       { transform: translate(0, -30px) scale(0.66); }
+    }
     @media (prefers-reduced-motion: reduce) {
-      html.js-motion [data-reveal] { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
-      .hero-aura { display: none; }
-      .product-card { transform: none !important; }
-      .scroll-progress { display: none; }
+      .portal-track { height: auto; }
+      .portal-stage { position: relative; height: auto; min-height: 0; padding-block: 60px; }
+      .portal-copy { margin-bottom: 36px; }
+      .portal-products { position: relative; height: 400px; width: 100%; align-self: stretch; }
+      .portal-cta { margin-top: 36px; }
     }
+
+    /* ============================================================
+       SEÇÕES DE AUDIÊNCIA (Empresas / Moradores) + CARROSSÉIS
+       ============================================================ */
+    .audience-section { padding: 84px 0; }
+    .audience-section--empresas { background: var(--paper-tint); }
+    .section-head { max-width: 640px; margin-bottom: 40px; }
+    .section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.35rem); font-weight: 800; margin-top: 10px; }
+    .section-head p { margin-top: 12px; font-size: 1.02rem; }
+    .section-head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+    .carousel-wrap { position: relative; }
+    .carousel {
+      display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 6px 4px 18px; margin: 0 -4px; scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel-card {
+      scroll-snap-align: start; flex: 0 0 auto; width: 250px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md);
+      overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .carousel-card-media { position: relative; aspect-ratio: 4/3.4; background: var(--blue-50); overflow: hidden; }
+    .carousel-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 14px; box-sizing: border-box; }
+    .carousel-card-badge { position: absolute; top: 10px; left: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.72rem; font-weight: 700; color: var(--blue-700); }
+    .carousel-card-body { padding: 16px; }
+    .carousel-card-cat { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-600); }
+    .carousel-card h3 { font-size: 1rem; font-weight: 700; margin-top: 4px; color: var(--ink-900); }
+    .carousel-card p { font-size: 0.84rem; margin-top: 6px; color: var(--ink-500); line-height: 1.45; }
+    .carousel-card .btn { width: 100%; margin-top: 12px; }
+
+    .carousel-nav { display: flex; gap: 10px; }
+    .carousel-btn {
+      width: 44px; height: 44px; border-radius: var(--radius-pill); border: 1px solid var(--line);
+      background: var(--paper); display: grid; place-items: center; color: var(--blue-700);
+      transition: all 0.2s var(--ease); box-shadow: var(--shadow-sm);
+    }
+    .carousel-btn:hover { background: var(--blue-500); color: #fff; border-color: var(--blue-500); }
+    .carousel-btn--prev .ic { transform: rotate(180deg); }
+
+    .audience-cta-row { margin-top: 34px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      .audience-section { padding: 60px 0; }
+      .carousel-card { width: 208px; }
+    }
+
+    /* ============================================================
+       CATÁLOGO — bloco de apresentação novo (61 produtos, abas + busca)
+       Dados/imagens/categorização reaproveitados como estão; só o
+       visual é novo.
+       ============================================================ */
+    .catalog-section { padding: 84px 0; background: var(--blue-900); }
+    .catalog-section .section-head { color: #fff; max-width: 100%; text-align: center; margin: 0 auto 36px; }
+    .catalog-section .section-head .eyebrow { color: var(--blue-200); justify-content: center; }
+    .catalog-section .section-head .eyebrow .ic { color: var(--blue-200); }
+    .catalog-section .section-head h2 { color: #fff; }
+    .catalog-section .section-head p { color: rgba(255,255,255,0.72); margin-left: auto; margin-right: auto; }
+
+    .catalog-toolbar { display: flex; flex-direction: column; gap: 18px; align-items: center; margin-bottom: 34px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; }
+    .tab {
+      font-size: 0.86rem; font-weight: 700; color: rgba(255,255,255,0.75);
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
+      transition: all 0.2s var(--ease);
+    }
+    .tab:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+    .tab[aria-selected="true"] { background: linear-gradient(135deg, var(--blue-400), var(--green-500)); color: #fff; border-color: transparent; }
+    .tab-count { display: inline-block; margin-left: 5px; padding: 1px 7px; border-radius: var(--radius-pill); font-size: 0.74rem; font-weight: 800; background: rgba(255,255,255,0.14); }
+    .tab[aria-selected="true"] .tab-count { background: rgba(255,255,255,0.28); }
+
+    .search-box { position: relative; width: 100%; max-width: 480px; }
+    .search-box svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: rgba(255,255,255,0.5); pointer-events: none; }
+    .search-box input {
+      width: 100%; padding: 13px 18px 13px 46px; border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.95rem; font-family: var(--font-body);
+    }
+    .search-box input::placeholder { color: rgba(255,255,255,0.5); }
+    .search-box input:focus-visible { outline-color: var(--blue-300); }
+
+    .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+    .catalog-grid .product-card.is-hidden { display: none; }
+    .product-card {
+      background: var(--paper); border-radius: var(--radius-md); overflow: hidden;
+      display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .product-media { position: relative; aspect-ratio: 4/3.3; background: var(--blue-50); overflow: hidden; }
+    .product-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12px; box-sizing: border-box; }
+    .product-badge { position: absolute; top: 9px; left: 9px; background: var(--paper); border-radius: var(--radius-pill); padding: 3px 9px; font-size: 0.74rem; font-weight: 700; color: var(--blue-700); box-shadow: var(--shadow-sm); }
+    .product-body { padding: 14px 15px 16px; display: flex; flex-direction: column; flex: 1; }
+    .product-cat { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-600); }
+    .product-name { font-family: var(--font-display); font-size: 0.94rem; font-weight: 700; color: var(--ink-900); margin-top: 3px; line-height: 1.3; }
+    .product-desc { font-size: 0.78rem; color: var(--ink-500); margin-top: 5px; line-height: 1.4; flex: 1; }
+    .product-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .meta-pill { font-size: 0.72rem; font-weight: 600; color: var(--blue-600); background: var(--blue-50); padding: 3px 8px; border-radius: var(--radius-pill); }
+    .product-body .btn { margin-top: 10px; width: 100%; }
+
+    .empty-state { display: none; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.6); }
+    .empty-state.visible { display: block; }
+    .empty-state .ic { width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.6; }
+    .empty-state strong { display: block; font-family: var(--font-display); color: #fff; font-size: 1.2rem; margin-bottom: 6px; }
+
+    @media (max-width: 640px) {
+      .catalog-section { padding: 60px 0; }
+      .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    }
+
+    /* ============================================================
+       PARCERIA / DIFERENCIAIS
+       ============================================================ */
+    .partnership-section { padding: 84px 0; }
+    .partnership-seal {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
+      padding: 26px 30px; border-radius: var(--radius-lg); margin-bottom: 48px;
+      background: linear-gradient(120deg, var(--blue-50), var(--paper-tint2));
+      border: 1px solid var(--blue-200);
+    }
+    .partnership-seal .seal-mark { width: 56px; height: 56px; flex-shrink: 0; color: var(--blue-600); }
+    .partnership-seal h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink-900); }
+    .partnership-seal p { font-size: 0.9rem; margin-top: 4px; }
+    .partnership-seal .disclaimer { font-size: 0.76rem; opacity: 0.75; }
+
+    .differentials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .differential-card {
+      padding: 28px 26px; border-radius: var(--radius-lg); background: var(--paper);
+      border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .differential-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-300); }
+    .differential-ic { width: 52px; height: 52px; border-radius: 15px; background: var(--blue-50); color: var(--blue-600); display: grid; place-items: center; margin-bottom: 16px; }
+    .differential-ic .ic { width: 26px; height: 26px; }
+    .differential-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; color: var(--ink-900); }
+    .differential-card p { font-size: 0.9rem; }
+
+    /* ============================================================
+       CTA FINAL
+       ============================================================ */
+    .cta-final { padding: 90px 0 100px; }
+    .cta-panel {
+      position: relative; overflow: hidden; text-align: center;
+      padding: 60px 32px; border-radius: 32px;
+      background: linear-gradient(160deg, var(--blue-700), var(--blue-900));
+      color: #fff;
+    }
+    .cta-panel::before {
+      content: ''; position: absolute; top: -30%; left: 50%; width: 60%; padding-bottom: 60%;
+      transform: translateX(-50%); border-radius: 50%; background: var(--green-500); filter: blur(120px); opacity: 0.3; pointer-events: none;
+    }
+    .cta-panel > * { position: relative; z-index: 1; }
+    .cta-panel .eyebrow { color: var(--blue-200); justify-content: center; }
+    .cta-panel .eyebrow .ic { color: var(--blue-200); }
+    .cta-panel h2 { color: #fff; font-size: clamp(1.7rem, 3.6vw, 2.4rem); margin-top: 10px; }
+    .cta-panel p { color: rgba(255,255,255,0.78); margin-top: 12px; max-width: 52ch; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px; }
+    .cta-buttons .btn-secondary { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
+    .cta-buttons .btn-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
+    .cta-number { margin-top: 22px; font-size: 0.86rem; color: rgba(255,255,255,0.6); display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer { background: var(--blue-900); color: rgba(255,255,255,0.7); padding: 56px 0 28px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .footer-brand .brand { color: #fff; margin-bottom: 14px; }
+    .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.88rem; max-width: 34ch; }
+    .footer-col h4 { color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-col a, .footer-col p { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.65); margin-bottom: 9px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-cta { color: var(--blue-300); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+    .footer-bottom { padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.62); }
+    .footer-bottom .privacy-note { max-width: 60ch; }
+
+    @media (max-width: 820px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    /* ============================================================
+       BOTÃO FLUTUANTE WHATSAPP
+       ============================================================ */
+    .whats-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 90;
+      width: 58px; height: 58px; border-radius: 50%; background: var(--green-500);
+      display: grid; place-items: center; color: #fff; box-shadow: var(--shadow-lg);
+      transition: transform 0.25s var(--ease), background 0.2s var(--ease);
+    }
+    .whats-float:hover { background: var(--green-600); transform: scale(1.08); }
+    .whats-float svg { width: 28px; height: 28px; }
+
+    /* ============================================================
+       BARRA DE PROGRESSO DE SCROLL
+       ============================================================ */
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--blue-400), var(--green-500)); z-index: 300; transition: width 0.1s linear; }
+    @media (prefers-reduced-motion: reduce) { .scroll-progress { display: none; } }
   </style>
 </head>
 <body>
 
-  <!-- Barra de progresso de leitura (decorativa, some sem JS ou com movimento reduzido) -->
+  <noscript>
+    <style>
+      [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+      .portal-track { height: auto !important; }
+      .portal-stage { position: relative !important; height: auto !important; min-height: 0 !important; padding-block: 60px !important; }
+      .portal-copy { margin-bottom: 36px !important; }
+      .portal-products { position: relative !important; height: 400px !important; width: 100% !important; align-self: stretch !important; }
+      .portal-cta { margin-top: 36px !important; }
+    </style>
+    <div style="background:var(--blue-800,#1F4064); color:#fff; text-align:center; padding:12px 16px; font-family:sans-serif;">
+      Para o melhor uso do site, ative o JavaScript. Você pode falar com a gente direto pelo WhatsApp:
+      <!-- TODO: inserir número real de WhatsApp no lugar de [SEU_NUMERO_WHATSAPP] -->
+      <strong>[SEU_NUMERO_WHATSAPP]</strong> — Gramado e Serra Gaúcha (RS).
+    </div>
+  </noscript>
+
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- Sprite de ícones SVG (Lucide-style) — substitui emojis por vetores consistentes -->
-  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden;">
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.98 6.1 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></symbol>
     <symbol id="i-building" viewBox="0 0 24 24"><path d="M6 22V4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v18"/><path d="M15 9h3a1 1 0 0 1 1 1v12"/><path d="M3 22h18"/><path d="M9 7h.01M9 11h.01M9 15h.01M12 7h.01M12 11h.01M12 15h.01"/></symbol>
@@ -829,139 +562,117 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
     <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.7 4.6L18 9l-4.3 1.4L12 15l-1.7-4.6L6 9l4.3-1.4z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 12.6 12.4 20.8a2 2 0 0 1-2.8 0l-6.4-6.4a2 2 0 0 1 0-2.8L11.4 3.4 20.6 3v9.6Z"/><circle cx="16" cy="7" r="1.3" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="M8 12 2 6l3-3 6 6"/><path d="M16 12l6-6-3-3-6 6"/><path d="M8 12l3 3 2-2"/><path d="M13 15l2 2 3-3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 8.2a3 3 0 1 1 3.6 3"/><path d="M21.5 19.6c-.1-2.8-1.9-4.8-4.3-5.4"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.5 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
   </svg>
 
-  <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
-
-  <!-- Fallback caso o JavaScript não carregue -->
-  <noscript>
-    <div style="background:#0369a1;color:#fff;padding:14px 20px;text-align:center;font-family:system-ui,sans-serif;font-size:0.95rem;">
-      Este site funciona melhor com JavaScript ativado. Para atendimento imediato, fale com a LimpaSim pelo WhatsApp
-      <!-- TODO: inserir número real da LimpaSim no lugar de [SEU_NUMERO_WHATSAPP] -->
-      <strong>[SEU_NUMERO_WHATSAPP]</strong> — Gramado e Serra Gaúcha (RS).
-    </div>
-    <!-- Sem JS, o scroll-scrub da vitrine não roda: encolhe a faixa alta para não deixar uma zona de rolagem vazia -->
-    <style>
-      .cine-showcase { height: auto !important; }
-      .cine-stage { position: relative !important; height: auto !important; min-height: 0 !important; padding-block: 64px !important; }
-      .cine-copy { margin-bottom: 40px !important; }
-      .cine-products { position: relative !important; height: 420px !important; width: 100% !important; align-self: stretch !important; }
-      .cine-cta { margin-top: 40px !important; }
-    </style>
-  </noscript>
-
   <!-- ============================================================
-       HEADER FIXO
+       HEADER
        ============================================================ -->
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-
-      <!-- Logo LimpaSim (SVG original: gota d'água + folha — marca própria do cliente) -->
-      <a class="brand" href="#top" aria-label="LimpaSim — página inicial">
-        <svg class="brand__mark" viewBox="0 0 40 40" role="img" aria-hidden="true">
-          <defs>
-            <linearGradient id="dropGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#0369a1"/>
-            </linearGradient>
-            <linearGradient id="leafGrad" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/>
-            </linearGradient>
-          </defs>
-          <path d="M20 3C14 12 9 17 9 24a11 11 0 0 0 22 0C31 17 26 12 20 3z" fill="url(#dropGrad)"/>
-          <path d="M31 15c-6 1-11 6-11 14 6 0 12-5 12-12 0-1 0-1.5-1-2z" fill="url(#leafGrad)" opacity="0.95"/>
-          <path d="M15 12l1.4 2.6L19 16l-2.6 1.4L15 20l-1.4-2.6L11 16l2.6-1.4z" fill="#fff" opacity="0.9"/>
-        </svg>
-        <span>
-          <span class="brand__name"><span class="limpa">Limpa</span><span class="sim">Sim</span></span>
-          <span class="brand__tag">PRODUTOS DE LIMPEZA</span>
-        </span>
+      <a class="brand" href="#topo">
+        <span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+        <span>LimpaSim<small>Distribuidora Quimiprol</small></span>
       </a>
 
-      <!-- Navegação (scroll suave) -->
-      <nav class="nav" id="primaryNav" aria-label="Navegação principal">
-        <a href="#empresas">Empresas</a>
-        <a href="#casa">Para Casa</a>
+      <nav class="main-nav" aria-label="Navegação principal">
         <a href="#catalogo">Catálogo</a>
-        <a href="#autoridade">Diferenciais</a>
+        <a href="#parceria">Quem Somos</a>
         <a href="#contato">Contato</a>
+        <span class="audience-pills">
+          <a class="audience-pill" href="#empresas"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Empresas</a>
+          <a class="audience-pill" href="#moradores"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Moradores</a>
+        </span>
       </nav>
 
       <div class="header-actions">
-        <span class="header-badge"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg> +10 Anos em Gramado</span>
-        <!-- TODO: inserir número real no lugar de [SEU_NUMERO_WHATSAPP] -->
-        <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de um atendimento express." href="#" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.26-.1-.46-.15-.65.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.5h-.56c-.2 0-.5.07-.77.37s-1.02 1-1.02 2.42 1.05 2.8 1.2 3c.15.2 2.05 3.13 4.96 4.4.7.3 1.24.48 1.66.62.7.22 1.33.19 1.83.12.56-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.2-.56-.35z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.15l-.3-.18-2.85.83.85-2.77-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
-          <span class="btn-text-full">Atendimento Express</span>
+        <a class="btn btn-primary btn-sm js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de conversar." href="#" target="_blank" rel="noopener">
+          <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp
         </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="primaryNav">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav">
+          <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
       </div>
     </div>
   </header>
 
-  <main id="main">
-    <span id="top"></span>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-panel">
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Fechar menu"><svg class="ic" aria-hidden="true" style="color:var(--blue-700)"><use href="#i-close"/></svg></button>
+      <div class="mobile-audience">
+        <a class="audience-pill" href="#empresas"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Sou Empresa</a>
+        <a class="audience-pill" href="#moradores"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Sou Morador</a>
+      </div>
+      <nav aria-label="Navegação mobile">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#parceria">Quem Somos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn-primary js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de conversar." href="#" target="_blank" rel="noopener" style="margin-top:auto;">
+        <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <main id="topo">
 
     <!-- ============================================================
-         1. HERO
+         HERO
          ============================================================ -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-aura" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="hero-badge">
-            <span class="pulse-dot" aria-hidden="true"></span>
-            <svg class="ic" aria-hidden="true" style="color:var(--cyan-400)"><use href="#i-pin"/></svg> Atendimento Exclusivo em Gramado e Serra Gaúcha
-          </span>
-
-          <h1 id="hero-title">Soluções em <span class="grad">Limpeza Profissional</span> e Residencial</h1>
-
-          <p class="lead">
-            Distribuidora exclusiva Quimiprol há mais de 10 anos em Gramado. Produtos de padrão hoteleiro,
-            concentrados e de alto rendimento, com entrega local rápida para empresas e residências da Serra Gaúcha.
-          </p>
-
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#empresas"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Para Minha Empresa</a>
-            <a class="btn btn-ghost" href="#casa"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Para Minha Casa</a>
-          </div>
-
-          <div class="hero-trust">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Distribuidor com +10 anos</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Entrega local garantida</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Padrão hoteleiro</span>
-          </div>
+      <div class="hero-ambient" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-top-badges" data-reveal>
+          <span class="badge-pill"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg> +5 Anos em Gramado e Serra Gaúcha</span>
+          <span class="badge-pill"><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg> Distribuidora Exclusiva Quimiprol</span>
+          <span class="badge-pill badge-pill--coupon"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg> 5% OFF na primeira compra</span>
         </div>
 
-        <!-- Card 3D flutuante — composição CSS/SVG original (sem logotipo real Quimiprol, sem foto de local identificável) -->
-        <div class="hero-visual">
-          <div class="float-card">
-            <span class="float-card__label">Linha Quimiprol</span>
-            <span class="float-card__title">Limpeza que perfuma o seu dia</span>
-            <div class="float-products">
-              <!-- Miniaturas com recorte real (fundo removido) — flutuam sobre o card, sem moldura -->
-              <div class="mini-bottle">
-                <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
-                <span>Pinho</span>
-              </div>
-              <div class="mini-bottle">
-                <img src="assets/produtos/recorte/bem-me-quer-caricia-1l-recorte.png" width="260" height="616" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro" />
-                <span>Bem Me Quer</span>
-              </div>
-              <div class="mini-bottle">
-                <img src="assets/produtos/recorte/alvejante-sem-cloro-2l-recorte.png" width="306" height="651" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
-                <span>Alvejante</span>
-              </div>
-            </div>
-            <div class="float-shelf" aria-hidden="true"></div>
-            <p class="float-note">Produtos da linha Quimiprol distribuída pela LimpaSim.
-              <!-- TODO: substituir por foto própria licenciada da LimpaSim (composição/estúdio) -->
+        <div class="hero-grid">
+          <div>
+            <h1 id="hero-title" data-reveal>Produtos de limpeza <span class="accent">para a sua empresa</span> — e para a sua casa também.</h1>
+            <p class="hero-sub" data-reveal data-reveal-delay="80">
+              Há 5 anos somos a distribuidora exclusiva Quimiprol em Gramado e Serra Gaúcha:
+              qualidade de fábrica, entrega local rápida e atendimento direto pelo WhatsApp —
+              para hotéis, pousadas, restaurantes, lavanderias e para a sua casa.
             </p>
+
+            <div class="hero-pillars" data-reveal data-reveal-delay="140">
+              <div class="hero-pillar"><span class="hero-pillar-ic"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg></span> Qualidade Quimiprol</div>
+              <div class="hero-pillar"><span class="hero-pillar-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span> Entrega local rápida</div>
+              <div class="hero-pillar"><span class="hero-pillar-ic"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg></span> Atendimento direto</div>
+            </div>
+
+            <div class="hero-actions" data-reveal data-reveal-delay="200">
+              <a class="btn btn-primary btn-lg js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de conversar." href="#" target="_blank" rel="noopener">
+                <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Falar no WhatsApp
+              </a>
+              <a class="btn btn-secondary btn-lg" href="#catalogo">
+                <svg class="ic" aria-hidden="true"><use href="#i-package"/></svg> Ver catálogo
+              </a>
+            </div>
           </div>
-          <div class="float-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            Entrega rápida em Gramado
+
+          <div class="audience-cards" data-reveal data-reveal-delay="120">
+            <a class="audience-card audience-card--primary" href="#empresas">
+              <span class="audience-card-kicker">Prioridade</span>
+              <span class="audience-card-ic"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg></span>
+              <h3>Sou Empresa</h3>
+              <p class="audience-card-desc">Hotéis, pousadas, restaurantes, lavanderias e comércio. Fornecimento constante e condições para o seu volume.</p>
+              <span class="audience-card-cta">Ver soluções para empresas <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+            <a class="audience-card" href="#moradores">
+              <span class="audience-card-kicker" style="color:var(--blue-500)">Residencial</span>
+              <span class="audience-card-ic"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span>
+              <h3>Sou Morador</h3>
+              <p class="audience-card-desc">A mesma qualidade profissional Quimiprol, em tamanhos práticos para a sua casa.</p>
+              <span class="audience-card-cta">Ver produtos para casa <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
           </div>
         </div>
       </div>
@@ -969,34 +680,32 @@
 
     <!-- ============================================================
          VITRINE CINEMATOGRÁFICA — scroll-scrub com fotos reais
-         (contêiner alto + palco fixo; progresso do scroll anima as
-         3 fotos reais já usadas no site. Sem vídeo, sem IA generativa.)
+         (kit-scroll-cinematografico/recipes/portal-reveal)
          ============================================================ -->
-    <section class="cine-showcase" id="destaques" aria-labelledby="cine-title">
-      <div class="cine-stage">
-        <div class="cine-bg" aria-hidden="true"></div>
+    <section class="portal-track" id="destaques" aria-labelledby="portal-title">
+      <div class="portal-stage">
+        <div class="portal-bg" aria-hidden="true"></div>
 
-        <div class="cine-copy" data-reveal>
-          <span class="eyebrow" style="justify-content:center;">Destaques da linha</span>
-          <h2 id="cine-title">Do galão profissional ao frasco de casa.</h2>
+        <div class="portal-copy" data-reveal>
+          <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg> Destaques da linha</span>
+          <h2 id="portal-title">Do galão profissional ao frasco de casa.</h2>
           <p>Três produtos que resumem o padrão Quimiprol: limpa, perfuma e rende — na empresa e em casa.</p>
         </div>
 
-        <div class="cine-products" aria-hidden="true">
-          <div class="cine-product cine-product--pinho">
+        <div class="portal-products" aria-hidden="true">
+          <div class="portal-product portal-product--pinho">
             <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="" />
           </div>
-          <div class="cine-product cine-product--bmq">
+          <div class="portal-product portal-product--bmq">
             <img src="assets/produtos/recorte/bem-me-quer-caricia-1l-recorte.png" width="260" height="616" loading="lazy" decoding="async" alt="" />
           </div>
-          <div class="cine-product cine-product--alvejante">
+          <div class="portal-product portal-product--alvejante">
             <img src="assets/produtos/recorte/alvejante-sem-cloro-2l-recorte.png" width="306" height="651" loading="lazy" decoding="async" alt="" />
           </div>
         </div>
 
-        <div class="cine-cta" data-reveal>
-          <!-- TODO: número WhatsApp real -->
-          <a class="btn btn-whats js-whats" data-msg="Olá! Vi os destaques da linha Quimiprol no site e gostaria de mais informações." href="#" target="_blank" rel="noopener">
+        <div class="portal-cta" data-reveal>
+          <a class="btn btn-primary js-whats" data-msg="Olá! Vi os destaques da linha Quimiprol no site e gostaria de mais informações." href="#" target="_blank" rel="noopener">
             <svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg> Quero conhecer esses produtos
           </a>
         </div>
@@ -1004,259 +713,191 @@
     </section>
 
     <!-- ============================================================
-         3. CARROSSEL B2B (Empresas / Hotéis)
+         EMPRESAS (B2B) — prioridade
          ============================================================ -->
-    <section id="empresas" aria-labelledby="b2b-title">
-      <div class="container carousel-wrap">
-        <div class="carousel-head">
-          <div class="section-head" style="margin-bottom:0;">
-            <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Para Empresas &amp; Hotelaria</span>
-            <h2 id="b2b-title">Galões de 5L de alto rendimento</h2>
-            <p>Higienização profissional para hotéis, pousadas de charme, gastronomia, lavanderias e condomínios da Serra Gaúcha.</p>
-          </div>
-          <!-- Controles de carrossel: navegáveis por teclado, com aria-label -->
-          <div class="carousel-controls">
-            <button class="carousel-btn" data-carousel-prev="b2b" aria-label="Ver produtos anteriores (empresas)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
-            <button class="carousel-btn" data-carousel-next="b2b" aria-label="Ver próximos produtos (empresas)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="carousel" id="carousel-b2b" role="region" aria-label="Carrossel de produtos para empresas" tabindex="0">
-
-          <!-- Produto B2B: Amaciante Premium Encapsulado (foto real) -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/amaciante-premium-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Amaciante Premium Encapsulado Quimiprol, galão de 5 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Amaciante Premium Encapsulado</h3>
-              <p class="product-desc">Cápsulas de perfume prolongado: máxima maciez e fragrância duradoura para enxovais de padrão hoteleiro.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Perfume &amp; maciez</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <!-- TODO: número WhatsApp real -->
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Amaciante Premium Encapsulado (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-          <!-- Produto B2B: Desinfetante Lavanda (foto real) -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/desinfetante-lavanda-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Desinfetante Lavanda Quimiprol, galão de 5 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Hotelaria &amp; Pousadas</span>
-              <h3 class="product-name">Desinfetante Lavanda</h3>
-              <p class="product-desc">Limpa, desinfeta e perfuma ambientes de grande circulação com fragrância suave de lavanda.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Ambientes</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Desinfetante Lavanda (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-          <!-- Produto B2B: Amaciante de Roupas Lavanda (foto real) -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Galão 5L</span>
-              <!-- substituir por foto própria licenciada da LimpaSim, se disponível -->
-              <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Amaciante de Roupas Lavanda</h3>
-              <p class="product-desc">Maciez e perfume intenso de lavanda para enxovais de hotéis, pousadas e lavanderias de alto volume.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Enxoval hoteleiro</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <!-- TODO: número WhatsApp real -->
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Amaciante de Roupas Lavanda (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-          <!-- Produto B2B: Lava Roupas Quimiplus com Peróxido (foto real) -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Lavanderia</span>
-              <h3 class="product-name">Lava Roupas Quimiplus c/ Peróxido</h3>
-              <p class="product-desc">Detergente líquido com Poder O₂ (peróxido) para lavagem profissional de roupas brancas e coloridas.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Poder O₂</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Lava Roupas Quimiplus com Peróxido (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-          <!-- Produto B2B: Limpador Perfumado Pinho (recorte real, fundo removido) -->
-          <article class="product-card">
-            <div class="product-media is-cutout">
-              <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Hotelaria &amp; Pousadas</span>
-              <h3 class="product-name">Limpador Perfumado Pinho</h3>
-              <p class="product-desc">Limpa e perfuma pisos e superfícies de grande circulação, com fragrância marcante de pinho.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Limpa e perfuma</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia. Tenho interesse no Limpador Perfumado Pinho (5L)." href="#" target="_blank" rel="noopener">Solicitar Cotação B2B</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         4. CARROSSEL B2C (Casa / Condomínio)
-         ============================================================ -->
-    <section id="casa" aria-labelledby="b2c-title">
-      <div class="container carousel-wrap">
-        <div class="carousel-head">
-          <div class="section-head" style="margin-bottom:0;">
-            <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Para a Sua Casa</span>
-            <h2 id="b2c-title">Produtos de padrão hoteleiro no seu lar</h2>
-            <p>Frascos de uso diário com o mesmo perfume e desempenho que hotéis e pousadas de Gramado usam.</p>
-          </div>
-          <div class="carousel-controls">
-            <button class="carousel-btn" data-carousel-prev="b2c" aria-label="Ver produtos anteriores (residencial)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
-            <button class="carousel-btn" data-carousel-next="b2c" aria-label="Ver próximos produtos (residencial)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="carousel" id="carousel-b2c" role="region" aria-label="Carrossel de produtos residenciais" tabindex="0">
-
-          <!-- Produto B2C: Amaciante Concentrado Bem Me Quer Carícia (foto real) -->
-          <article class="product-card">
-            <div class="product-media is-cutout">
-              <span class="product-badge">Concentrado 1L</span>
-              <img src="assets/produtos/recorte/bem-me-quer-caricia-1l-recorte.png" width="260" height="616" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Amaciante Concentrado "Bem Me Quer" Carícia</h3>
-              <p class="product-desc">Fórmula concentrada que rende 4L: mais maciez e perfume floral por mais tempo, ocupando menos espaço.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Rende 4L</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <!-- TODO: número WhatsApp real -->
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Amaciante Concentrado Bem Me Quer Carícia (1L, rende 4L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
-            </div>
-          </article>
-
-          <!-- Produto B2C: Amaciante Líquido Lavanda 2L (foto real) -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Frasco 2L</span>
-              <img src="assets/produtos/amaciante-lavanda-2l.jpg" width="828" height="1013" loading="lazy" decoding="async" alt="Amaciante Líquido Lavanda Quimiprol, frasco de 2 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Amaciante Líquido Lavanda</h3>
-              <p class="product-desc">Perfume marcante de lavanda e maciez para as roupas da casa, no prático frasco de 2 litros.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Perfume de lavanda</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Amaciante Líquido Lavanda (2L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
-            </div>
-          </article>
-
-          <!-- Produto B2C: Sabão Líquido Azul (foto real) -->
-          <article class="product-card">
-            <div class="product-media">
-              <span class="product-badge">Frasco 2L</span>
-              <!-- substituir por foto própria licenciada da LimpaSim, se disponível -->
-              <img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Sabão Líquido Azul</h3>
-              <p class="product-desc">Sabão líquido para lavagem do dia a dia de roupas brancas e coloridas, prático e rendoso.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Brancas e coloridas</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <!-- TODO: número WhatsApp real -->
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Sabão Líquido Azul (2L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
-            </div>
-          </article>
-
-          <!-- Produto B2C: Alvejante Sem Cloro (recorte real, fundo removido) -->
-          <article class="product-card">
-            <div class="product-media is-cutout">
-              <span class="product-badge">Frasco 2L</span>
-              <img src="assets/produtos/recorte/alvejante-sem-cloro-2l-recorte.png" width="306" height="651" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Alvejante Sem Cloro</h3>
-              <p class="product-desc">Alvejante com Poder O₂, sem cloro, para roupas brancas e coloridas — remove manchas sem agredir os tecidos.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Poder O₂ · sem cloro</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Alvejante Sem Cloro (2L)." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
-            </div>
-          </article>
-
-          <!-- Produto B2C: Limpador Perfumado Pinho (recorte real, fundo removido) -->
-          <article class="product-card">
-            <div class="product-media is-cutout">
-              <span class="product-badge">Galão 5L</span>
-              <img src="assets/produtos/recorte/pinho-5l-recorte.png" width="378" height="622" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
-            </div>
-            <div class="product-body">
-              <span class="product-cat">Uso Residencial</span>
-              <h3 class="product-name">Limpador Perfumado Pinho</h3>
-              <p class="product-desc">Limpa e perfuma a casa inteira com a fragrância clássica de pinho, de longa duração.</p>
-              <div class="product-meta">
-                <span class="meta-pill">Limpa e perfuma</span>
-                <span class="meta-pill">[Rendimento a confirmar]</span>
-              </div>
-              <a class="btn btn-whats btn-sm js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa. Tenho interesse no Limpador Perfumado Pinho." href="#" target="_blank" rel="noopener">Fazer Pedido Residencial</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         5. CATÁLOGO GERAL (aba única + busca dinâmica)
-         ============================================================ -->
-    <section id="catalogo" aria-labelledby="catalog-title">
+    <section class="audience-section audience-section--empresas" id="empresas" aria-labelledby="empresas-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head-row">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Para Empresas &amp; Hotelaria</span>
+            <h2 id="empresas-title">Fornecimento constante para o seu negócio</h2>
+            <p>Hotéis, pousadas, restaurantes, lavanderias e comércio de Gramado e Serra Gaúcha contam com a LimpaSim para nunca ficar sem estoque — entrega local rápida e condições para o seu volume.</p>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-btn carousel-btn--prev" data-carousel-prev="empresas" aria-label="Produtos anteriores"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="carousel-btn carousel-btn--next" data-carousel-next="empresas" aria-label="Próximos produtos"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+
+        <div class="carousel-wrap">
+          <div class="carousel" id="carouselEmpresas">
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span>
+                <img src="assets/produtos/amaciante-premium-5l.jpg" width="828" height="695" loading="lazy" decoding="async" alt="Amaciante Premium Encapsulado Quimiprol, galão de 5 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Amaciante</span>
+                <h3>Amaciante Premium Encapsulado</h3>
+                <p>Cápsulas de perfume prolongado para máxima maciez e fragrância duradoura.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de informações sobre o Amaciante Premium Encapsulado (5L) para revenda/uso profissional." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span>
+                <img src="assets/produtos/desinfetante-lavanda-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Desinfetante Lavanda Quimiprol, galão de 5 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Desinfetante</span>
+                <h3>Desinfetante Lavanda</h3>
+                <p>Limpa, desinfeta e perfuma ambientes — ideal para uso frequente em alto volume.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de informações sobre o Desinfetante Lavanda (5L) para uso profissional." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span>
+                <img src="assets/produtos/amaciante-lavanda-5l.jpg" width="828" height="813" loading="lazy" decoding="async" alt="Amaciante de Roupas Lavanda Quimiprol, galão de 5 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Amaciante</span>
+                <h3>Amaciante de Roupas Lavanda</h3>
+                <p>Maciez e perfume intenso no tamanho profissional de 5 litros.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de informações sobre o Amaciante de Roupas Lavanda (5L) para uso profissional." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span>
+                <img src="assets/produtos/quimiplus-lava-roupas-5l.jpg" width="828" height="675" loading="lazy" decoding="async" alt="Lava Roupas Quimiplus com Peróxido Quimiprol, galão de 5 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Lava-Roupas</span>
+                <h3>Lava Roupas Quimiplus c/ Peróxido</h3>
+                <p>Poder O₂ para lavagem profissional de roupas brancas e coloridas — lavanderias e hotelaria.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de informações sobre o Lava Roupas Quimiplus com Peróxido (5L) para uso profissional." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span>
+                <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Limpeza Geral</span>
+                <h3>Limpador Perfumado Pinho</h3>
+                <p>Limpa e perfuma pisos e superfícies com fragrância clássica de longa duração.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Sou de uma empresa e gostaria de informações sobre o Limpador Perfumado Pinho (5L) para uso profissional." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="audience-cta-row" data-reveal>
+          <a class="btn btn-primary js-whats" data-msg="Olá! Sou de uma empresa em Gramado/Serra Gaúcha e gostaria de um orçamento de fornecimento constante." href="#" target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Pedir orçamento para minha empresa
+          </a>
+          <a class="btn btn-ghost" href="#catalogo">Ver catálogo completo <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MORADORES (B2C)
+         ============================================================ -->
+    <section class="audience-section" id="moradores" aria-labelledby="moradores-title">
+      <div class="container">
+        <div class="section-head-row">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Para a Sua Casa</span>
+            <h2 id="moradores-title">A qualidade profissional, em casa</h2>
+            <p>Os mesmos produtos que hotéis e restaurantes usam, em tamanhos práticos para a sua rotina — com o mesmo padrão Quimiprol de limpeza e perfume duradouro.</p>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-btn carousel-btn--prev" data-carousel-prev="moradores" aria-label="Produtos anteriores"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="carousel-btn carousel-btn--next" data-carousel-next="moradores" aria-label="Próximos produtos"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+
+        <div class="carousel-wrap">
+          <div class="carousel" id="carouselMoradores">
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Concentrado 1L</span>
+                <img src="assets/produtos/amaciante-bem-me-quer-caricia-1l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Amaciante Concentrado Bem Me Quer Carícia Quimiprol, frasco de 1 litro que rende 4 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Amaciante</span>
+                <h3>"Bem Me Quer" Carícia</h3>
+                <p>Concentrado floral que rende 4L: maciez e perfume por mais tempo.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Gostaria de informações sobre o Amaciante Bem Me Quer Carícia (1L, rende 4L) para minha casa." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Frasco 2L</span>
+                <img src="assets/produtos/amaciante-lavanda-2l.jpg" width="828" height="1013" loading="lazy" decoding="async" alt="Amaciante Líquido Lavanda Quimiprol, frasco de 2 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Amaciante</span>
+                <h3>Amaciante Líquido Lavanda</h3>
+                <p>Perfume de lavanda com bioativos de maciez, no prático frasco de 2 litros.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Gostaria de informações sobre o Amaciante Líquido Lavanda (2L) para minha casa." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Frasco 2L</span>
+                <img src="assets/produtos/sabao-liquido-azul-2l.jpg" width="828" height="685" loading="lazy" decoding="async" alt="Sabão Líquido Azul Quimiprol, frasco de 2 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Lava-Roupas</span>
+                <h3>Sabão Líquido Azul</h3>
+                <p>Para roupas brancas e coloridas, no prático frasco de 2 litros.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Gostaria de informações sobre o Sabão Líquido Azul (2L) para minha casa." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Frasco 2L</span>
+                <img src="assets/produtos/alvejante-sem-cloro-2l.jpg" width="828" height="692" loading="lazy" decoding="async" alt="Alvejante Sem Cloro Quimiprol, frasco de 2 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Alvejante</span>
+                <h3>Alvejante Sem Cloro</h3>
+                <p>Poder O₂ sem cloro — remove manchas sem agredir os tecidos.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Gostaria de informações sobre o Alvejante Sem Cloro (2L) para minha casa." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="carousel-card-media"><span class="carousel-card-badge">Galão 5L</span>
+                <img src="assets/produtos/pinho-5l.jpg" width="828" height="686" loading="lazy" decoding="async" alt="Limpador Perfumado Pinho Quimiprol, galão de 5 litros" />
+              </div>
+              <div class="carousel-card-body">
+                <span class="carousel-card-cat">Limpeza Geral</span>
+                <h3>Limpador Perfumado Pinho</h3>
+                <p>A fragrância clássica de pinho, rendimento generoso pra casa toda.</p>
+                <a class="btn btn-secondary btn-sm js-whats" data-msg="Olá! Gostaria de informações sobre o Limpador Perfumado Pinho (5L) para minha casa." href="#" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="audience-cta-row" data-reveal>
+          <a class="btn btn-primary js-whats" data-msg="Olá! Gostaria de fazer um pedido residencial de produtos Quimiprol." href="#" target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Fazer pedido para minha casa
+          </a>
+          <a class="btn btn-ghost" href="#catalogo">Ver catálogo completo <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CATÁLOGO — 61 produtos, abas de categoria + busca
+         Imagens/dados reaproveitados como estão (LEIA-ME.md /
+         produtos-fonte/), só o bloco de apresentação é novo.
+         ============================================================ -->
+    <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
           <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg> Catálogo Completo</span>
           <h2 id="catalog-title">Todos os nossos produtos em um só lugar</h2>
           <p>Filtre por categoria ou digite o nome do produto. Todos os valores e rendimentos são confirmados no atendimento.</p>
         </div>
 
         <div class="catalog-toolbar">
-          <!-- Abas de categoria + busca em tempo real (debounce; filtragem por textContent/data-name/data-category, sem innerHTML do valor) -->
           <div class="tabs" role="tablist" aria-label="Filtrar catálogo por categoria">
             <button type="button" class="tab" role="tab" aria-selected="true" data-filter="all">Todos <span class="tab-count">61</span></button>
             <button type="button" class="tab" role="tab" aria-selected="false" data-filter="lavanderia">Lavanderia <span class="tab-count">15</span></button>
@@ -2070,67 +1711,53 @@
 
         </div>
 
-        <!-- Estado: nenhum produto encontrado -->
         <div class="empty-state" id="emptyState" role="status" aria-live="polite">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8 11h6"/></svg>
+          <svg class="ic" aria-hidden="true"><use href="#i-package"/></svg>
           <strong>Nenhum produto encontrado</strong>
-          <span id="emptyMsg">Tente outro termo ou fale com a gente pelo WhatsApp — temos muito mais no estoque.</span>
+          <p id="emptyMsg" style="color:rgba(255,255,255,0.6)"></p>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         6. AUTORIDADE
+         PARCERIA / DIFERENCIAIS
          ============================================================ -->
-    <section id="autoridade" aria-labelledby="authority-title">
+    <section class="partnership-section" id="parceria" aria-labelledby="partnership-title">
       <div class="container">
-
-        <!-- Selo de parceria -->
-        <div class="authority-seal">
-          <svg class="seal-mark" viewBox="0 0 64 64" role="img" aria-label="Selo de parceria exclusiva">
+        <div class="partnership-seal" data-reveal>
+          <svg class="seal-mark" viewBox="0 0 64 64" role="img" aria-label="Selo de parceria exclusiva" aria-hidden="true">
             <circle cx="32" cy="28" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
             <path d="M23 28l6 6 12-12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M20 46l-4 14 16-8 16 8-4-14" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
           </svg>
           <div>
             <h3>Parceria Exclusiva Quimiprol</h3>
-            <p>Distribuidora oficial com mais de 10 anos de atuação em Gramado e região.
+            <p>Distribuidora exclusiva há 5 anos em Gramado e Serra Gaúcha.
               <span class="disclaimer">[sujeito à confirmação contratual]</span>
             </p>
           </div>
         </div>
 
-        <div class="section-head">
-          <span class="eyebrow">Por que a LimpaSim</span>
-          <h2 id="authority-title">Diferenciais que fazem a diferença no seu resultado</h2>
+        <div class="section-head" data-reveal>
+          <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg> Por que a LimpaSim</span>
+          <h2 id="partnership-title">Diferenciais que fazem a diferença no seu resultado</h2>
         </div>
 
-        <div class="authority-grid">
-          <!-- Card: Entrega -->
-          <div class="authority-card">
-            <div class="authority-icon">
-              <svg class="ic" aria-hidden="true" style="width:30px;height:30px"><use href="#i-truck"/></svg>
-            </div>
+        <div class="differentials-grid">
+          <div class="differential-card" data-reveal>
+            <span class="differential-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span>
             <h3>Entrega Local Rápida e Garantida</h3>
             <p>Logística própria em Gramado e Serra Gaúcha. Você recebe rápido, sem depender de transportadora de fora da região.</p>
           </div>
-
-          <!-- Card: Consultoria -->
-          <div class="authority-card">
-            <div class="authority-icon">
-              <svg class="ic" aria-hidden="true" style="width:30px;height:30px"><use href="#i-flask"/></svg>
-            </div>
+          <div class="differential-card" data-reveal data-reveal-delay="80">
+            <span class="differential-ic"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg></span>
             <h3>Consultoria Técnica de Higienização</h3>
             <p>Orientação genérica de dosagem e boas práticas alinhadas às normas da ANVISA, para você usar cada produto com segurança e eficiência.
               <!-- TODO: confirmar com a LimpaSim se há responsável técnico; não prometer laudo técnico não verificado -->
             </p>
           </div>
-
-          <!-- Card: Custo por litro -->
-          <div class="authority-card">
-            <div class="authority-icon">
-              <svg class="ic" aria-hidden="true" style="width:30px;height:30px"><use href="#i-coins"/></svg>
-            </div>
+          <div class="differential-card" data-reveal data-reveal-delay="160">
+            <span class="differential-ic"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span>
             <h3>Menor Custo por Litro Limpo</h3>
             <p>Produtos concentrados rendem mais: você dilui, economiza e mantém o mesmo padrão de limpeza a um custo final menor por litro.</p>
           </div>
@@ -2139,23 +1766,23 @@
     </section>
 
     <!-- ============================================================
-         7. CTA FINAL
+         CTA FINAL
          ============================================================ -->
-    <section id="contato" class="cta-final" aria-labelledby="cta-title">
+    <section class="cta-final" id="contato" aria-labelledby="cta-title">
       <div class="container">
-        <div class="cta-panel">
-          <span class="eyebrow" style="justify-content:center;">Fale com a LimpaSim agora</span>
+        <div class="cta-panel" data-reveal>
+          <span class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Fale com a LimpaSim agora</span>
           <h2 id="cta-title">Peça sua cotação pelo WhatsApp</h2>
-          <p>Atendimento humano e ágil para empresas e residências de Gramado e toda a Serra Gaúcha. Escolha o seu perfil abaixo:</p>
+          <p>Atendimento humano e ágil para empresas e residências de Gramado e toda a Serra Gaúcha. Escolha o seu perfil abaixo — e aproveite os 5% OFF na primeira compra.</p>
           <div class="cta-buttons">
-            <!-- TODO: número WhatsApp real -->
-            <a class="btn btn-whats js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia." href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Sou Empresa / Hotel</a>
-            <a class="btn btn-primary js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa." href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Quero para Minha Casa</a>
+            <a class="btn btn-primary btn-lg js-whats" data-msg="Olá! Sou de uma empresa e gostaria de cotar produtos Quimiprol para hotelaria/lavanderia." href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg> Sou Empresa / Hotel</a>
+            <a class="btn btn-secondary btn-lg js-whats" data-msg="Olá! Gostaria de fazer um pedido de produtos de limpeza para minha casa." href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> Quero para Minha Casa</a>
           </div>
           <p class="cta-number"><span>WhatsApp: <strong>[SEU_NUMERO_WHATSAPP]</strong></span><span>· Gramado e Serra Gaúcha (RS)</span></p>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ============================================================
@@ -2165,25 +1792,19 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="#top" aria-label="LimpaSim — início">
-            <svg class="brand__mark" viewBox="0 0 40 40" role="img" aria-hidden="true">
-              <path d="M20 3C14 12 9 17 9 24a11 11 0 0 0 22 0C31 17 26 12 20 3z" fill="url(#dropGrad)"/>
-              <path d="M31 15c-6 1-11 6-11 14 6 0 12-5 12-12 0-1 0-1.5-1-2z" fill="url(#leafGrad)"/>
-            </svg>
-            <span>
-              <span class="brand__name"><span class="limpa">Limpa</span><span class="sim">Sim</span></span>
-              <span class="brand__tag">PRODUTOS DE LIMPEZA</span>
-            </span>
+          <a class="brand" href="#topo" aria-label="LimpaSim — início">
+            <span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+            <span>LimpaSim</span>
           </a>
-          <p>Distribuidora de produtos de limpeza profissional e residencial de padrão hoteleiro. Atendimento exclusivo e entrega local em Gramado e Serra Gaúcha (RS).</p>
+          <p>Distribuidora exclusiva Quimiprol de produtos de limpeza profissional e residencial. Atendimento direto e entrega local em Gramado e Serra Gaúcha (RS).</p>
         </div>
 
         <nav class="footer-col" aria-label="Navegação do rodapé">
           <h4>Navegação</h4>
           <a href="#empresas">Para Empresas</a>
-          <a href="#casa">Para Casa</a>
+          <a href="#moradores">Para Casa</a>
           <a href="#catalogo">Catálogo</a>
-          <a href="#autoridade">Diferenciais</a>
+          <a href="#parceria">Diferenciais</a>
         </nav>
 
         <div class="footer-col">
@@ -2204,196 +1825,216 @@
     </div>
   </footer>
 
-  <!-- Botão flutuante de WhatsApp -->
-  <!-- TODO: número WhatsApp real -->
   <a class="whats-float js-whats" data-msg="Olá! Vim pelo site da LimpaSim e gostaria de atendimento." href="#" target="_blank" rel="noopener" aria-label="Falar com a LimpaSim no WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.26-.1-.46-.15-.65.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.5h-.56c-.2 0-.5.07-.77.37s-1.02 1-1.02 2.42 1.05 2.8 1.2 3c.15.2 2.05 3.13 4.96 4.4.7.3 1.24.48 1.66.62.7.22 1.33.19 1.83.12.56-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.2-.56-.35z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.15l-.3-.18-2.85.83.85-2.77-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+    <svg class="ic ic--fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>
   </a>
 
   <script>
-  (function () {
-    "use strict";
+    document.documentElement.classList.add("js-motion");
 
-    /* Configuração do WhatsApp — TODO: substituir pelo número real (só dígitos, com DDI/DDD, ex: 5554999999999) */
-    var WHATS_NUMBER = "[SEU_NUMERO_WHATSAPP]";
-
-    /* ---------------------------------------------------------
-       1. Links de WhatsApp com mensagem pré-preenchida (encodeURIComponent)
-       --------------------------------------------------------- */
-    function buildWhatsLinks() {
-      var links = document.querySelectorAll(".js-whats");
-      links.forEach(function (el) {
-        var msg = el.getAttribute("data-msg") || "Olá! Gostaria de mais informações.";
-        // Se o número ainda for placeholder, mantém o link genérico do wa.me com só a mensagem
-        var base = "https://wa.me/" + encodeURIComponent(WHATS_NUMBER.replace(/\D/g, ""));
-        el.setAttribute("href", base + "?text=" + encodeURIComponent(msg));
-      });
-    }
-    buildWhatsLinks();
-
-    /* ---------------------------------------------------------
-       2. Header: reduz de 80px -> 60px ao rolar
-       --------------------------------------------------------- */
     var header = document.getElementById("siteHeader");
-    function onScroll() {
-      if (window.scrollY > 20) header.classList.add("scrolled");
-      else header.classList.remove("scrolled");
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    window.addEventListener("scroll", function () {
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+    }, { passive: true });
+
+    var menuToggle = document.getElementById("menuToggle");
+    var mobileNav = document.getElementById("mobileNav");
+    var mobileNavClose = document.getElementById("mobileNavClose");
+    function openMobileNav() { mobileNav.classList.add("is-open"); menuToggle.setAttribute("aria-expanded", "true"); }
+    function closeMobileNav() { mobileNav.classList.remove("is-open"); menuToggle.setAttribute("aria-expanded", "false"); }
+    menuToggle.addEventListener("click", openMobileNav);
+    mobileNavClose.addEventListener("click", closeMobileNav);
+    mobileNav.addEventListener("click", function (e) { if (e.target === mobileNav) closeMobileNav(); });
+    mobileNav.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMobileNav); });
 
     /* ---------------------------------------------------------
-       3. Menu mobile (hambúrguer)
+       Links de WhatsApp (mensagem pré-preenchida via encodeURIComponent;
+       [SEU_NUMERO_WHATSAPP] é placeholder até o cliente confirmar o número)
        --------------------------------------------------------- */
-    var navToggle = document.getElementById("navToggle");
-    var nav = document.getElementById("primaryNav");
-    if (navToggle && nav) {
-      navToggle.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
-        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    (function () {
+      var WHATS_NUMBER = "[SEU_NUMERO_WHATSAPP]";
+      var digitsOnly = WHATS_NUMBER.replace(/\D/g, ""); // fica vazio enquanto for placeholder
+      document.querySelectorAll(".js-whats").forEach(function (el) {
+        var msg = el.getAttribute("data-msg") || "Olá! Vim pelo site da LimpaSim.";
+        el.setAttribute("href", "https://wa.me/" + digitsOnly + "?text=" + encodeURIComponent(msg));
       });
-      // Fecha o menu ao clicar em um link
-      nav.querySelectorAll("a").forEach(function (a) {
-        a.addEventListener("click", function () {
-          nav.classList.remove("open");
-          navToggle.setAttribute("aria-expanded", "false");
+    })();
+
+    /* Ano atual no rodapé */
+    (function () {
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+
+    /* Barra de progresso de leitura */
+    (function () {
+      var bar = document.getElementById("scrollProgress");
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var doc = document.documentElement;
+        var total = doc.scrollHeight - doc.clientHeight;
+        var pct = total > 0 ? (doc.scrollTop / total) * 100 : 0;
+        bar.style.width = pct + "%";
+      }
+      window.addEventListener("scroll", function () { if (ticking) return; ticking = true; requestAnimationFrame(update); }, { passive: true });
+      update();
+    })();
+
+    /* ---------------------------------------------------------
+       Reveal genérico ao entrar na viewport (core/reveal.js do kit)
+       --------------------------------------------------------- */
+    (function () {
+      var els = document.querySelectorAll("[data-reveal]");
+      if (!els.length) return;
+      function revealAll() { els.forEach(function (el) { el.classList.add("is-in"); }); }
+      var prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduce || !("IntersectionObserver" in window)) { revealAll(); return; }
+      els.forEach(function (el) {
+        var d = el.getAttribute("data-reveal-delay");
+        if (d) el.style.setProperty("--reveal-delay", parseInt(d, 10) + "ms");
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add("is-in"); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ---------------------------------------------------------
+       Vitrine cinematográfica: scroll-scrub (kit-scroll-cinematografico
+       core/scroll-progress.js, inline). Progresso 0→1 via
+       getBoundingClientRect, throttle por requestAnimationFrame.
+       --------------------------------------------------------- */
+    (function () {
+      var track = document.querySelector(".portal-track");
+      if (!track) return;
+      var prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduce) return;
+
+      var pinho = track.querySelector(".portal-product--pinho");
+      var alvejante = track.querySelector(".portal-product--alvejante");
+      var bmq = track.querySelector(".portal-product--bmq");
+      track.setAttribute("data-cine-ready", "");
+      var mobile = window.matchMedia("(max-width: 720px)").matches;
+      var headerH = 72;
+
+      function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function mapRange(p, start, end) { return clamp(end > start ? (p - start) / (end - start) : 1, 0, 1); }
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function stage(p, start, end, fromX, fromY, fromScale, toX, toY, toScale) {
+        var t = easeOutCubic(mapRange(p, start, end));
+        return { x: lerp(fromX, toX, t), y: lerp(fromY, toY, t), s: lerp(fromScale, toScale, t), op: mapRange(p, start, end) };
+      }
+      function apply(el, st) {
+        if (!el) return;
+        el.style.transform = "translate(" + st.x.toFixed(1) + "px," + st.y.toFixed(1) + "px) scale(" + st.s.toFixed(3) + ")";
+        el.style.opacity = st.op.toFixed(3);
+      }
+
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var total = track.offsetHeight - (window.innerHeight - headerH);
+        var p = total > 0 ? clamp(-track.getBoundingClientRect().top / total, 0, 1) : 0;
+        var m = mobile;
+        apply(pinho,     stage(p, 0.00, 0.30, m ? -78 : -138, 70, 0.8,  m ? -78 : -138, m ? 10 : 0,  m ? 0.86 : 1));
+        apply(alvejante, stage(p, 0.30, 0.60, m ?  82 : 148,  80, 0.62, m ?  82 : 148,  m ? 26 : 18, m ? 0.78 : 0.9));
+        apply(bmq,       stage(p, 0.55, 0.85, 0, 26, 0.5, 0, m ? -30 : -46, m ? 0.66 : 0.78));
+      }
+      function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(update); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", function () { mobile = window.matchMedia("(max-width: 720px)").matches; update(); });
+      update();
+    })();
+
+    /* ---------------------------------------------------------
+       Carrosséis (Empresas / Moradores) — botões prev/next.
+       Sem IntersectionObserver/data-reveal nos cards (carrossel com
+       overflow-x já causou bug real de cards presos invisíveis).
+       --------------------------------------------------------- */
+    (function () {
+      var carousels = { empresas: document.getElementById("carouselEmpresas"), moradores: document.getElementById("carouselMoradores") };
+      function getStep(track) {
+        var card = track.querySelector(".carousel-card");
+        return card ? card.getBoundingClientRect().width + 20 : 260;
+      }
+      document.querySelectorAll("[data-carousel-prev]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var track = carousels[btn.getAttribute("data-carousel-prev")];
+          if (track) track.scrollBy({ left: -getStep(track), behavior: "smooth" });
         });
       });
-    }
+      document.querySelectorAll("[data-carousel-next]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var track = carousels[btn.getAttribute("data-carousel-next")];
+          if (track) track.scrollBy({ left: getStep(track), behavior: "smooth" });
+        });
+      });
+    })();
 
     /* ---------------------------------------------------------
-       4. Carrosséis: drag (mouse), touch nativo e teclado
+       Catálogo: abas de categoria + busca em tempo real (debounce).
+       SEGURANÇA: filtramos por textContent/atributos data-*; o valor
+       digitado NUNCA é injetado via innerHTML.
        --------------------------------------------------------- */
-    function initCarousel(track) {
-      if (!track) return;
-      var isDown = false, startX = 0, startScroll = 0, moved = 0;
+    (function () {
+      var cards = Array.prototype.slice.call(document.querySelectorAll("#catalogGrid .product-card"));
+      var searchInput = document.getElementById("catalogSearch");
+      var tabButtons = Array.prototype.slice.call(document.querySelectorAll(".tabs .tab"));
+      var emptyState = document.getElementById("emptyState");
+      var emptyMsg = document.getElementById("emptyMsg");
+      if (!cards.length || !searchInput) return;
 
-      // --- Drag com mouse (física simples) ---
-      track.addEventListener("mousedown", function (e) {
-        isDown = true; moved = 0;
-        track.classList.add("dragging");
-        startX = e.pageX;
-        startScroll = track.scrollLeft;
-      });
-      window.addEventListener("mouseup", function () {
-        isDown = false;
-        track.classList.remove("dragging");
-      });
-      track.addEventListener("mouseleave", function () {
-        isDown = false;
-        track.classList.remove("dragging");
-      });
-      track.addEventListener("mousemove", function (e) {
-        if (!isDown) return;
-        e.preventDefault();
-        var walk = e.pageX - startX;
-        moved = Math.abs(walk);
-        track.scrollLeft = startScroll - walk;
-      });
-      // Evita que o clique dispare após um arraste
-      track.addEventListener("click", function (e) {
-        if (moved > 8) { e.preventDefault(); }
-      }, true);
+      var searchTerm = "";
+      var activeFilter = "all";
 
-      // --- Navegação por teclado (setas) quando o carrossel tem foco ---
-      track.addEventListener("keydown", function (e) {
-        var step = getStep(track);
-        if (e.key === "ArrowRight") { track.scrollBy({ left: step, behavior: "smooth" }); e.preventDefault(); }
-        else if (e.key === "ArrowLeft") { track.scrollBy({ left: -step, behavior: "smooth" }); e.preventDefault(); }
-      });
-      // touch: usa o scroll nativo (-webkit-overflow-scrolling), nada a fazer.
-    }
-
-    function getStep(track) {
-      var card = track.querySelector(".product-card");
-      if (!card) return 300;
-      var gap = parseInt(getComputedStyle(track).gap) || 22;
-      return card.getBoundingClientRect().width + gap;
-    }
-
-    var carousels = {
-      b2b: document.getElementById("carousel-b2b"),
-      b2c: document.getElementById("carousel-b2c")
-    };
-    initCarousel(carousels.b2b);
-    initCarousel(carousels.b2c);
-
-    // Botões prev/next dos carrosséis
-    document.querySelectorAll("[data-carousel-prev]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var track = carousels[btn.getAttribute("data-carousel-prev")];
-        if (track) track.scrollBy({ left: -getStep(track), behavior: "smooth" });
-      });
-    });
-    document.querySelectorAll("[data-carousel-next]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var track = carousels[btn.getAttribute("data-carousel-next")];
-        if (track) track.scrollBy({ left: getStep(track), behavior: "smooth" });
-      });
-    });
-
-    /* ---------------------------------------------------------
-       5. Catálogo: abas de categoria + busca em tempo real (debounce)
-       SEGURANÇA: filtramos por textContent / atributos data-*;
-       o valor digitado NUNCA é injetado via innerHTML.
-       --------------------------------------------------------- */
-    var cards = Array.prototype.slice.call(document.querySelectorAll("#catalogGrid .product-card"));
-    var searchInput = document.getElementById("catalogSearch");
-    var tabButtons = Array.prototype.slice.call(document.querySelectorAll(".tabs .tab"));
-    var emptyState = document.getElementById("emptyState");
-    var emptyMsg = document.getElementById("emptyMsg");
-
-    var searchTerm = "";
-    var activeFilter = "all";
-
-    function normalize(str) {
-      // remove acentos e coloca em minúsculas para comparação robusta
-      return (str || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    }
-
-    function applyFilters() {
-      var visibleCount = 0;
-      cards.forEach(function (card) {
-        var category = card.getAttribute("data-category") || "";
-        var matchCategory = (activeFilter === "all") || (category === activeFilter);
-
-        var name = normalize(card.getAttribute("data-name") || "");
-        var descEl = card.querySelector(".product-desc");
-        var desc = normalize(descEl ? descEl.textContent : "");
-        var matchSearch = (searchTerm === "") || name.indexOf(searchTerm) !== -1 || desc.indexOf(searchTerm) !== -1;
-
-        if (matchCategory && matchSearch) {
-          card.classList.remove("is-hidden");
-          visibleCount++;
-        } else {
-          card.classList.add("is-hidden");
-        }
-      });
-
-      // Estado vazio — usamos textContent (nunca innerHTML com o valor digitado)
-      if (visibleCount === 0) {
-        emptyState.classList.add("visible");
-        // textContent evita qualquer injeção de HTML a partir do input do usuário
-        emptyMsg.textContent = 'Nenhum resultado para o que você buscou. Tente outro termo, mude de categoria, ou fale com a gente pelo WhatsApp — temos muito mais no estoque.';
-      } else {
-        emptyState.classList.remove("visible");
+      function normalize(str) {
+        return (str || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       }
-    }
 
-    // Abas de categoria (combinam com a busca; nunca se excluem)
-    tabButtons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        if (btn.getAttribute("aria-selected") === "true") return;
-        tabButtons.forEach(function (b) { b.setAttribute("aria-selected", "false"); });
-        btn.setAttribute("aria-selected", "true");
-        activeFilter = btn.getAttribute("data-filter") || "all";
-        applyFilters();
+      function applyFilters() {
+        var visibleCount = 0;
+        cards.forEach(function (card) {
+          var category = card.getAttribute("data-category") || "";
+          var matchCategory = (activeFilter === "all") || (category === activeFilter);
+
+          var name = normalize(card.getAttribute("data-name") || "");
+          var descEl = card.querySelector(".product-desc");
+          var desc = normalize(descEl ? descEl.textContent : "");
+          var matchSearch = (searchTerm === "") || name.indexOf(searchTerm) !== -1 || desc.indexOf(searchTerm) !== -1;
+
+          if (matchCategory && matchSearch) {
+            card.classList.remove("is-hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("is-hidden");
+          }
+        });
+
+        if (visibleCount === 0) {
+          emptyState.classList.add("visible");
+          emptyMsg.textContent = "Nenhum resultado para o que você buscou. Tente outro termo, mude de categoria, ou fale com a gente pelo WhatsApp — temos muito mais no estoque.";
+        } else {
+          emptyState.classList.remove("visible");
+        }
+      }
+
+      tabButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (btn.getAttribute("aria-selected") === "true") return;
+          tabButtons.forEach(function (b) { b.setAttribute("aria-selected", "false"); });
+          btn.setAttribute("aria-selected", "true");
+          activeFilter = btn.getAttribute("data-filter") || "all";
+          applyFilters();
+        });
       });
-    });
 
-    // Busca com debounce (~200ms)
-    var debounceTimer = null;
-    if (searchInput) {
+      var debounceTimer = null;
       searchInput.addEventListener("input", function () {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function () {
@@ -2401,197 +2042,7 @@
           applyFilters();
         }, 200);
       });
-    }
-
-    /* ---------------------------------------------------------
-       6. Ano atual no rodapé
-       --------------------------------------------------------- */
-    var yearEl = document.getElementById("year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    /* ---------------------------------------------------------
-       7. Movimento cinematográfico
-       (skill ui-ux-pro-max: Scroll Reveal + Stagger + Parallax sutil)
-       Fallback total: sem JS ou com prefers-reduced-motion, tudo fica
-       visível e estático. Nunca escondemos conteúdo sem fallback.
-       --------------------------------------------------------- */
-    var prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!prefersReduce && "IntersectionObserver" in window) {
-      document.documentElement.classList.add("js-motion");
-
-      // Marca automaticamente os blocos-chave para revelar ao entrar na viewport.
-      // (Cards/fotos de carrossel ficam de fora: dentro de um contêiner com
-      // overflow-x + os cards com perspective(), o IntersectionObserver não
-      // reporta interseção de forma confiável — testado e confirmado; a foto
-      // ficava permanentemente invisível. Carrosséis continuam sem reveal.)
-      var groups = [
-        { sel: ".hero-copy > *", stagger: 60 },
-        { sel: ".hero-visual", type: "scale" },
-        { sel: ".section-head", stagger: 0 },
-        { sel: "#catalogGrid > .product-card", type: "scale", stagger: 55 },
-        { sel: ".authority-seal" },
-        { sel: ".authority-card", stagger: 90 },
-        { sel: ".cta-panel", type: "scale" },
-        { sel: ".footer-grid > *", stagger: 70 }
-      ];
-      groups.forEach(function (g) {
-        document.querySelectorAll(g.sel).forEach(function (el, i) {
-          if (el.hasAttribute("data-reveal")) return;
-          el.setAttribute("data-reveal", g.type || "");
-          if (g.stagger) el.style.setProperty("--reveal-delay", (Math.min(i, 8) * g.stagger) + "ms");
-        });
-      });
-
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
-      document.querySelectorAll("[data-reveal]").forEach(function (el) { io.observe(el); });
-
-      // Tilt 3D nos cards de produto — só em ponteiro fino (desktop), nunca em toque
-      if (window.matchMedia("(pointer: fine)").matches) {
-        document.querySelectorAll(".product-card").forEach(function (card) {
-          card.addEventListener("pointermove", function (ev) {
-            var r = card.getBoundingClientRect();
-            var px = (ev.clientX - r.left) / r.width - 0.5;
-            var py = (ev.clientY - r.top) / r.height - 0.5;
-            card.classList.add("tilting");
-            card.style.setProperty("--ry", (px * 6).toFixed(2) + "deg");
-            card.style.setProperty("--rx", (-py * 6).toFixed(2) + "deg");
-          });
-          card.addEventListener("pointerleave", function () {
-            card.classList.remove("tilting");
-            card.style.setProperty("--ry", "0deg");
-            card.style.setProperty("--rx", "0deg");
-          });
-        });
-      }
-
-      // Parallax em duas camadas no hero: a aura (fundo, mais lenta) e o card 3D
-      // do produto (mais rápido) — dá sensação de profundidade real ao rolar.
-      // Só roda enquanto o hero está na tela; some depois para não "derivar" pela página.
-      var aura = document.querySelector(".hero-aura");
-      var heroVisual = document.querySelector(".hero-visual");
-      var heroSection = document.querySelector(".hero");
-      if (aura && heroSection) {
-        var pTicking = false;
-        window.addEventListener("scroll", function () {
-          if (pTicking) return; pTicking = true;
-          requestAnimationFrame(function () {
-            var heroH = heroSection.offsetHeight || 1;
-            var y = window.scrollY;
-            aura.style.transform = "translate3d(0," + (y * 0.12).toFixed(1) + "px,0)";
-            if (heroVisual && y < heroH) {
-              heroVisual.style.transform = "translate3d(0," + (y * -0.05).toFixed(1) + "px,0)";
-            }
-            pTicking = false;
-          });
-        }, { passive: true });
-      }
-
-      // Vitrine cinematográfica: contêiner alto (230vh) + palco fixo (sticky).
-      // O progresso do scroll dentro do contêiner (0→1) anima 3 fotos REAIS
-      // dos produtos via transform/opacity — técnica de "scroll-scrub" sem
-      // vídeo e sem geração por IA. Cada produto tem uma janela de entrada
-      // [início, fim] dentro do progresso; fora dela fica parado no estado
-      // inicial (antes) ou final (depois) — nunca "recua" ao rolar de volta.
-      var cineShowcase = document.querySelector(".cine-showcase");
-      if (cineShowcase) {
-        var cinePinho = cineShowcase.querySelector(".cine-product--pinho");
-        var cineAlvejante = cineShowcase.querySelector(".cine-product--alvejante");
-        var cineBmq = cineShowcase.querySelector(".cine-product--bmq");
-        cineShowcase.setAttribute("data-cine-ready", "");
-        var cineMobile = window.matchMedia("(max-width: 720px)").matches;
-
-        function cineStage(progress, start, end, fromX, fromY, fromScale, toX, toY, toScale) {
-          var t = end > start ? (progress - start) / (end - start) : 1;
-          t = Math.max(0, Math.min(1, t));
-          var e = 1 - Math.pow(1 - t, 3); // ease-out cúbico
-          return {
-            x: fromX + (toX - fromX) * e,
-            y: fromY + (toY - fromY) * e,
-            s: fromScale + (toScale - fromScale) * e,
-            op: t
-          };
-        }
-        function cineApply(el, st) {
-          if (!el) return;
-          el.style.transform = "translate(" + st.x.toFixed(1) + "px," + st.y.toFixed(1) + "px) scale(" + st.s.toFixed(3) + ")";
-          el.style.opacity = st.op.toFixed(3);
-        }
-
-        var cTicking = false;
-        function updateCine() {
-          var total = cineShowcase.offsetHeight - window.innerHeight;
-          var progress = total > 0 ? (-cineShowcase.getBoundingClientRect().top) / total : 0;
-          progress = Math.max(0, Math.min(1, progress));
-
-          var m = cineMobile;
-          cineApply(cinePinho,     cineStage(progress, 0.00, 0.30, m ? -78 : -138, 70, 0.8, m ? -78 : -138, m ? 10 : 0,  m ? 0.86 : 1));
-          cineApply(cineAlvejante, cineStage(progress, 0.30, 0.60, m ?  82 : 148,  80, 0.62, m ?  82 : 148, m ? 26 : 18, m ? 0.78 : 0.9));
-          cineApply(cineBmq,       cineStage(progress, 0.55, 0.85, 0, 26, 0.5, 0, m ? -30 : -46, m ? 0.66 : 0.78));
-        }
-
-        window.addEventListener("scroll", function () {
-          if (cTicking) return; cTicking = true;
-          requestAnimationFrame(function () { updateCine(); cTicking = false; });
-        }, { passive: true });
-        window.addEventListener("resize", function () {
-          cineMobile = window.matchMedia("(max-width: 720px)").matches;
-          updateCine();
-        }, { passive: true });
-        updateCine();
-      }
-    }
-
-    /* ---------------------------------------------------------
-       8. Barra de progresso de leitura + scrollspy do menu
-       (wayfinding funcional — roda mesmo com prefers-reduced-motion,
-       já que não é decoração: ajuda a saber onde a página está)
-       --------------------------------------------------------- */
-    var progressBar = document.getElementById("scrollProgress");
-    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
-    var spySections = navLinks
-      .map(function (a) { return document.querySelector(a.getAttribute("href")); })
-      .filter(Boolean);
-    var spTicking = false;
-    function updateProgress() {
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - doc.clientHeight;
-      var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      if (progressBar) progressBar.style.width = pct.toFixed(1) + "%";
-    }
-    // Scrollspy por posição direta (não por interseção de faixa): pega a última
-    // seção cujo topo já passou de uma linha de referência logo abaixo do header.
-    // Funciona de forma confiável mesmo com seções curtas (ex.: o CTA final).
-    function updateSpy() {
-      if (!navLinks.length || !spySections.length) return;
-      var doc = document.documentElement;
-      var activeIdx;
-      // Perto do fim absoluto da página: a última seção + rodapé podem ser mais
-      // baixos que a viewport, e o topo dela nunca chega a cruzar a linha de
-      // referência mesmo rolando até o fim — força o último link nesse caso.
-      if (doc.scrollHeight - (doc.scrollTop + doc.clientHeight) < 2) {
-        activeIdx = spySections.length - 1;
-      } else {
-        var refY = 120;
-        activeIdx = -1;
-        for (var i = 0; i < spySections.length; i++) {
-          if (spySections[i].getBoundingClientRect().top <= refY) activeIdx = i;
-        }
-      }
-      navLinks.forEach(function (a, i) { a.classList.toggle("active", i === activeIdx); });
-    }
-    window.addEventListener("scroll", function () {
-      if (spTicking) return; spTicking = true;
-      requestAnimationFrame(function () { updateProgress(); updateSpy(); spTicking = false; });
-    }, { passive: true });
-    updateProgress();
-    updateSpy();
-
-  })();
+    })();
   </script>
 </body>
 </html>
