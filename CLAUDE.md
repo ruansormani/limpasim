@@ -4,7 +4,23 @@ Site institucional da LimpaSim (distribuidora exclusiva Quimiprol, Gramado e
 Serra Gaúcha/RS) em um único arquivo `index.html` (HTML+CSS+JS, sem build,
 sem dependências externas além do Google Fonts).
 
-## ✅ Reconstrução completa do site — concluída (24/07/2026)
+## ⚠ Reconstrução v3 (foco 100% em vender pra empresas) — em planejamento (24/07/2026)
+
+O cliente pediu uma **terceira reconstrução**, insatisfeito com pontos
+específicos da v2 abaixo. Briefing completo em
+`docs/prompt-reconstrucao-site-v3-empresas.md` — **leia esse arquivo
+primeiro** antes de tocar em `index.html` de novo. Resumo do que muda:
+site pensado pra vender pra empresa em primeiro lugar (não mais
+audiência "igualitária"), catálogo deixa de mostrar todos os 61
+produtos na home (curadoria pequena + link pro catálogo completo),
+**nunca mais usar as fotos com fundo removido** (`assets/produtos/
+recorte/*.png` — cliente achou ruim, usar sempre `assets/produtos/
+*.jpg` originais), e **logo real do cliente já processada** em
+`assets/logo/` (ícone + lockup completo, fundo transparente,
+substituindo o SVG genérico usado até aqui). 3 perguntas ainda em
+aberto — ver seção 7 do arquivo. Nada disso foi implementado ainda.
+
+## ✅ Reconstrução completa do site v2 — concluída (24/07/2026, substituída pela v3 acima)
 
 O site foi **reconstruído 100% do zero** conforme
 `docs/prompt-reconstrucao-site-novo.md` (as 6 perguntas em aberto do
