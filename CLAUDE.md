@@ -4,6 +4,21 @@ Site institucional da LimpaSim (distribuidora exclusiva Quimiprol, Gramado e
 Serra Gaúcha/RS) em um único arquivo `index.html` (HTML+CSS+JS, sem build,
 sem dependências externas além do Google Fonts).
 
+## ⚠ Reconstrução completa do site — em planejamento (24/07/2026)
+
+O cliente pediu um site **100% novo** (design/layout/copy atuais
+descartados), mantendo só produtos/imagens/skills já validados. Antes de
+qualquer código, foi produzido o briefing completo em
+`docs/prompt-reconstrucao-site-novo.md` — **leia esse arquivo primeiro**
+se a tarefa for continuar/executar essa reconstrução. Ele já reúne toda
+a memória relevante (o que reaproveitar, o que muda, paleta nova azul
+suave, cupom de primeira compra, audiência dupla Empresas/Moradores,
+etc.) e lista **perguntas em aberto ainda não respondidas pelo
+cliente** (cor de destaque, valor do cupom, segmentos de audiência
+além de Empresas/Moradores, etc.) — não presumir essas respostas.
+Ver também `docs/auditoria-quimiprol-completa.md` (relatório completo,
+persistido nesta data — antes só havia um resumo condensado abaixo).
+
 ## Estrutura do repositório
 
 - `index.html` — o site inteiro. Design "editorial elegante" (Fraunces +
