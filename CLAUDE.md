@@ -8,8 +8,10 @@ sem dependências externas além do Google Fonts).
 
 - `index.html` — o site inteiro. Design "editorial elegante" (Fraunces +
   Plus Jakarta Sans, acento dourado/champagne sobre azul-noite), efeitos de
-  scroll (reveal, paralaxe, scrollspy, tilt 3D), catálogo com busca em
-  tempo real, dois carrosséis (Empresas/B2B e Casa/B2C).
+  scroll (reveal, paralaxe, scrollspy, tilt 3D), catálogo com **61
+  produtos** organizados em abas de categoria + busca em tempo real
+  (ver seção "Catálogo — abas de categoria" abaixo), dois carrosséis
+  (Empresas/B2B e Casa/B2C).
 - `assets/produtos/` — fotos **já usadas no site**, tratadas/otimizadas.
   Não editar as originais de `produtos-fonte/` diretamente; sempre copiar
   e ajustar para cá antes de referenciar no HTML.
@@ -53,6 +55,45 @@ sem dependências externas além do Google Fonts).
 - **Git:** branch de trabalho é `claude/limpasim-website-build-aidjvt`,
   PR #1 aberto em `ruansormani/limpasim`. Sempre commitar + push ao final
   de cada mudança aprovada.
+
+## Catálogo — abas de categoria (24/07/2026, substitui a versão de aba única)
+
+O catálogo **voltou a ter abas de categoria** (Todos / Lavanderia /
+Cozinha / Limpeza Geral / Ambientes / Automotivo, cada uma com contador
+de produtos), revertendo a simplificação anterior pra aba única +
+busca (commit `d05bb0c`). Decisão explícita do cliente ao pedir pra
+"pegar a estrutura bem organizada de produtos" do site do fabricante
+Quimiprol (ver seção de análise mais abaixo) e aplicar algo **ainda
+mais organizado** aqui.
+
+- **Categorias = as 5 de `produtos-fonte/`**, não as 7 do site da
+  Quimiprol — de propósito. Copiar as 7 categorias do fabricante
+  criaria abas vazias (LimpaSim não tem produtos de "Pet" nem "Limpeza
+  para Mãos" na biblioteca-fonte), exatamente o tipo de inconsistência
+  que a própria análise do site da Quimiprol identificou como erro a
+  evitar. Duas camadas de organização: `data-category` (macro, filtro
+  de aba) + `product-cat` visível no card (subcategoria específica,
+  ex.: "Amaciante", "Lava-Louças", "Desinfetante").
+- **Paleta de cores do site NÃO mudou** — decisão explícita do cliente
+  foi manter o azul-noite + dourado editorial já auditado (WCAG AA),
+  usando cor só como acento organizacional (gradiente cyan/royal no
+  estado selecionado da aba, já reaproveitando tokens existentes:
+  `--cyan-600`, `--royal-700`). Nunca copiar a identidade visual do
+  fabricante.
+- **Catálogo expandido de 10 → 61 produtos**, incorporando praticamente
+  toda a `produtos-fonte/` (as ~50 fotos que antes só ficavam de
+  reserva). Isso foi necessário, não opcional: sem produtos suficientes
+  em cada categoria, a maioria das abas ficaria vazia. Os 8 produtos já
+  publicados antes continuam com o mesmo card; só ganharam
+  `data-category`.
+- **JS:** `applyFilters()` combina aba ativa (`activeFilter`) **e**
+  termo de busca ao mesmo tempo (E lógico, nunca se excluem) — dá pra
+  filtrar por categoria e ainda refinar digitando.
+- Ao adicionar produto novo: escolher a categoria macro certa (uma das
+  5), escrever descrição genérica sem inventar dado específico (fiel
+  ao rótulo/tipo de produto, no mesmo tom dos demais cards), e nunca
+  esquecer o `data-category` no `<article>` — sem ele o card não some
+  nem aparece nas abas, só na busca.
 
 ## Vitrine Cinematográfica (scroll-scrub)
 
