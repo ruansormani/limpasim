@@ -4,35 +4,35 @@ Site institucional da LimpaSim (distribuidora exclusiva Quimiprol, Gramado e
 Serra Gaúcha/RS) em um único arquivo `index.html` (HTML+CSS+JS, sem build,
 sem dependências externas além do Google Fonts).
 
-## ⚠ Reconstrução completa do site — em planejamento (24/07/2026)
+## ✅ Reconstrução completa do site — concluída (24/07/2026)
 
-O cliente pediu um site **100% novo** (design/layout/copy atuais
-descartados), mantendo só produtos/imagens/skills já validados. Antes de
-qualquer código, foi produzido o briefing completo em
-`docs/prompt-reconstrucao-site-novo.md` — **leia esse arquivo primeiro**
-se a tarefa for continuar/executar essa reconstrução. Ele reúne toda a
-memória relevante (o que reaproveitar, o que muda, paleta nova azul
-suave, cupom de primeira compra, audiência dupla Empresas/Moradores,
-etc.). **Todas as 6 perguntas em aberto já foram respondidas
-(24/07/2026)** — resumo: accent **verde** (não dourado), cupom **5% na
-primeira compra**, o badge "+10 Anos em Gramado" está **errado, o
-certo é 5 anos** (corrigir em todo o site), botões de audiência **só
-Empresas/Moradores** (sem mais segmentos), arquitetura **continua
-vanilla single-file sem back-end** (só o padrão de URL da Quimiprol
-vira âncora interna), catálogo **reaproveita imagens/dados como estão**
-dentro de um bloco de apresentação novo. Documento pronto pra guiar a
-construção — ver seção 8 do arquivo pra detalhe de cada resposta.
-Ver também `docs/auditoria-quimiprol-completa.md` (relatório completo,
-persistido nesta data — antes só havia um resumo condensado abaixo).
+O site foi **reconstruído 100% do zero** conforme
+`docs/prompt-reconstrucao-site-novo.md` (as 6 perguntas em aberto do
+briefing foram todas respondidas antes da execução — ver seção 8 desse
+arquivo para o histórico completo de cada decisão). O design "editorial
+elegante" antigo (Fraunces + azul-noite + dourado) foi **totalmente
+descartado**; o que sobreviveu foi só dado/imagem/técnica, não visual.
+Ver `docs/auditoria-quimiprol-completa.md` para a análise completa do
+site do fabricante que inspirou a reestruturação de conteúdo (não o
+visual — nunca copiar a identidade da Quimiprol).
 
 ## Estrutura do repositório
 
-- `index.html` — o site inteiro. Design "editorial elegante" (Fraunces +
-  Plus Jakarta Sans, acento dourado/champagne sobre azul-noite), efeitos de
-  scroll (reveal, paralaxe, scrollspy, tilt 3D), catálogo com **61
-  produtos** organizados em abas de categoria + busca em tempo real
-  (ver seção "Catálogo — abas de categoria" abaixo), dois carrosséis
-  (Empresas/B2B e Casa/B2C).
+- `index.html` — o site inteiro. **Design novo** (24/07/2026): paleta
+  **azul suave** dominante em todo o site + **verde** como único acento
+  pontual (cupom, CTAs, badges de valor) — substituiu completamente o
+  azul-noite/dourado antigo. Tipografia nova: **Manrope** (display) +
+  **Work Sans** (corpo), no lugar de Fraunces/Plus Jakarta Sans.
+  Arquitetura de **audiência dupla** com Empresas priorizada (cards de
+  audiência no hero, seções B2B/B2C dedicadas com carrosséis
+  curados) — ver seção "Arquitetura de audiência" abaixo. Catálogo com
+  **61 produtos** em abas de categoria + busca (mesmos dados/imagens de
+  sempre, bloco de apresentação redesenhado — ver seção "Catálogo"
+  abaixo). Vitrine cinematográfica reconstruída como portal-reveal
+  (`.portal-track`/`.portal-stage`, não mais `.cine-showcase`) — ver
+  seção "Vitrine Cinematográfica" abaixo. Cupom de **5% na primeira
+  compra** e badge **"+5 Anos em Gramado"** (corrigido — o antigo "+10
+  Anos" estava errado).
 - `assets/produtos/` — fotos **já usadas no site**, tratadas/otimizadas.
   Não editar as originais de `produtos-fonte/` diretamente; sempre copiar
   e ajustar para cá antes de referenciar no HTML.
@@ -77,80 +77,117 @@ persistido nesta data — antes só havia um resumo condensado abaixo).
   PR #1 aberto em `ruansormani/limpasim`. Sempre commitar + push ao final
   de cada mudança aprovada.
 
-## Catálogo — abas de categoria (24/07/2026, substitui a versão de aba única)
+## Arquitetura de audiência (Empresas em primeiro lugar)
 
-O catálogo **voltou a ter abas de categoria** (Todos / Lavanderia /
-Cozinha / Limpeza Geral / Ambientes / Automotivo, cada uma com contador
-de produtos), revertendo a simplificação anterior pra aba única +
-busca (commit `d05bb0c`). Decisão explícita do cliente ao pedir pra
-"pegar a estrutura bem organizada de produtos" do site do fabricante
-Quimiprol (ver seção de análise mais abaixo) e aplicar algo **ainda
-mais organizado** aqui.
+Decisão do cliente: a experiência do cliente empresário vem primeiro,
+mas os dois públicos (Empresas e Moradores) são atendidos. Implementado
+como a primeira decisão do visitante, não uma seção no meio da rolagem:
+
+- **Hero:** dois `.audience-card` lado a lado logo abaixo do H1 —
+  `.audience-card--primary` ("Sou Empresa", estilo escuro/destacado,
+  kicker "Prioridade") sempre antes de `.audience-card` comum ("Sou
+  Morador", kicker "Residencial"). Mesma dupla de botões no header
+  (`.audience-pill`, desktop) e no menu mobile (`.mobile-audience`).
+- **Seções dedicadas** `#empresas` (bg `--paper-tint`, aparece primeiro)
+  e `#moradores` (bg branco, aparece depois), cada uma com copy própria
+  e um carrossel de 5 produtos curados (não os 61 do catálogo — seleção
+  intencional: Empresas = linha profissional 5L; Moradores = tamanhos
+  menores/residenciais). CTA de WhatsApp com mensagem própria por
+  audiência.
+- **"E etc" do pedido original** não virou mais botões de audiência —
+  o cliente esclareceu que era sobre itens de menu normais (Catálogo,
+  Quem Somos, Contato), não mais segmentos de público. Só existem 2
+  audience buttons: Empresas e Moradores.
+
+## Catálogo — abas de categoria (61 produtos)
+
+Catálogo com abas de categoria (Todos / Lavanderia / Cozinha / Limpeza
+Geral / Ambientes / Automotivo, cada uma com contador) + busca em tempo
+real, seção `#catalogo`. Estrutura e dados **reaproveitados como estão**
+da reconstrução anterior (24/07/2026, catálogo expandido de 10→61
+produtos) — na reconstrução completa do site, só o bloco de
+apresentação (CSS/paleta) foi refeito, os 61 `<article class="product-
+card">` com seus `data-category`/`data-name`/imagens/descrições vieram
+copiados 1:1 do HTML anterior.
 
 - **Categorias = as 5 de `produtos-fonte/`**, não as 7 do site da
-  Quimiprol — de propósito. Copiar as 7 categorias do fabricante
-  criaria abas vazias (LimpaSim não tem produtos de "Pet" nem "Limpeza
-  para Mãos" na biblioteca-fonte), exatamente o tipo de inconsistência
-  que a própria análise do site da Quimiprol identificou como erro a
-  evitar. Duas camadas de organização: `data-category` (macro, filtro
-  de aba) + `product-cat` visível no card (subcategoria específica,
-  ex.: "Amaciante", "Lava-Louças", "Desinfetante").
-- **Paleta de cores do site NÃO mudou** — decisão explícita do cliente
-  foi manter o azul-noite + dourado editorial já auditado (WCAG AA),
-  usando cor só como acento organizacional (gradiente cyan/royal no
-  estado selecionado da aba, já reaproveitando tokens existentes:
-  `--cyan-600`, `--royal-700`). Nunca copiar a identidade visual do
-  fabricante.
-- **Catálogo expandido de 10 → 61 produtos**, incorporando praticamente
-  toda a `produtos-fonte/` (as ~50 fotos que antes só ficavam de
-  reserva). Isso foi necessário, não opcional: sem produtos suficientes
-  em cada categoria, a maioria das abas ficaria vazia. Os 8 produtos já
-  publicados antes continuam com o mesmo card; só ganharam
-  `data-category`.
+  Quimiprol — de propósito, pra não criar abas vazias (ver
+  `docs/auditoria-quimiprol-completa.md`, erro identificado lá e
+  evitado aqui). Duas camadas: `data-category` (macro, filtro de aba) +
+  `product-cat` visível no card (subcategoria, ex.: "Amaciante").
+- **Paleta do catálogo:** seção com fundo `--blue-900` (a única seção
+  "escura" do site novo, contraste proposital com o resto azul-suave/
+  branco), abas com gradiente `--blue-400`→`--green-500` no estado
+  selecionado. Cards de produto continuam em `--paper` branco.
 - **JS:** `applyFilters()` combina aba ativa (`activeFilter`) **e**
-  termo de busca ao mesmo tempo (E lógico, nunca se excluem) — dá pra
-  filtrar por categoria e ainda refinar digitando.
-- Ao adicionar produto novo: escolher a categoria macro certa (uma das
-  5), escrever descrição genérica sem inventar dado específico (fiel
-  ao rótulo/tipo de produto, no mesmo tom dos demais cards), e nunca
-  esquecer o `data-category` no `<article>` — sem ele o card não some
-  nem aparece nas abas, só na busca.
+  termo de busca (E lógico, nunca se excluem).
+- Ao adicionar produto novo: escolher a categoria macro certa,
+  descrição genérica sem inventar dado, nunca esquecer `data-category`
+  no `<article>` — sem ele o card não aparece nas abas, só na busca.
+- **Bug real corrigido nesta reconstrução:** `.product-media img` sem
+  `object-fit: contain` (só `max-height:100%; width:auto`) não respeita
+  o container quando ele usa `aspect-ratio` — a imagem renderiza perto
+  do tamanho natural e é cortada pelo `overflow:hidden` do card. Fix:
+  `img { position:absolute; inset:0; width:100%; height:100%;
+  object-fit:contain }` no lugar de `max-height`/`width:auto`. Mesma
+  regra vale pro `.carousel-card-media img`.
 
 ## Vitrine Cinematográfica (scroll-scrub)
 
-Seção `<section class="cine-showcase" id="destaques">`, entre o hero e o
-carrossel Empresas. Técnica adaptada de um guia externo
-(`GuiaSitesScrollHero.pdf`, "Sites de Produto com Scroll Cinematográfico")
-que originalmente propunha um vídeo gerado por IA com frame-scrubbing via
-canvas — **decisão do cliente foi usar só a técnica de scroll-scrub**,
-sem vídeo, sem IA generativa, sem canvas, mantendo todo o resto do site
-(menu, catálogo, footer) intacto. Implementação real:
+Seção `<section class="portal-track" id="destaques">` (renomeada de
+`.cine-showcase`/`.cine-stage` para `.portal-track`/`.portal-stage` na
+reconstrução completa — mesma técnica, nomes de classe novos), entre o
+hero e a seção Empresas. Técnica de scroll-scrub sem vídeo/IA/canvas
+(decisão original mantida). Implementação:
 
-- Contêiner alto (`230vh`) + palco `position: sticky` (`.cine-stage`) que
-  fica "pinado" na tela enquanto o usuário rola por dentro do contêiner.
-- Progresso do scroll (0→1) calculado via `getBoundingClientRect()` do
-  contêiner, aplicado como `transform`/`opacity` inline em 3 fotos reais
-  de produto (recortes de `assets/produtos/recorte/`), cada uma com sua
-  própria janela de entrada (ease-out cúbico). Throttle por
-  `requestAnimationFrame` no listener de `scroll`, igual ao resto do site.
-- `.cine-stage` usa `top: 60px` (não `0`) para não ficar atrás do header
-  sticky — se adicionar novo bloco `position: sticky`, sempre considerar
-  a altura do header (60px) no offset.
-- Filhos `position: absolute` dentro de um pai `flex-direction: column`
-  não dão largura ao pai (encolhe pra 0) — por isso `.cine-products`
-  precisa de `width: 100%; align-self: stretch` explícito nos estados de
-  fallback (`prefers-reduced-motion` e `<noscript>`).
-- Segue o padrão de 3 camadas já estabelecido no site: (1) experiência
-  completa com JS, (2) `prefers-reduced-motion: reduce` → estado final
-  estático sem animação, (3) `<noscript><style>` → colapsa a seção alta
-  pra `height: auto` (senão sobra uma "zona de rolagem morta" sem JS).
-- Ao adicionar/testar novas seções de scroll-scrub, reproduzir o processo
-  de QA já usado aqui: script Playwright medindo overflow de documento e
-  por bloco em 5 larguras (360/390/768/1280/1920px), auditoria de
-  contraste WCAG AA com composição de canais alfa (não dá pra confiar em
-  checker ingênuo com glassmorphism/gradiente), e checagem de erros de
-  JS — tudo isso pego bugs reais antes de publicar (offset de header,
-  largura zero no fallback, sobreposição imagem/texto).
+- Contêiner alto (`240vh`) + palco `position: sticky` (`.portal-stage`)
+  pinado, fundo `--blue-900`→`--blue-700` com glow azul/verde.
+- Progresso do scroll (0→1) via `getBoundingClientRect()`, aplicado como
+  `transform`/`opacity` inline em 3 fotos reais (recortes de
+  `assets/produtos/recorte/`), throttle por `requestAnimationFrame`.
+- `.portal-stage` usa `top: var(--header-h)` (72px, não 0 nem um número
+  fixo) — o offset do header agora é um token CSS (`--header-h`), não
+  um valor mágico espalhado pelo CSS/JS. Se mudar a altura do header,
+  mudar só esse token.
+- Mesma armadilha de sempre: filhos `position:absolute` dentro de pai
+  `flex-direction:column` colapsam a largura do pai — `.portal-products`
+  precisa de `width:100%; align-self:stretch` nos fallbacks.
+- Padrão de 3 camadas mantido: JS completo → `prefers-reduced-motion` →
+  `<noscript>`.
+
+## Bugs reais encontrados na reconstrução completa (24/07/2026)
+
+Além do `object-fit` do catálogo (seção acima), a auditoria de overflow
+pegou mais dois problemas reais que vale lembrar pra próximas seções:
+
+- **Âncoras de navegação atrás do header sticky:** `<a href="#empresas">`
+  etc. levava o usuário pro topo da seção parcialmente coberto pelo
+  header fixo. Fix: `section[id] { scroll-margin-top: var(--header-h); }`
+  — regra genérica, cobre qualquer seção-alvo de âncora automaticamente.
+- **`white-space: nowrap` em botões com texto longo causa overflow real
+  de documento**, não só corte visual: um `.btn` com label longa (ex.:
+  "Pedir orçamento para minha empresa") força a largura do botão a
+  acomodar o texto inteiro numa linha, e isso empurra o `<body>` inteiro
+  pra largura maior que o viewport em telas estreitas — `overflow-x`
+  vaza da seção pro documento todo. Fix: remover `white-space:nowrap`
+  da regra base `.btn` (deixar quebrar linha se precisar) + `max-width:
+  100%`. **Nunca usar `white-space:nowrap` em botão cujo texto não é
+  garantidamente curto.**
+- **Contraste WCAG AA precisa ser reauditado do zero a cada paleta
+  nova** — não dá pra assumir que um par de cores que passava na paleta
+  antiga passa na nova só por ocupar o "mesmo papel" visual. Nesta
+  reconstrução, 4 pares reais falharam com a paleta azul/verde nova até
+  serem ajustados: botão primário verde com texto branco (`--green-500`
+  → `--green-600`), texto secundário `--ink-500` sobre branco (escurecido
+  de `#6C8092` pra `#54697C`), e a opacidade do copyright do footer
+  (`rgba(255,255,255,0.45)` → `0.62`). O script de auditoria usado
+  (composição manual de canais alfa) tem um ponto cego conhecido:
+  `getComputedStyle().backgroundColor` não captura fundos definidos via
+  `background: linear-gradient(...)` (propriedade shorthand), então
+  elementos sobre fundo gradiente aparecem como falso "FAIL" (fundo cai
+  pro branco/fallback). Nesses casos, verificar manualmente contra os
+  stops de cor do gradiente (ver commit da reconstrução pra exemplo de
+  cálculo) antes de decidir se é bug real ou falso positivo.
 
 ## Referência: engenharia reversa de scroll cinematográfico
 
