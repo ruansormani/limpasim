@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo — Video Scrub + Stagger</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #0a0e14; color: #f4f4f4; }
+  header { position: sticky; top: 0; height: 60px; display: flex; align-items: center;
+    padding: 0 24px; background: #0a0e14ee; backdrop-filter: blur(8px); z-index: 10;
+    border-bottom: 1px solid #ffffff1a; }
+  .spacer { height: 100vh; display: grid; place-items: center; font-size: 1.4rem; opacity: .6; }
+  .scrub-copy h2 { font-size: clamp(1.4rem, 3.6vw, 2.2rem); font-weight: 600; margin: 0; }
+</style>
+<link rel="stylesheet" href="video-scrub.css">
+</head>
+<body>
+  <header>--header-offset: 60px</header>
+  <div class="spacer">role pra baixo ↓</div>
+
+  <section class="scrub-track" style="--header-offset:60px">
+    <div class="scrub-stage">
+      <div class="scrub-media"><!-- troque por <video muted playsinline> --></div>
+      <div class="scrub-copy">
+        <h2 data-split>Cada palavra desta frase entra sincronizada ao progresso do scroll.</h2>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer">depois da cena ↓</div>
+
+  <script src="../../core/scroll-progress.js"></script>
+  <script src="video-scrub.js"></script>
+</body>
+</html>
